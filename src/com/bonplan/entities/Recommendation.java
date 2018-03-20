@@ -25,8 +25,21 @@ public class Recommendation {
         
     };
 
+    public Recommendation( int id_owner, String titre, String categorie, String description, String nom, String adresse, String num_tel, String email, float note, String photo) {
+        
+        this.id_owner = id_owner;
+        this.titre = titre;
+        this.categorie = categorie;
+        this.description = description;
+        this.nom = nom;
+        this.adresse = adresse;
+        this.num_tel = num_tel;
+        this.email = email;
+        this.note = note;
+        this.photo = photo;
+    }
     public Recommendation(int id, int id_owner, String titre, String categorie, String description, String nom, String adresse, String num_tel, String email, float note, String photo) {
-        this.id = id;
+        
         this.id_owner = id_owner;
         this.titre = titre;
         this.categorie = categorie;
