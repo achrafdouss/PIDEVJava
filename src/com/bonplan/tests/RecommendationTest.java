@@ -5,7 +5,9 @@
  */
 package com.bonplan.tests;
 
+import com.bonplan.entities.Commentaire;
 import com.bonplan.entities.Recommendation;
+import com.bonplan.services.CommentaireService;
 import com.bonplan.services.RecommendationService;
 
 /**
@@ -14,13 +16,21 @@ import com.bonplan.services.RecommendationService;
  */
 public class RecommendationTest {
     public static void main(String[] args) {
-        Recommendation r=new Recommendation(1, "abc", "aaa", "aaa", "aaa", "aaa", "2213156", "aaa", 4, "aaaa");
+        Recommendation r=new Recommendation(8,1, "abc", "aaa", "aaa", "aaa", "aaa", "2213156", "aaa", 4, "aaaa");
+Recommendation r1= new Recommendation(8, 1, "aaa", "zzzz", "zzzz", "zzzz", "zzz", "zzzz", "zzzz", 4, "zzzz");
         RecommendationService rs= new RecommendationService();
        // rs.AjoutRecommendation(r);
         //rs.ModifierRecommendation(1,r);
         //rs.SupprimerRecommendation(1);
         //rs.AfficherAllRecommendation().forEach(System.out::println);
       // rs.AfficherDetailRecommendation(3).toString();
-      rs.AfficherTopRecommendation("Produit").forEach(System.out::print);
+      //rs.AfficherTopRecommendation("Produit").forEach(System.out::print);
+        Commentaire c= new Commentaire( 1, 8, "abcde", 2);
+        CommentaireService cs= new CommentaireService();
+        //cs.AjoutCommentaire(c);
+        r1.setId(8);
+        System.out.println(r1.id);
+        cs.AfficherCommentaire(r1).forEach(System.out::println);
+        cs.ModifierCommentaire(c);
     }
 }
