@@ -19,7 +19,7 @@ public interface VoyageInterface {
     public void SupprimerVoyage(int id_voy);
     public List<Voyage> AfficherVoyage();
     public Voyage AfficherDetailVoyage(int id_voy);
-    public Voyage RechercherVoyage(float prixMin,float prixMax,String categorie);
+    public Voyage RechercherVoyage(String categorie);
     
     
     

@@ -22,6 +22,58 @@ public class Voyage {
     String date_arr;
     float prix;
     String description;
+    String destination;
+
+    public Voyage(int id_voyage, String categorie, String Type, int nbr_place, String date_dep, String date_arr, float prix, String description, String destination, String photo, int id_owner) {
+        this.id_voyage = id_voyage;
+        this.categorie = categorie;
+        this.Type = Type;
+        this.nbr_place = nbr_place;
+        this.date_dep = date_dep;
+        this.date_arr = date_arr;
+        this.prix = prix;
+        this.description = description;
+        this.destination = destination;
+        this.photo = photo;
+        this.id_owner = id_owner;
+    }
+
+    
+    public Voyage(String categorie, String Type, int nbr_place, String date_dep, String date_arr, float prix, String description, String destination, String photo) {
+        
+        this.categorie = categorie;
+        this.Type = Type;
+        this.nbr_place = nbr_place;
+        this.date_dep = date_dep;
+        this.date_arr = date_arr;
+        this.prix = prix;
+        this.description = description;
+        this.destination = destination;
+        this.photo = photo;
+        
+        
+    }
+
+   
+     public Voyage(String categorie, String date_dep, String date_arr, float prix) {
+        
+        this.categorie = categorie;
+        this.date_dep = date_dep;
+        this.date_arr = date_arr;
+        this.prix = prix;
+        
+        
+        
+    }
+    
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
     String photo;
     int id_owner;
 
