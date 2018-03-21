@@ -15,7 +15,7 @@ import java.util.List;
  */
 public interface CommentaireInterface {
     public void AjoutCommentaire(Commentaire c);
-    public void ModifierCommentaire(Commentaire c);
+    public void ModifierCommentaire(int id,Commentaire c);
     public void SupprimerCommentaire(int id_com);
     public List<Commentaire> AfficherCommentaire(Recommendation r);
     

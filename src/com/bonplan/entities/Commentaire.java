@@ -67,6 +67,13 @@ public class Commentaire {
         this.id_rec = id_rec;
     }
 
+    public Commentaire(int id_owner, int id_rec, String contenu, float note) {
+        this.id_owner = id_owner;
+        this.id_rec = id_rec;
+        this.contenu = contenu;
+        this.note = note;
+    }
+
    
     
 }

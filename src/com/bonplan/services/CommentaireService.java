@@ -53,7 +53,7 @@ public class CommentaireService implements CommentaireInterface{
     }
 
     @Override
-    public void ModifierCommentaire(Commentaire c) {
+    public void ModifierCommentaire(int id,Commentaire c) {
         try {
 String req = "UPDATE commentaire SET id_owner = ?, `id_rec`= ? , `contenu`= ? , `note`= ?"
                     + " WHERE id_com = '"+c.getId_com()+"'";

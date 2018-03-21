@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface RecommendationInterfaces {
     public void AjoutRecommendation(Recommendation r);
-    public void ModifierRecommendation(Recommendation r);
+    public void ModifierRecommendation(int id,Recommendation r);
     public void SupprimerRecommendation(int id_rec);
     public List<Recommendation> AfficherAllRecommendation();
     public Recommendation AfficherDetailRecommendation(int id_rec);
