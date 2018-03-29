@@ -19,9 +19,10 @@ public class User {
     String nom;
     String prenom;
     String addresse;
-    String telephone;
+    int telephone;
+    private static int userconnected;
 
-    public User(int id, String username, String email, int enabled, String password, String confirmation_token, String nom, String prenom, String addresse, String telephone) {
+    public User(int id, String username, String email, int enabled, String password, String confirmation_token, String nom, String prenom, String addresse, int telephone) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -34,7 +35,7 @@ public class User {
         this.telephone = telephone;
     }
 
-    public User(String username, String email, int enabled, String password, String confirmation_token, String nom, String prenom, String addresse, String telephone) {
+    public User(String username, String email, int enabled, String password, String confirmation_token, String nom, String prenom, String addresse, int telephone) {
         this.username = username;
         this.email = email;
         this.enabled = enabled;
@@ -45,6 +46,11 @@ public class User {
         this.addresse = addresse;
         this.telephone = telephone;
     }
+
+    public User() {
+    }
+
+    
 
     public int getId() {
         return id;
@@ -118,11 +124,11 @@ public class User {
         this.addresse = addresse;
     }
 
-    public String getTelephone() {
+    public int getTelephone() {
         return telephone;
     }
 
-    public void setTelephone(String telephone) {
+    public void setTelephone(int telephone) {
         this.telephone = telephone;
     }
 
@@ -130,6 +136,15 @@ public class User {
     public String toString() {
         return "User{" + "id=" + id + ", username=" + username + ", email=" + email + ", enabled=" + enabled + ", password=" + password + ", confirmation_token=" + confirmation_token + ", nom=" + nom + ", prenom=" + prenom + ", addresse=" + addresse + ", telephone=" + telephone + '}';
     }
+
+    public static int getUserconnected() {
+        return userconnected;
+    }
+
+    public static void setUserconnected(int userconnected) {
+        User.userconnected = userconnected;
+    }
+    
     
     
     

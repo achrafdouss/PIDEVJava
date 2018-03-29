@@ -17,8 +17,9 @@ public interface UserInterface {
     public void ModiferUser(int id,User u);
     public void SupprimerUser(int id);
     public Boolean Login(String username,String password);
-    public User AfficherUser(int id);
+    public User AfficherUser(String username);
     public List<User> getAllUser();
+    public User getUser(String username);
     
     
     

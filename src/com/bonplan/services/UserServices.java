@@ -28,6 +28,7 @@ public class UserServices implements UserInterface {
 
     Connection cnx;
     Statement stmt;
+    private static UserServices userservices;
 
     public UserServices() {
         this.cnx = DataSource.getInstance().getConnection();
@@ -44,12 +45,11 @@ public class UserServices implements UserInterface {
             st.setString(2, u.getEmail());
             st.setInt(3, u.getEnabled());
             st.setString(4, u.getPassword());
-            st.setString(4, u.getConfirmation_token());
-            st.setString(4, u.getNom());
-            st.setString(4, u.getPrenom());
-            st.setString(4, u.getAddresse());
-            st.setString(4, u.getTelephone());
-
+            st.setString(5, u.getConfirmation_token());
+            st.setString(6, u.getNom());
+            st.setString(7, u.getPrenom());
+            st.setString(8, u.getAddresse());
+            st.setInt(9, u.getTelephone());
             st.executeUpdate();
             System.out.println("user ajoutée !!");
 
@@ -68,11 +68,11 @@ public class UserServices implements UserInterface {
             st.setString(2, u.getEmail());
             st.setInt(3, u.getEnabled());
             st.setString(4, u.getPassword());
-            st.setString(4, u.getConfirmation_token());
-            st.setString(4, u.getNom());
-            st.setString(4, u.getPrenom());
-            st.setString(4, u.getAddresse());
-            st.setString(4, u.getTelephone());
+            st.setString(5, u.getConfirmation_token());
+            st.setString(6, u.getNom());
+            st.setString(7, u.getPrenom());
+            st.setString(8, u.getAddresse());
+            st.setInt(9, u.getTelephone());
 
             st.executeUpdate();
             System.out.println("user modilfer !!");
@@ -101,48 +101,49 @@ public class UserServices implements UserInterface {
 
         try {
             stmt = cnx.createStatement();
-            ResultSet rs = stmt.executeQuery("Select * from fos_user WHERE fos_user.`username` = '" + username + "'and  fos_user.`password` = '" + password + " ");
-            if (rs == null) {
-                System.out.println("login failed");
-                return false;
+            ResultSet rs = stmt.executeQuery("Select * from fos_user WHERE fos_user.`username` = '" + username + "'and  fos_user.`password` = '" + password+"{"+username+"}"+"' ");
+            
+            if (rs.next()) {
+                System.out.println("login success");
+                return true;
             }
+            
 
             stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return true;
+        return false;
     }
 
     @Override
-    public User AfficherUser(int id) {
+    public User AfficherUser(String username) {
  ArrayList<User> listN = new ArrayList<User>();
+ User u = new User();
         try {
             stmt = cnx.createStatement();
-            ResultSet rs = stmt.executeQuery("Select * from fos_user where fos_user.`id`'"+id+"'");
+            ResultSet rs = stmt.executeQuery("Select * from fos_user where fos_user.`username`='"+username+"'");
             while (rs.next()) {
                 System.out.println("id " + rs.getString(1) + "contenu  " + rs.getString(4));
-                listN.add(new User(
-                        rs.getInt(1),
-                        rs.getString(2),
-                        rs.getString(3),
-                        rs.getInt(4),
-                        rs.getString(5),
-                        rs.getString(6),
-                        rs.getString(7),
-                        rs.getString(8),
-                        rs.getString(9),
-                        rs.getString(10)
-                ));
+                u.setId(rs.getInt(1));
+                        u.setUsername(rs.getString(2));
+                        u.setEmail(rs.getString(4));
+                        u.setEnabled(rs.getInt(6));
+                       
+                        u.setPassword(rs.getString(8));
+                        u.setConfirmation_token(rs.getString(10));
+                        u.setNom(rs.getString(13));
+                        u.setPrenom(rs.getString(14));
+                        u.setAddresse(rs.getString(15));
+                        u.setTelephone(rs.getInt(16));
             }
             stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(Recommendation.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return listN.get(0);
+        return u;
     }
-
     @Override
     public List<User> getAllUser() {
         ArrayList<User> listN = new ArrayList<User>();
@@ -154,14 +155,15 @@ public class UserServices implements UserInterface {
                 listN.add(new User(
                         rs.getInt(1),
                         rs.getString(2),
-                        rs.getString(3),
-                        rs.getInt(4),
-                        rs.getString(5),
-                        rs.getString(6),
-                        rs.getString(7),
+                        rs.getString(4),
+                        rs.getInt(6),
                         rs.getString(8),
-                        rs.getString(9),
-                        rs.getString(10)
+                        rs.getString(10),
+                        rs.getString(13),
+                        rs.getString(14),
+                        rs.getString(15),
+                        rs.getInt(16)
+               
                 ));
             }
             stmt.close();
@@ -169,6 +171,44 @@ public class UserServices implements UserInterface {
             Logger.getLogger(Recommendation.class.getName()).log(Level.SEVERE, null, ex);
         }
         return listN;
+    }
+
+    @Override
+    public User getUser(String username) {
+        User u =new User();
+        
+        try {
+            stmt = cnx.createStatement();
+            ResultSet rs = stmt.executeQuery("Select * from fos_user where username='"+username+"'");
+            while (rs.next()) {
+                System.out.println("id " + rs.getString(1) + "contenu  " + rs.getString(4));
+                
+                        u.setId(rs.getInt(1));
+                        u.setUsername(rs.getString(2));
+                        u.setEmail(rs.getString(3));
+                        u.setEnabled(rs.getInt(4));
+                        u.setEnabled(rs.getInt(5));
+                        u.setPassword(rs.getString(6));
+                        u.setConfirmation_token(rs.getString(7));
+                        u.setNom(rs.getString(8));
+                        u.setPrenom(rs.getString(9));
+                        u.setAddresse(rs.getString(10));
+                        u.setTelephone(rs.getInt(11));
+                        
+                       
+                
+            }
+            stmt.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Recommendation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return u;
+    }
+    public static UserServices getInstance() {
+        if (userservices == null) {
+            return userservices = new UserServices();
+        }
+        return userservices;
     }
 
 }
