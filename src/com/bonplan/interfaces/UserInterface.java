@@ -20,6 +20,7 @@ public interface UserInterface {
     public User AfficherUser(String username);
     public List<User> getAllUser();
     public User getUser(String username);
+    public boolean verifAdmin(String username);
     
     
     

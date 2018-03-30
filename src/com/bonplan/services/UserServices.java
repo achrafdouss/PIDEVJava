@@ -144,6 +144,32 @@ public class UserServices implements UserInterface {
         }
         return u;
     }
+    public User AfficherUserId(int id) {
+ ArrayList<User> listN = new ArrayList<User>();
+ User u = new User();
+        try {
+            stmt = cnx.createStatement();
+            ResultSet rs = stmt.executeQuery("Select * from fos_user where fos_user.`id`='"+id+"'");
+            while (rs.next()) {
+                System.out.println("id " + rs.getString(1) + "contenu  " + rs.getString(4));
+                u.setId(rs.getInt(1));
+                        u.setUsername(rs.getString(2));
+                        u.setEmail(rs.getString(4));
+                        u.setEnabled(rs.getInt(6));
+                       
+                        u.setPassword(rs.getString(8));
+                        u.setConfirmation_token(rs.getString(10));
+                        u.setNom(rs.getString(13));
+                        u.setPrenom(rs.getString(14));
+                        u.setAddresse(rs.getString(15));
+                        u.setTelephone(rs.getInt(16));
+            }
+            stmt.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Recommendation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return u;
+    }
     @Override
     public List<User> getAllUser() {
         ArrayList<User> listN = new ArrayList<User>();
@@ -209,6 +235,24 @@ public class UserServices implements UserInterface {
             return userservices = new UserServices();
         }
         return userservices;
+    }
+
+    @Override
+    public boolean verifAdmin(String username) {
+        ArrayList<User> listN = new ArrayList<User>();
+ User u = new User();
+        try {
+            stmt = cnx.createStatement();
+            ResultSet rs = stmt.executeQuery("Select * from fos_user where fos_user.`username`='"+username+"' and fos_user.`roles` like '%ROLE_AGENT%' ");
+            if(rs.next())
+                return false;
+            
+            stmt.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Recommendation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return true;
+        
     }
 
 }

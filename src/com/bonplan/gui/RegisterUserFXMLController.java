@@ -8,14 +8,20 @@ package com.bonplan.gui;
 import com.bonplan.entities.User;
 import com.bonplan.services.UserServices;
 import com.bonplan.util.MailVerification;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -40,6 +46,10 @@ public class RegisterUserFXMLController implements Initializable {
     private PasswordField password;
     @FXML
     private PasswordField reppassword;
+    @FXML
+    private TextField telephone;
+    @FXML
+    private TextField telep;
 
     /**
      * Initializes the controller class.
@@ -84,12 +94,12 @@ public class RegisterUserFXMLController implements Initializable {
             email.setText("");
         }
 
-        if (tel.getText().equals("")) {
-            tel.setText("Field is empty !");
-            tel.setVisible(true);
+        if (telep.getText().equals("")) {
+            telep.setText("Field is empty !");
+            telep.setVisible(true);
             valid = false;
         } else {
-            tel.setText("");
+            telep.setText("");
         }
         if (addresse.getText().equals("")) {
             addresse.setText("Field is empty !");
@@ -121,8 +131,18 @@ public class RegisterUserFXMLController implements Initializable {
         }
 
         UserServices us=new UserServices();
-        User u=new User(username.getText(), email.getText(), 0, password.getText()+"{"+username.getText()+"}", "0", nom.getText(), prenom.getText(), addresse.getText(), Integer.parseInt(tel.getText()));
+        User u=new User(username.getText(), email.getText(), 0, password.getText()+"{"+username.getText()+"}", "0", nom.getText(), prenom.getText(), addresse.getText(), Integer.parseInt(telep.getText()));
         us.AjouterUser(u);
+    }
+    @FXML
+     public void back(ActionEvent event) throws IOException {
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("LoginUserFXML.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
     }
     
 }

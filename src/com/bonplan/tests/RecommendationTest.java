@@ -36,11 +36,15 @@ Recommendation r1= new Recommendation(8, 1, "aaa", "zzzz", "zzzz", "zzzz", "zzz"
        // cs.ModifierCommentaire(c);
         User u=new User("user", "aaa", 0, "123", "0", "aaa", "aaa", "aaa", 4654654);
         UserServices us=new UserServices();
-        us.AfficherUser("user").toString();
+        //us.AfficherUser("user").toString();
         //us.AjouterUser(u);
         //if(us.Login("user", "123")){
           //  System.out.println("success");}
         //else{ System.out.println("failed");}
-        us.AjouterUser(u);
+        //System.out.println(us.verifAdmin("assil"));
+        us.AfficherUserId(2).toString();
+           User u1=new User("radhouen", "radhouen@abidi.com", 0, "123"+"{"+"radhouen"+"}", "0", "radhouen", "abidi", "ariana", 27326457);
+        us.AjouterUser(u1);
+        
     }
 }

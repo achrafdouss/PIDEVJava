@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="539.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bonplan.gui.AfficheProfileFXMLLController">
+   <children>
+      <Label layoutX="222.0" layoutY="88.0" text="Profile de" />
+      <Label fx:id="nom1" layoutX="286.0" layoutY="88.0" text="Label" />
+      <Label layoutX="73.0" layoutY="158.0" text="Username : " />
+      <Label fx:id="username" layoutX="286.0" layoutY="158.0" text="Label" />
+      <Label layoutX="67.0" layoutY="188.0" text="Adresse Email : " />
+      <Label fx:id="email" layoutX="286.0" layoutY="188.0" text="Label" />
+      <Label layoutX="108.0" layoutY="220.0" text="Nom : " />
+      <Label fx:id="nom2" layoutX="285.0" layoutY="221.0" text="Label" />
+      <Label layoutX="108.0" layoutY="253.0" text="Prenom : " />
+      <Label fx:id="prenom" layoutX="285.0" layoutY="255.0" text="Label" />
+      <Label layoutX="108.0" layoutY="290.0" text="Adresse : " />
+      <Label fx:id="adresse" layoutX="285.0" layoutY="293.0" text="Label" />
+      <Label layoutX="108.0" layoutY="325.0" text="Telephone : " />
+      <Label fx:id="tel" layoutX="285.0" layoutY="328.0" text="Label" />
+      <Button layoutX="41.0" layoutY="27.0" mnemonicParsing="false" onAction="#back" text="back to home" />
+      <Button layoutX="473.0" layoutY="76.0" mnemonicParsing="false" onAction="#Modifier" text="Modifier" />
+   </children>
+</AnchorPane>

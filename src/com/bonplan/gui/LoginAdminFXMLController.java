@@ -9,7 +9,10 @@ import com.bonplan.entities.User;
 import com.bonplan.services.UserServices;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,10 +21,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 /**
@@ -29,17 +32,13 @@ import javafx.stage.Stage;
  *
  * @author Achraf
  */
-public class LoginUserFXMLController implements Initializable {
+public class LoginAdminFXMLController implements Initializable {
 
-    int logged = 0;
+    
     @FXML
     private TextField login;
     @FXML
-    private TextField password;
-    @FXML
-    private Button button;
-    @FXML
-    private Button buttonAdmin;
+    private PasswordField password;
 
     /**
      * Initializes the controller class.
@@ -47,75 +46,62 @@ public class LoginUserFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }
-
-    public void login(ActionEvent event) throws IOException {
+    }    
+    @FXML
+    private void goAuthentification(ActionEvent event) throws IOException {
         UserServices us = new UserServices();
-if (login.getText().isEmpty()) {
+        User u=us.AfficherUser(login.getText());
+        if (login.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Insert your Pseudo");
-            alert.setHeaderText("Insert your Pseudo");
-            alert.setContentText("Insert your Pseudo");
+            alert.setTitle("Empty login");
+            alert.setHeaderText("login ");
+            alert.setContentText("No login was inserted");
 
             alert.showAndWait();
 
         } else if (password.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Insert your Password");
-            alert.setHeaderText("Insert your Password");
-            alert.setContentText("Insert your Password");
+            alert.setTitle("Empty password");
+            alert.setHeaderText(" Password ");
+            alert.setContentText("No Password was inserted");
 
             alert.showAndWait();
-        } else{
-            User u=us.AfficherUser(login.getText());
-         if (u != null) {
-        if (us.Login(login.getText(), password.getText())) {
-            if (u.getEnabled()== 0) {
-                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                            alert.setTitle("Blocked");
-                            alert.setHeaderText("You are blocked ! ");
-                            alert.setContentText(" You are blocked !");
-                             alert.showAndWait();
+        } else {
+            if(us.verifAdmin(login.getText())){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("not Admin");
+            alert.setHeaderText(" Admin ");
+            alert.setContentText("You are not Admin");
             }
-                
             
-            else{
+               else if (us.Login(login.getText(), password.getText())) {
+          
                 ((Node) (event.getSource())).getScene().getWindow().hide();
                 User.setUserconnected(u.getId());
             Stage stage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("AcceuilLoginFXML.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("LoginSuccessFXML.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-            }
+            
             
 
         } else {
             Alert a = new Alert(Alert.AlertType.INFORMATION, "failed", ButtonType.CLOSE);
             a.show();
         }
-
-    }}}
-
-    public void register(ActionEvent event) throws IOException {
-        ((Node) (event.getSource())).getScene().getWindow().hide();
-        Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("RegisterUserFXML.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-
+            }
+               
     }
     @FXML
      public void back(ActionEvent event) throws IOException {
         ((Node) (event.getSource())).getScene().getWindow().hide();
         Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("LoginAdminFXML.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("LoginUserFXML.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
 
     }
-   
-
+    
 }
