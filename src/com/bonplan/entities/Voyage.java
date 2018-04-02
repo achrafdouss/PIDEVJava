@@ -6,6 +6,7 @@
 package com.bonplan.entities;
 
 import java.util.Objects;
+import java.util.Date;
 
 /**
  *
@@ -18,10 +19,92 @@ public class Voyage {
     String categorie;
     String Type;
     int nbr_place;
-    String date_dep;
-    String date_arr;
+    Date date_dep;
+    Date date_arr;
     float prix;
     String description;
+    String destination;
+
+    public Voyage(int id_voyage, String categorie, String Type, int nbr_place, Date date_dep, Date date_arr, float prix, String description, String destination, String photo, int id_owner) {
+        this.id_voyage = id_voyage;
+        this.categorie = categorie;
+        this.Type = Type;
+        this.nbr_place = nbr_place;
+        this.date_dep = date_dep;
+        this.date_arr = date_arr;
+        this.prix = prix;
+        this.description = description;
+        this.destination = destination;
+        this.photo = photo;
+        this.id_owner = id_owner;
+    }
+
+    
+    public Voyage(String categorie, String Type, int nbr_place, Date date_dep, Date date_arr, float prix, String description, String destination, String photo) {
+        
+        this.categorie = categorie;
+        this.Type = Type;
+        this.nbr_place = nbr_place;
+        this.date_dep = date_dep;
+        this.date_arr = date_arr;
+        this.prix = prix;
+        this.description = description;
+        this.destination = destination;
+        this.photo = photo;
+        
+        
+    }
+    public Voyage(int id_voyage,String categorie, String Type, int nbr_place, Date date_dep, Date date_arr, float prix, String description, String destination) {
+        
+        this.id_voyage=id_voyage;
+        this.categorie = categorie;
+        this.Type = Type;
+        this.nbr_place = nbr_place;
+        this.date_dep = date_dep;
+        this.date_arr = date_arr;
+        this.prix = prix;
+        this.description = description;
+        this.destination = destination;
+       
+        
+        
+    }
+    
+    public Voyage(String categorie, String Type, int nbr_place, Date date_dep, Date date_arr, float prix, String description, String destination) {
+        
+        this.categorie = categorie;
+        this.Type = Type;
+        this.nbr_place = nbr_place;
+        this.date_dep = date_dep;
+        this.date_arr = date_arr;
+        this.prix = prix;
+        this.description = description;
+        this.destination = destination;
+   
+        
+        
+    }
+
+   
+     public Voyage(String categorie, Date date_dep, Date date_arr, float prix) {
+        
+        this.categorie = categorie;
+        this.date_dep = date_dep;
+        this.date_arr = date_arr;
+        this.prix = prix;
+        
+        
+        
+    }
+    
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
     String photo;
     int id_owner;
 
@@ -57,19 +140,19 @@ public class Voyage {
         this.nbr_place = nbr_place;
     }
 
-    public String getDate_dep() {
+    public Date getDate_dep() {
         return date_dep;
     }
 
-    public void setDate_dep(String date_dep) {
+    public void setDate_dep(Date date_dep) {
         this.date_dep = date_dep;
     }
 
-    public String getDate_arr() {
+    public Date getDate_arr() {
         return date_arr;
     }
 
-    public void setDate_arr(String date_arr) {
+    public void setDate_arr(Date date_arr) {
         this.date_arr = date_arr;
     }
 
