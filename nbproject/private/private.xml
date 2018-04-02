@@ -11,15 +11,13 @@
             <file>file:/C:/Users/Achraf/Documents/NetBeansProjects/PiDev/src/com/bonplan/gui/LoginUserFXMLController.java</file>
             <file>file:/C:/Users/Achraf/Documents/NetBeansProjects/PiDev/src/com/bonplan/services/RecommendationService.java</file>
             <file>file:/C:/Users/Achraf/Documents/NetBeansProjects/PiDev/src/com/bonplan/gui/LoginUserFXMain.java</file>
-            <file>file:/C:/Users/Achraf/Documents/NetBeansProjects/PiDev/src/com/bonplan/gui/AcceuilAdminFXML.fxml</file>
             <file>file:/C:/Users/Achraf/Documents/NetBeansProjects/PiDev/src/com/bonplan/gui/AfficheProfileFXMLLController.java</file>
             <file>file:/C:/Users/Achraf/Documents/NetBeansProjects/PiDev/src/com/bonplan/gui/MembreAdminFXMLController.java</file>
+            <file>file:/C:/Users/Achraf/Documents/NetBeansProjects/PiDev/src/com/bonplan/gui/ModifierRecommendationUserFXML.fxml</file>
             <file>file:/C:/Users/Achraf/Documents/NetBeansProjects/PiDev/src/com/bonplan/gui/ModifierProfileFXMLController.java</file>
             <file>file:/C:/Users/Achraf/Documents/NetBeansProjects/PiDev/src/com/bonplan/entities/Recommendation.java</file>
-            <file>file:/C:/Users/Achraf/Documents/NetBeansProjects/PiDev/src/com/bonplan/gui/AcceuilAdminFXMLController.java</file>
             <file>file:/C:/Users/Achraf/Documents/NetBeansProjects/PiDev/src/com/bonplan/gui/LoginAdminFXMLController.java</file>
             <file>file:/C:/Users/Achraf/Documents/NetBeansProjects/PiDev/src/com/bonplan/gui/AcceuilLoginFXML.fxml</file>
-            <file>file:/C:/Users/Achraf/Documents/NetBeansProjects/PiDev/src/com/bonplan/gui/ModifierProfileFXML.fxml</file>
             <file>file:/C:/Users/Achraf/Documents/NetBeansProjects/PiDev/src/com/bonplan/gui/AcceuilLoginFXMLController.java</file>
             <file>file:/C:/Users/Achraf/Documents/NetBeansProjects/PiDev/src/com/bonplan/entities/User.java</file>
             <file>file:/C:/Users/Achraf/Documents/NetBeansProjects/PiDev/src/com/bonplan/services/UserServices.java</file>

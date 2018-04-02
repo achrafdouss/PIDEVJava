@@ -68,7 +68,7 @@ public class AfficheRecommendationUserFXMLController implements Initializable {
         
             RecommendationService rs = new RecommendationService();
             System.out.println(User.getUserconnected());
-            recommendation=rs.AfficherRecommendationById(2);
+            recommendation=rs.AfficherRecommendationById(User.getUserconnected());
             recommendation.forEach(a->System.out.println(a.getId()));
             
         
@@ -105,5 +105,18 @@ public class AfficheRecommendationUserFXMLController implements Initializable {
         stage.show();
 
     }
+     @FXML
+     public void Modifier(ActionEvent event) throws IOException {
+         Recommendation rec=table.getSelectionModel().getSelectedItem();
+         Recommendation.setId_recModifier(rec.getId());
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("ModifierRecommendationFXML.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+    }
+     
     
 }

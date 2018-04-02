@@ -21,6 +21,7 @@ public class Recommendation {
     public String email;
     public float note;
     public String photo;
+    public static int id_recModifier;
     public Recommendation(){
         
     };
@@ -51,6 +52,7 @@ public class Recommendation {
         this.email = email;
         this.note = note;
         this.photo = photo;
+        
     }
     
 
@@ -141,6 +143,15 @@ public class Recommendation {
     public void setPhoto(String photo) {
         this.photo = photo;
     }
+
+    public static int getId_recModifier() {
+        return id_recModifier;
+    }
+
+    public static void setId_recModifier(int id_recModifier) {
+        Recommendation.id_recModifier = id_recModifier;
+    }
+    
 
     @Override
     public String toString() {

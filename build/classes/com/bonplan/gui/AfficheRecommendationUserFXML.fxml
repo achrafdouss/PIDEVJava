@@ -23,6 +23,6 @@
         </columns>
       </TableView>
       <Button layoutX="70.0" layoutY="368.0" mnemonicParsing="false" onAction="#supprimer" text="Supprimer" />
-      <Button layoutX="157.0" layoutY="368.0" mnemonicParsing="false" text="Modifier" />
+      <Button layoutX="157.0" layoutY="368.0" mnemonicParsing="false" onAction="#Modifier" text="Modifier" />
    </children>
 </AnchorPane>
