@@ -43,7 +43,7 @@ public class UserServices implements UserInterface {
             PreparedStatement st = cnx.prepareStatement(req);
             st.setString(1, u.getUsername());
             st.setString(2, u.getEmail());
-            st.setInt(3, u.getEnabled());
+            st.setInt(3, 1);
             st.setString(4, u.getPassword());
             st.setString(5, u.getConfirmation_token());
             st.setString(6, u.getNom());
@@ -61,18 +61,17 @@ public class UserServices implements UserInterface {
     @Override
     public void ModiferUser(int id, User u) {
         try {
-            String req = "UPDATE fos_user SET username = ?, `email`= ? , `enabled`= ? , `password`= ?, `confirmation_token`= ?, `nom`= ?, `prenom`= ?, `addresse`= ?, `telephone`= ?"
-                    + " WHERE id_com = '" + u.getId() + "'";
+            System.out.println("-------"+u.getNom());
+            String req = "UPDATE fos_user SET `username` = ?, `email`= ? , `password`=?, `nom`= ?, `prenom`= ?, `addresse`= ?, `telephone`= ?"
+                    + " WHERE id = '" + id + "'";
             PreparedStatement st = cnx.prepareStatement(req);
             st.setString(1, u.getUsername());
             st.setString(2, u.getEmail());
-            st.setInt(3, u.getEnabled());
-            st.setString(4, u.getPassword());
-            st.setString(5, u.getConfirmation_token());
-            st.setString(6, u.getNom());
-            st.setString(7, u.getPrenom());
-            st.setString(8, u.getAddresse());
-            st.setInt(9, u.getTelephone());
+            st.setString(3, u.getPassword()+"{"+u.getUsername()+"}");
+            st.setString(4, u.getNom());
+            st.setString(5, u.getPrenom());
+            st.setString(6, u.getAddresse());
+            st.setInt(7, u.getTelephone());
 
             st.executeUpdate();
             System.out.println("user modilfer !!");
@@ -81,7 +80,22 @@ public class UserServices implements UserInterface {
             Logger.getLogger(UserServices.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+public void UpdateEnabledUser(int id, int enabled) {
+        try {
+            //System.out.println("-------"+u.getNom());
+            String req = "UPDATE fos_user SET `enabled` = ?"
+                    + " WHERE id = '" + id + "'";
+            PreparedStatement st = cnx.prepareStatement(req);
+            st.setInt(1, enabled);
+            
 
+            st.executeUpdate();
+            System.out.println("user modilfer !!");
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserServices.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     @Override
     public void SupprimerUser(int id) {
         try {
@@ -101,7 +115,7 @@ public class UserServices implements UserInterface {
 
         try {
             stmt = cnx.createStatement();
-            ResultSet rs = stmt.executeQuery("Select * from fos_user WHERE fos_user.`username` = '" + username + "'and  fos_user.`password` = '" + password+"{"+username+"}"+"' ");
+            ResultSet rs = stmt.executeQuery("Select * from fos_user WHERE fos_user.`username` = '" + username + "'and  fos_user.`password` like '"+password+"%'");
             
             if (rs.next()) {
                 System.out.println("login success");

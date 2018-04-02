@@ -22,7 +22,7 @@ import javafx.stage.Stage;
  *
  * @author Achraf
  */
-public class AcceuilLoginFXMLController implements Initializable {
+public class AcceuilAdminFXMLController implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -31,21 +31,11 @@ public class AcceuilLoginFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-    @FXML
-     public void profile(ActionEvent event) throws IOException {
+     @FXML
+     public void membre(ActionEvent event) throws IOException {
         ((Node) (event.getSource())).getScene().getWindow().hide();
         Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("AfficheProfileFXMLL.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-
-    }
-    @FXML
-     public void mesRecommendations(ActionEvent event) throws IOException {
-        ((Node) (event.getSource())).getScene().getWindow().hide();
-        Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("AfficheRecommendationUserFXML.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("MembreAdminFXML.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

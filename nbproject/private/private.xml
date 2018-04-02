@@ -3,8 +3,27 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Achraf/Documents/NetBeansProjects/PiDev/src/com/bonplan/gui/LoginAdminFXML.fxml</file>
+            <file>file:/C:/Users/Achraf/Documents/NetBeansProjects/PiDev/src/com/bonplan/gui/AfficheProfileFXMLL.fxml</file>
+            <file>file:/C:/Users/Achraf/Documents/NetBeansProjects/PiDev/src/com/bonplan/gui/RegisterUserFXMLController.java</file>
+            <file>file:/C:/Users/Achraf/Documents/NetBeansProjects/PiDev/src/com/bonplan/gui/RegisterUserFXMain.java</file>
+            <file>file:/C:/Users/Achraf/Documents/NetBeansProjects/PiDev/src/com/bonplan/tests/RecommendationTest.java</file>
             <file>file:/C:/Users/Achraf/Documents/NetBeansProjects/PiDev/src/com/bonplan/gui/LoginUserFXMLController.java</file>
+            <file>file:/C:/Users/Achraf/Documents/NetBeansProjects/PiDev/src/com/bonplan/services/RecommendationService.java</file>
+            <file>file:/C:/Users/Achraf/Documents/NetBeansProjects/PiDev/src/com/bonplan/gui/LoginUserFXMain.java</file>
+            <file>file:/C:/Users/Achraf/Documents/NetBeansProjects/PiDev/src/com/bonplan/gui/AcceuilAdminFXML.fxml</file>
+            <file>file:/C:/Users/Achraf/Documents/NetBeansProjects/PiDev/src/com/bonplan/gui/AfficheProfileFXMLLController.java</file>
+            <file>file:/C:/Users/Achraf/Documents/NetBeansProjects/PiDev/src/com/bonplan/gui/MembreAdminFXMLController.java</file>
+            <file>file:/C:/Users/Achraf/Documents/NetBeansProjects/PiDev/src/com/bonplan/gui/ModifierProfileFXMLController.java</file>
+            <file>file:/C:/Users/Achraf/Documents/NetBeansProjects/PiDev/src/com/bonplan/entities/Recommendation.java</file>
+            <file>file:/C:/Users/Achraf/Documents/NetBeansProjects/PiDev/src/com/bonplan/gui/AcceuilAdminFXMLController.java</file>
+            <file>file:/C:/Users/Achraf/Documents/NetBeansProjects/PiDev/src/com/bonplan/gui/LoginAdminFXMLController.java</file>
+            <file>file:/C:/Users/Achraf/Documents/NetBeansProjects/PiDev/src/com/bonplan/gui/AcceuilLoginFXML.fxml</file>
+            <file>file:/C:/Users/Achraf/Documents/NetBeansProjects/PiDev/src/com/bonplan/gui/ModifierProfileFXML.fxml</file>
+            <file>file:/C:/Users/Achraf/Documents/NetBeansProjects/PiDev/src/com/bonplan/gui/AcceuilLoginFXMLController.java</file>
             <file>file:/C:/Users/Achraf/Documents/NetBeansProjects/PiDev/src/com/bonplan/entities/User.java</file>
+            <file>file:/C:/Users/Achraf/Documents/NetBeansProjects/PiDev/src/com/bonplan/services/UserServices.java</file>
+            <file>file:/C:/Users/Achraf/Documents/NetBeansProjects/PiDev/src/com/bonplan/gui/AfficheRecommendationUserFXMLController.java</file>
         </group>
     </open-files>
 </project-private>

@@ -22,16 +22,18 @@ import java.util.logging.Logger;
  *
  * @author Achraf
  */
-public class RecommendationService implements RecommendationInterfaces{
- Connection cnx;
+public class RecommendationService implements RecommendationInterfaces {
+
+    Connection cnx;
     Statement stmt;
 
     public RecommendationService() {
         this.cnx = DataSource.getInstance().getConnection();
     }
+
     @Override
     public void AjoutRecommendation(Recommendation r) {
- try {
+        try {
             String req = "INSERT INTO recommendation (id_owner,titre,categorie,description,nom,adresse,num_tel,email,note,photo) VALUES (?,?,?,?,?,?,?,?,?,?)";
 
             PreparedStatement st = cnx.prepareStatement(req);
@@ -51,13 +53,14 @@ public class RecommendationService implements RecommendationInterfaces{
 
         } catch (SQLException ex) {
             Logger.getLogger(RecommendationService.class.getName()).log(Level.SEVERE, null, ex);
-        }    }
+        }
+    }
 
     @Override
-    public void ModifierRecommendation(int id,Recommendation r) {
-       try {
-String req = "UPDATE recommendation SET id_owner = ?, `titre`= ? , `categorie`= ? , `description`= ?, `nom`= ?, `adresse`= ?, `num_tel`= ?, `email`= ?, `note`= ?, `photo`= ?"
-                    + " WHERE id = '"+id+"'";
+    public void ModifierRecommendation(int id, Recommendation r) {
+        try {
+            String req = "UPDATE recommendation SET id_owner = ?, `titre`= ? , `categorie`= ? , `description`= ?, `nom`= ?, `adresse`= ?, `num_tel`= ?, `email`= ?, `note`= ?, `photo`= ?"
+                    + " WHERE id = '" + id + "'";
             PreparedStatement st = cnx.prepareStatement(req);
             st.setInt(1, r.getId_owner());
             st.setString(2, r.getTitre());
@@ -70,17 +73,18 @@ String req = "UPDATE recommendation SET id_owner = ?, `titre`= ? , `categorie`= 
             st.setFloat(9, r.getNote());
             st.setString(10, r.getPhoto());
 
-             st.executeUpdate();
+            st.executeUpdate();
             System.out.println("Recommendation modilfer !!");
 
         } catch (SQLException ex) {
             Logger.getLogger(RecommendationService.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        }
     }
 
     @Override
     public void SupprimerRecommendation(int id_rec) {
- try {
+        try {
+            System.out.println("-------"+id_rec);
             String req = "DELETE FROM recommendation WHERE recommendation.`id` = ? ";
             PreparedStatement st = cnx.prepareStatement(req);
             st.setInt(1, id_rec);
@@ -89,11 +93,12 @@ String req = "UPDATE recommendation SET id_owner = ?, `titre`= ? , `categorie`= 
 
         } catch (SQLException ex) {
             Logger.getLogger(RecommendationService.class.getName()).log(Level.SEVERE, null, ex);
-        }    }
+        }
+    }
 
     @Override
     public List<Recommendation> AfficherAllRecommendation() {
- ArrayList<Recommendation> listN = new ArrayList<Recommendation>();
+        ArrayList<Recommendation> listN = new ArrayList<Recommendation>();
         try {
             stmt = cnx.createStatement();
             ResultSet rs = stmt.executeQuery("Select * from recommendation");
@@ -106,28 +111,59 @@ String req = "UPDATE recommendation SET id_owner = ?, `titre`= ? , `categorie`= 
                         rs.getString(4),
                         rs.getString(5),
                         rs.getString(6),
-                rs.getString(7),
-                rs.getString(8),
-                rs.getString(9),
-                rs.getFloat(10),
-                rs.getString(11)));
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getString(9),
+                        rs.getFloat(10),
+                        rs.getString(11)));
             }
             stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(Recommendation.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return listN;    }
+        return listN;
+    }
+
+    public List<Recommendation> AfficherRecommendationById(int id_owner) {
+        ArrayList<Recommendation> listN = new ArrayList<Recommendation>();
+        try {
+            stmt = cnx.createStatement();
+            ResultSet rs = stmt.executeQuery("Select * from recommendation where id_owner='" + id_owner + "'");
+            while (rs.next()) {
+                //System.out.println("titre " + rs.getString(3) + "description  " + rs.getString(4) );
+                listN.add(new Recommendation(
+                        
+                        rs.getInt(1),
+                        rs.getInt(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getString(9),
+                        rs.getFloat(10),
+                        rs.getString(11)));
+                //System.out.println(rs.getInt(1));
+            }
+            stmt.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Recommendation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return listN;
+    }
 
     @Override
     public Recommendation AfficherDetailRecommendation(int id_rec) {
-        
-     ArrayList<Recommendation> listN = new ArrayList<Recommendation>();
+
+        ArrayList<Recommendation> listN = new ArrayList<Recommendation>();
         try {
             stmt = cnx.createStatement();
-            ResultSet rs = stmt.executeQuery("Select * from recommendation WHERE recommendation.`id` = '"+id_rec+"'");
+            ResultSet rs = stmt.executeQuery("Select * from recommendation WHERE recommendation.`id` = '" + id_rec + "'");
             while (rs.next()) {
-                System.out.println("titre " + rs.getString(3) + "description  " + rs.getString(4) );
+                System.out.println("titre " + rs.getString(3) + "description  " + rs.getString(4));
                 listN.add(new Recommendation(
                         rs.getInt(1),
                         rs.getInt(2),
@@ -135,18 +171,18 @@ String req = "UPDATE recommendation SET id_owner = ?, `titre`= ? , `categorie`= 
                         rs.getString(4),
                         rs.getString(5),
                         rs.getString(6),
-                rs.getString(7),
-                rs.getString(8),
-                rs.getString(9),
-                rs.getFloat(10),
-                rs.getString(11)));
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getString(9),
+                        rs.getFloat(10),
+                        rs.getString(11)));
             }
             stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(Recommendation.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return listN.get(0);     
+        return listN.get(0);
     }
 
     @Override
@@ -154,9 +190,9 @@ String req = "UPDATE recommendation SET id_owner = ?, `titre`= ? , `categorie`= 
         ArrayList<Recommendation> listN = new ArrayList<Recommendation>();
         try {
             stmt = cnx.createStatement();
-            ResultSet rs = stmt.executeQuery("Select * from recommendation WHERE recommendation.`categorie` = '"+categorie+"'ORDER BY note ASC");
+            ResultSet rs = stmt.executeQuery("Select * from recommendation WHERE recommendation.`categorie` = '" + categorie + "'ORDER BY note ASC");
             while (rs.next()) {
-                System.out.println("titre " + rs.getString(3) + "description  " + rs.getString(4) );
+                System.out.println("titre " + rs.getString(3) + "description  " + rs.getString(4));
                 listN.add(new Recommendation(
                         rs.getInt(1),
                         rs.getInt(2),
@@ -164,18 +200,17 @@ String req = "UPDATE recommendation SET id_owner = ?, `titre`= ? , `categorie`= 
                         rs.getString(4),
                         rs.getString(5),
                         rs.getString(6),
-                rs.getString(7),
-                rs.getString(8),
-                rs.getString(9),
-                rs.getFloat(10),
-                rs.getString(11)));
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getString(9),
+                        rs.getFloat(10),
+                        rs.getString(11)));
             }
             stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(Recommendation.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return listN;    }
+        return listN;
     }
-    
-
+}

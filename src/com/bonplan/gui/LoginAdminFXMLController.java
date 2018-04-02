@@ -79,7 +79,7 @@ public class LoginAdminFXMLController implements Initializable {
                 ((Node) (event.getSource())).getScene().getWindow().hide();
                 User.setUserconnected(u.getId());
             Stage stage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("LoginSuccessFXML.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("AcceuilAdminFXML.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();

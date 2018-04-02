@@ -43,8 +43,9 @@ Recommendation r1= new Recommendation(8, 1, "aaa", "zzzz", "zzzz", "zzzz", "zzz"
         //else{ System.out.println("failed");}
         //System.out.println(us.verifAdmin("assil"));
         us.AfficherUserId(2).toString();
-           User u1=new User("radhouen", "radhouen@abidi.com", 0, "123"+"{"+"radhouen"+"}", "0", "radhouen", "abidi", "ariana", 27326457);
-        us.AjouterUser(u1);
-        
+          // User u1=new User("radhouen", "radhouen@abidi.com", 0, "123"+"{"+"radhouen"+"}", "0", "radhouen", "abidi", "ariana", 27326457);
+        //us.ModiferUser(1, u);
+       // us.UpdateEnabledUser(1, 0);
+        rs.AfficherRecommendationById(2).forEach(a->a.getId());
     }
 }
