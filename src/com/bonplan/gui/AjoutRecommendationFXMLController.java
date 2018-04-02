@@ -6,6 +6,7 @@
 package com.bonplan.gui;
 
 import com.bonplan.entities.Recommendation;
+import com.bonplan.entities.User;
 import com.bonplan.services.RecommendationService;
 import java.io.File;
 import java.io.IOException;
@@ -32,7 +33,7 @@ import javafx.stage.Stage;
  * @author Achraf
  */
 public class AjoutRecommendationFXMLController implements Initializable {
-
+    
     @FXML
     private TextField titre;
     @FXML
@@ -49,7 +50,7 @@ public class AjoutRecommendationFXMLController implements Initializable {
     private ChoiceBox<String> categorie;
     File file;
     Stage stage;
-    Recommendation r=new Recommendation();
+    Recommendation r = new Recommendation();
 
     /**
      * Initializes the controller class.
@@ -59,7 +60,7 @@ public class AjoutRecommendationFXMLController implements Initializable {
         ObservableList<String> list = FXCollections.observableArrayList("Restaurant", "Produit", "Prestation", "Voyage", "Evenement");
         categorie.setItems(list);
     }
-
+    
     @FXML
     private void ajoutPhoto(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
@@ -68,15 +69,15 @@ public class AjoutRecommendationFXMLController implements Initializable {
         );
         file = fileChooser.showOpenDialog(stage);
         if (file != null) {
-
+            
             String img = file.getName();
             System.out.println(img);
             System.out.println("jawek béhi");
             r.setPhoto(img);
-
+            
         }
     }
-
+    
     @FXML
     private void modifier(ActionEvent event) throws IOException {
         boolean valid = true;
@@ -85,19 +86,19 @@ public class AjoutRecommendationFXMLController implements Initializable {
             titre.setVisible(true);
             valid = false;
         }
-
+        
         if (description.getText().equals("")) {
             description.setText("Field is empty !");
             description.setVisible(true);
             valid = false;
         }
-
+        
         if (nom.getText().equals("")) {
             nom.setText("Field is empty !");
             nom.setVisible(true);
             valid = false;
         }
-
+        
         if (adresse.getText().equals("")) {
             adresse.setText("Field is empty !");
             adresse.setVisible(true);
@@ -107,30 +108,30 @@ public class AjoutRecommendationFXMLController implements Initializable {
             num_tel.setText("Field is empty !");
             num_tel.setVisible(true);
             valid = false;
-
+            
         }
         if (email.getText().equals("")) {
             email.setText("Field is empty !");
             email.setVisible(true);
             valid = false;
-
+            
         }
         if (valid = true) {
-
+            
             r.setTitre(titre.getText());
             r.setCategorie(categorie.getValue());
-
+            r.setId_owner(User.getUserconnected());
             r.setDescription(description.getText());
-
+            
             r.setNom(nom.getText());
-
+            
             r.setAdresse(adresse.getText());
-
+            
             r.setNum_tel(num_tel.getText());
-
+            
             r.setEmail(email.getText());
             r.setPhoto(r.getPhoto());
-
+            
             RecommendationService rs = new RecommendationService();
             rs.AjoutRecommendation(r);
             ((Node) (event.getSource())).getScene().getWindow().hide();
@@ -141,5 +142,5 @@ public class AjoutRecommendationFXMLController implements Initializable {
             stage.show();
         }
     }
-
+    
 }
