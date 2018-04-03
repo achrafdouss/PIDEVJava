@@ -11,7 +11,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
@@ -67,7 +70,7 @@ public class AfficherTopRecommendationFXMLController implements Initializable {
     @FXML
     private Text text2;
     @FXML
-    private ChoiceBox<String> cate=new ChoiceBox(FXCollections.observableArrayList("Produit", "Restaurant", "Voyage","Prestation","Evenement"));
+    private ChoiceBox<String> cate;
     List<Recommendation> liste;
 
     /**
@@ -76,20 +79,24 @@ public class AfficherTopRecommendationFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
          RecommendationService rs= new RecommendationService();
-        
         liste= new ArrayList<>();
-       if(cate.getValue().equals(""))
+         ObservableList<String> list = FXCollections.observableArrayList("Restaurant", "Produit", "Prestation", "Voyage", "Evenement");
+        cate.setItems(list);
+       
+    
+      
+       /*if(cat.equals(""))
         liste = rs.AfficherAllRecommendation();
-       else if(cate.getValue().equals("Produit"))
+       else if(cat.equals("Produit"))
            liste= rs.AfficherTopRecommendation("Produit");
-       else if(cate.getValue().equals("Voyage"))
+       else if(cat.equals("Voyage"))
            liste= rs.AfficherTopRecommendation("Voyage");
-       else if(cate.getValue().equals("Restaurant"))
+       else if(cat.equals("Restaurant"))
            liste= rs.AfficherTopRecommendation("Restaurant");
-       else if(cate.getValue().equals("Prestation"))
+       else if(cat.equals("Prestation"))
            liste= rs.AfficherTopRecommendation("Prestation");
-       else if(cate.getValue().equals("Evenement"))
-           liste= rs.AfficherTopRecommendation("Evenement");
+       else if(cat.equals("Evenement"))
+           liste= rs.AfficherTopRecommendation("Evenement");*/
         if (liste.isEmpty()) {
             box.setVisible(false);
             box1.setVisible(false);

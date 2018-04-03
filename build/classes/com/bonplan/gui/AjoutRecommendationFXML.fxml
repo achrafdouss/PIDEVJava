@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.AmbientLight?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
@@ -26,5 +27,6 @@
       <Button layoutX="226.0" layoutY="383.0" mnemonicParsing="false" onAction="#ajoutPhoto" text="upload" />
       <Button layoutX="408.0" layoutY="464.0" mnemonicParsing="false" onAction="#modifier" text="Ajouter" />
       <ChoiceBox fx:id="categorie" layoutX="153.0" layoutY="111.0" prefWidth="150.0" />
+      <AmbientLight color="CHARTREUSE" lightOn="true" />
    </children>
 </AnchorPane>

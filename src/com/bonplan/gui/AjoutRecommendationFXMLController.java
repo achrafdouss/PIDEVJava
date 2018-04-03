@@ -11,6 +11,8 @@ import com.bonplan.services.RecommendationService;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -62,21 +64,27 @@ public class AjoutRecommendationFXMLController implements Initializable {
     }
     
     @FXML
-    private void ajoutPhoto(ActionEvent event) {
+    private void ajoutPhoto(ActionEvent event) throws IOException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(
                 new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif")
         );
         file = fileChooser.showOpenDialog(stage);
         if (file != null) {
-            
+            System.out.println(file.getAbsolutePath());
             String img = file.getName();
-            System.out.println(img);
-            System.out.println("jawek béhi");
-            r.setPhoto(img);
             
+String path = "C:/wamp64/www/PIDEV/web/uploads/";
+            
+                Files.copy(file.toPath(),
+                        (new File(path + file.getName())).toPath(),
+                        StandardCopyOption.REPLACE_EXISTING);
+                System.out.println(img);
+                System.out.println("jawek béhi");
+                r.setPhoto(img);
+
+            }
         }
-    }
     
     @FXML
     private void modifier(ActionEvent event) throws IOException {
