@@ -87,11 +87,11 @@ try {
         }      }
 
     @Override
-    public List<Commentaire> AfficherCommentaire(Recommendation r) {
+    public List<Commentaire> AfficherCommentaire(int r) {
         ArrayList<Commentaire> listN = new ArrayList<Commentaire>();
         try {
             stmt = cnx.createStatement();
-            ResultSet rs = stmt.executeQuery("Select * from commentaire WHERE commentaire.`id_rec` = '" + r.getId() + "'");
+            ResultSet rs = stmt.executeQuery("Select * from commentaire WHERE commentaire.`id_rec` = '" + r + "'");
             while (rs.next()) {
                 System.out.println("id " + rs.getString(1) + "contenu  " + rs.getString(4) );
                 listN.add(new Commentaire(

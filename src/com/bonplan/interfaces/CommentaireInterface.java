@@ -17,6 +17,6 @@ public interface CommentaireInterface {
     public void AjoutCommentaire(Commentaire c);
     public void ModifierCommentaire(int id,Commentaire c);
     public void SupprimerCommentaire(int id_com);
-    public List<Commentaire> AfficherCommentaire(Recommendation r);
+    public List<Commentaire> AfficherCommentaire(int r);
     
 }
