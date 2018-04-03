@@ -9,5 +9,6 @@
       <Button layoutX="220.0" layoutY="91.0" mnemonicParsing="false" onAction="#mesRecommendations" text="Mes Recommendations" />
       <Button layoutX="220.0" layoutY="132.0" mnemonicParsing="false" onAction="#AjouterRecommendation" text="Ajouter Recommendation" />
       <Button layoutX="224.0" layoutY="181.0" mnemonicParsing="false" onAction="#Voyages" text="Voyages" />
+      <Button layoutX="383.0" layoutY="91.0" mnemonicParsing="false" onAction="#TopRecommendation" text="Afficher Top Recommendations" />
    </children>
 </AnchorPane>

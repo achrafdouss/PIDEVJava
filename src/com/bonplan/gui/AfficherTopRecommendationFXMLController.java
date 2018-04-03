@@ -15,8 +15,10 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
@@ -26,6 +28,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import org.controlsfx.control.Notifications;
 
 /**
  * FXML Controller class
@@ -63,40 +66,78 @@ public class AfficherTopRecommendationFXMLController implements Initializable {
     @FXML
     private ImageView image2;
     @FXML
+    private ImageView photo;
+    @FXML
     private Label titre2;
     @FXML
+    private Button aff;
+    @FXML
     private Label categorie2;
+    @FXML
+    private Label titred;
+    @FXML
+    private Label categoried;
+    @FXML
+    private Label nomd;
+    @FXML
+    private Label adressed;
+    @FXML
+    private Label numteld;
+    @FXML
+    private Label emaild;
+    @FXML
+    private Text descriptiond;
     
     @FXML
     private Text text2;
     @FXML
     private ChoiceBox<String> cate;
     List<Recommendation> liste;
+    String catt="";
+     @FXML
+    private AnchorPane details;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        details.setVisible(false);
          RecommendationService rs= new RecommendationService();
         liste= new ArrayList<>();
-         ObservableList<String> list = FXCollections.observableArrayList("Restaurant", "Produit", "Prestation", "Voyage", "Evenement");
-        cate.setItems(list);
-       
+         //ObservableList<String> list = FXCollections.observableArrayList("Restaurant", "Produit", "Prestation", "Voyage", "Evenement");
+        //cate.setItems(list);
+        cate.getItems().add("Restaurant");
+        cate.getItems().add("Produit");
+        cate.getItems().add("Prestation");
+        cate.getItems().add("Voyage");
+        cate.getItems().add("Evenement");
+        cate.setValue("aa");
+        cate.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+             @Override
+             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+           liste= rs.AfficherTopRecommendation(newValue);
+                 if (liste.isEmpty()) {
+            box.setVisible(false);
+            box1.setVisible(false);
+            box2.setVisible(false);
+            //ide.setVisible(true);
+            paginator.setVisible(false);
+        } else {
+            paginator.setVisible(true);
+            //vide.setVisible(false);
+            setNbPages();
+            catt=newValue;
+            initAnnoncePage(0,newValue);
+        }       
+             }
+         });
+        //cate.getValue().toString();
     
       
-       /*if(cat.equals(""))
+      
         liste = rs.AfficherAllRecommendation();
-       else if(cat.equals("Produit"))
-           liste= rs.AfficherTopRecommendation("Produit");
-       else if(cat.equals("Voyage"))
-           liste= rs.AfficherTopRecommendation("Voyage");
-       else if(cat.equals("Restaurant"))
-           liste= rs.AfficherTopRecommendation("Restaurant");
-       else if(cat.equals("Prestation"))
-           liste= rs.AfficherTopRecommendation("Prestation");
-       else if(cat.equals("Evenement"))
-           liste= rs.AfficherTopRecommendation("Evenement");*/
+       
         if (liste.isEmpty()) {
             box.setVisible(false);
             box1.setVisible(false);
@@ -107,7 +148,7 @@ public class AfficherTopRecommendationFXMLController implements Initializable {
             paginator.setVisible(true);
             //vide.setVisible(false);
             setNbPages();
-            initAnnoncePage(0);
+            initAnnoncePage(0,catt);
         }       
     }
 private void setNbPages() {
@@ -119,15 +160,17 @@ private void setNbPages() {
         }
         
         paginator.currentPageIndexProperty().addListener((obs, oldIndex, newIndex) -> {
-            initAnnoncePage(newIndex.intValue());
+            initAnnoncePage(newIndex.intValue(),catt);
         });
     }
 
-    private void initAnnoncePage(int i) {
+    private void initAnnoncePage(int i,String cat) {
         RecommendationService rs= new RecommendationService();
         
         liste= new ArrayList<>();
+        if(cat.equals(""))
         liste = rs.AfficherAllRecommendation();
+        else liste=rs.AfficherTopRecommendation(cat);
         paginator.setCurrentPageIndex(i);
         List<Recommendation> TroisAnnonces = getAnnoncesPage(i);     
         if (TroisAnnonces.size() >= 1) {
@@ -137,6 +180,10 @@ private void setNbPages() {
             categorie.setText(TroisAnnonces.get(0).getCategorie());
             titre.setText(TroisAnnonces.get(0).getTitre());
             text.setText(TroisAnnonces.get(0).getDescription());
+            box.setOnMouseClicked((MouseEvent e) -> {
+                initialiserDetails(TroisAnnonces.get(0));
+                details.setVisible(true);
+            });
             
            
             
@@ -151,7 +198,10 @@ private void setNbPages() {
             categorie1.setText(TroisAnnonces.get(1).getCategorie());
             titre1.setText(TroisAnnonces.get(1).getTitre());
             text1.setText(TroisAnnonces.get(1).getDescription());
-            
+            box1.setOnMouseClicked((MouseEvent e) -> {
+                initialiserDetails(TroisAnnonces.get(1));
+                details.setVisible(true);
+            });
            
             
         }   
@@ -165,12 +215,15 @@ private void setNbPages() {
             categorie2.setText(TroisAnnonces.get(2).getCategorie());
             titre2.setText(TroisAnnonces.get(2).getTitre());
             text2.setText(TroisAnnonces.get(2).getDescription());
-            
+            box2.setOnMouseClicked((MouseEvent e) -> {
+                initialiserDetails(TroisAnnonces.get(2));
+                details.setVisible(true);
+            });
            
             
         }   
         else { 
-            box.setVisible(false);
+            box2.setVisible(false);
         }
 
     }
@@ -185,6 +238,26 @@ private List<Recommendation> getAnnoncesPage(int i) {
             }
         }
         return liste.subList(0, 2);    
-    }    
+    }  
+ private void initialiserDetails(Recommendation r) {
+        
+        Image img=new Image("http://localhost/PIDEV/web/uploads/"+r.photo);
+            photo.setImage(img);
+            categoried.setText(r.getCategorie());
+            titred.setText(r.getTitre());
+            descriptiond.setText(r.getDescription());
+            nomd.setText(r.getNom());
+            numteld.setText(r.num_tel);
+            adressed.setText(r.getAdresse());
+            emaild.setText(r.getEmail());
+        
+        
+        
+    }
+ @FXML
+    private void annuler(ActionEvent event) {
+        details.setVisible(false);
+    }
+
     
 }

@@ -72,4 +72,14 @@ public class AcceuilLoginFXMLController implements Initializable {
         stage.show();
 
     }
+     @FXML
+     public void TopRecommendation(ActionEvent event) throws IOException {
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("AfficherTopRecommendationFXML.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+    }
 }

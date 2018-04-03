@@ -55,13 +55,11 @@ public class MembreAdminFXMLController implements Initializable {
     @FXML
     private TableColumn<UserServices, Integer> enabled;
     private ObservableList<User> data;
-     @FXML
-    private Button bt_banne;
+ 
     @FXML
     private TextField txt_id;
     private int selected_id;
-    @FXML
-    private Button removeBanButton;
+   
 
     /**
      * Initializes the controller class.
@@ -86,7 +84,7 @@ public class MembreAdminFXMLController implements Initializable {
         prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
         adresse.setCellValueFactory(new PropertyValueFactory<>("addresse"));
         telephone.setCellValueFactory(new PropertyValueFactory<>("telephone"));
-        telephone.setCellValueFactory(new PropertyValueFactory<>("enabled"));
+        enabled.setCellValueFactory(new PropertyValueFactory<>("enabled"));
         
 
         table.setItems(null);
@@ -95,15 +93,10 @@ public class MembreAdminFXMLController implements Initializable {
     @FXML
     private void Banner_click(MouseEvent event) throws IOException {
         User u = (User) table.getSelectionModel().getSelectedItem();
-        txt_id.setText(String.valueOf(u.getId()));
-        if(u.getEnabled() == 1){
-            bt_banne.setVisible(false);
-            removeBanButton.setVisible(true);
-            return;
-        }
-        removeBanButton.setVisible(false);
-        bt_banne.setVisible(true);
-        bt_banne.setDisable(false);
+        //txt_id.setText(String.valueOf(u.getId()));
+        UserServices us= new UserServices();
+        System.out.println(u.getEnabled());
+        us.UpdateEnabledUser(u.getEnabled(), 0);
          ((Node) (event.getSource())).getScene().getWindow().hide();
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("MembreAdminFXML.fxml"));
