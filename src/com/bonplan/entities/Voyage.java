@@ -24,6 +24,7 @@ public class Voyage {
     float prix;
     String description;
     String destination;
+    public static int id_vModifier;
 
     public Voyage(int id_voyage, String categorie, String Type, int nbr_place, Date date_dep, Date date_arr, float prix, String description, String destination, String photo, int id_owner) {
         this.id_voyage = id_voyage;
@@ -192,7 +193,7 @@ public class Voyage {
     public String toString() {
         return "Voyage{" + "id_voyage=" + id_voyage + ", categorie=" + categorie + ", Type=" + Type + ", nbr_place=" + nbr_place + ", date_dep=" + date_dep + ", date_arr=" + date_arr + ", prix=" + prix + ", description=" + description + ", photo=" + photo + ", id_owner=" + id_owner + '}';
     }
-
+    
     @Override
     public int hashCode() {
         int hash = 3;
@@ -252,6 +253,13 @@ public class Voyage {
             return false;
         }
         return true;
+    }
+    public static int getId_vModifier() {
+        return id_vModifier;
+    }
+
+    public static void setId_vModifier(int id_vModifier) {
+        Voyage.id_vModifier = id_vModifier;
     }
     
     

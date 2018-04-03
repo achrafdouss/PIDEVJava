@@ -119,4 +119,16 @@ public class ListeVoyageFXMLController implements Initializable {
         stage.show();
 
     }
+      @FXML
+     public void Modifier(ActionEvent event) throws IOException {
+         Voyage v=table.getSelectionModel().getSelectedItem();
+         Voyage.setId_vModifier(v.getId_voyage());
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("ModifierVoyageFXML.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+    }
 }

@@ -5,6 +5,7 @@
  */
 package com.bonplan.interfaces;
 
+import com.bonplan.entities.Recommendation;
 import com.bonplan.entities.Voyage;
 import java.util.List;
 
@@ -20,7 +21,8 @@ public interface VoyageInterface {
     public List<Voyage> AfficherVoyage();
     public Voyage AfficherDetailVoyage(int id_voy);
     public Voyage RechercherVoyage(String categorie);
-    
+ 
+
     
     
     

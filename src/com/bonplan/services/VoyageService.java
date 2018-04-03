@@ -5,6 +5,7 @@
  */
 package com.bonplan.services;
 
+import com.bonplan.entities.Recommendation;
 import com.bonplan.entities.User;
 import com.bonplan.entities.Voyage;
 import com.bonplan.interfaces.VoyageInterface;
@@ -146,7 +147,29 @@ try {
 
     @Override
     public Voyage AfficherDetailVoyage(int id_voy) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Voyage> listN = new ArrayList<Voyage>();
+        try {
+            stmt = cnx.createStatement();
+            ResultSet rs = stmt.executeQuery("Select * from voyage WHERE voyage.`id_voyage` = '" + id_voy + "'");
+            while (rs.next()) {
+                listN.add(new Voyage(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getInt(4),
+                        rs.getDate(5),
+                        rs.getDate(6),
+                        rs.getFloat(7),
+                        rs.getString(8),
+                        rs.getString(9)
+                ));
+            }
+            stmt.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Recommendation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return listN.get(0);
     }
 
     @Override
