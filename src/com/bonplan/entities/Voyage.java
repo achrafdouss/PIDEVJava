@@ -25,6 +25,9 @@ public class Voyage {
     String description;
     String destination;
     public static int id_vModifier;
+    
+    public Voyage()
+    {}
 
     public Voyage(int id_voyage, String categorie, String Type, int nbr_place, Date date_dep, Date date_arr, float prix, String description, String destination, String photo, int id_owner) {
         this.id_voyage = id_voyage;

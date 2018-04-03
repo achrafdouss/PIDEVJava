@@ -5,6 +5,7 @@
  */
 package com.bonplan.gui;
 
+import com.bonplan.entities.Recommendation;
 import com.bonplan.entities.Voyage;
 import com.bonplan.services.VoyageService;
 import java.net.URL;
@@ -21,11 +22,13 @@ import java.util.Date;
 import java.text.DateFormat;
 import javafx.util.converter.LocalDateStringConverter;
 import com.jfoenix.validation.NumberValidator;
+import java.io.File;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
@@ -53,14 +56,33 @@ public class AjouterVoyageFXMLController implements Initializable {
     private TextField photo;
     @FXML
     private TextArea descrip;
-
+    File file;
+    Stage stage;
+    Voyage v=new Voyage();
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }  
+    
+    @FXML
+    private void ajoutPhoto(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif")
+        );
+        file = fileChooser.showOpenDialog(stage);
+        if (file != null) {
+            
+            String img = file.getName();
+            System.out.println(img);
+            
+            v.setPhoto(img);
+            
+        }
+    }
 
     @FXML
     private void AjouterVoyage(ActionEvent event) {
@@ -90,7 +112,7 @@ public class AjouterVoyageFXMLController implements Initializable {
                 Float.parseFloat(prix.getText())
                 , descrip.getText()
                 , dest.getText()
-                , photo.getText()));
+                , v.getPhoto()));
         Notifications.create().title("Ajout avec succés").text("Ajout avec succés").showInformation();
         
         
@@ -102,7 +124,7 @@ public class AjouterVoyageFXMLController implements Initializable {
         prix.setText("");
         descrip.setText("");
         dest.setText("");
-        photo.setText("");
+       
          }
              
              else

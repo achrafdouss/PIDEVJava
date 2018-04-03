@@ -38,10 +38,10 @@
             <TextField fx:id="nbr_place" layoutX="144.0" layoutY="155.0" prefHeight="25.0" prefWidth="174.0" />
             <TextField fx:id="prix" layoutX="144.0" layoutY="268.0" prefHeight="25.0" prefWidth="174.0" />
             <TextField fx:id="dest" layoutX="144.0" layoutY="350.0" prefHeight="25.0" prefWidth="174.0" />
-            <TextField fx:id="photo" layoutX="144.0" layoutY="391.0" prefHeight="25.0" prefWidth="174.0" />
             <TextArea fx:id="descrip" layoutX="144.0" layoutY="296.0" prefHeight="48.0" prefWidth="174.0" />
             <Button layoutX="136.0" layoutY="447.0" mnemonicParsing="false" onAction="#AjouterVoyage" prefHeight="32.0" prefWidth="438.0" text="Ajouter" />
             <Button layoutX="14.0" layoutY="18.0" mnemonicParsing="false" onAction="#Back" prefHeight="17.0" prefWidth="95.0" text="Back" />
+            <Button layoutX="144.0" layoutY="391.0" mnemonicParsing="false" onAction="#ajoutPhoto" prefHeight="25.0" prefWidth="140.0" text="Téléchatger" />
          </children>
       </AnchorPane>
    </children>
