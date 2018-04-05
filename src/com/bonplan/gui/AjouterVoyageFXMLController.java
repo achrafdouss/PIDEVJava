@@ -24,6 +24,8 @@ import javafx.util.converter.LocalDateStringConverter;
 import com.jfoenix.validation.NumberValidator;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -67,23 +69,28 @@ public class AjouterVoyageFXMLController implements Initializable {
         // TODO
     }  
     
-    @FXML
-    private void ajoutPhoto(ActionEvent event) {
+     @FXML
+    private void ajoutPhoto(ActionEvent event) throws IOException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(
                 new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif")
         );
         file = fileChooser.showOpenDialog(stage);
         if (file != null) {
-            
+            System.out.println(file.getAbsolutePath());
             String img = file.getName();
-            System.out.println(img);
             
-            v.setPhoto(img);
+String path = "C:/wamp64/www/PIDEV/web/uploads/";
             
-        }
-    }
+                Files.copy(file.toPath(),
+                        (new File(path + file.getName())).toPath(),
+                        StandardCopyOption.REPLACE_EXISTING);
+                System.out.println(img);
+                System.out.println("jawek béhi");
+                v.setPhoto(img);
 
+            }
+        }
     @FXML
     private void AjouterVoyage(ActionEvent event) {
         NumberValidator nv = new NumberValidator();

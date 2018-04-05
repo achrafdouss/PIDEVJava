@@ -34,7 +34,7 @@
                   <Label layoutX="223.0" layoutY="70.0" prefHeight="17.0" prefWidth="63.0" text="Prix" />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="details" layoutX="65.0" layoutY="37.0" prefHeight="511.0" prefWidth="565.0" style="-fx-background-color: white;" visible="false">
+            <AnchorPane fx:id="details" layoutX="65.0" layoutY="37.0" prefHeight="511.0" prefWidth="565.0" style="-fx-background-color: white;">
                <children>
                   <Label layoutX="250.0" layoutY="79.0" text="Categorie : " />
                   <ImageView fx:id="photo" fitHeight="140.0" fitWidth="200.0" layoutX="31.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true" />
