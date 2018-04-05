@@ -5,8 +5,10 @@
  */
 package com.bonplan.gui;
 
+import com.bonplan.entities.Commentaire;
 import com.bonplan.entities.Recommendation;
 import static com.bonplan.entities.Recommendation.id_recModifier;
+import com.bonplan.services.CommentaireService;
 import com.bonplan.services.RecommendationService;
 import java.io.IOException;
 import java.net.URL;
@@ -32,6 +34,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Pagination;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -39,6 +42,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.controlsfx.control.Notifications;
+import org.controlsfx.control.Rating;
 
 /**
  * FXML Controller class
@@ -112,6 +116,43 @@ public class AfficherTopRecommendationFXMLController implements Initializable {
     String catt = "";
     @FXML
     private AnchorPane details;
+    @FXML
+    private AnchorPane boxc;
+    @FXML
+    private Text contenu;
+    @FXML
+    private Label name;
+    @FXML
+    private Rating rating;
+    @FXML
+    private AnchorPane boxc1;
+    @FXML
+    private AnchorPane com;
+    @FXML
+    private Text contenu1;
+    @FXML
+    private Label name1;
+    @FXML
+    private Rating rating1;
+    @FXML
+    private AnchorPane boxc2;
+    @FXML
+    private Text contenu2;
+    @FXML
+    private Label nom2;
+    @FXML
+    private Rating rating2;
+    @FXML
+    private AnchorPane box4;
+    @FXML
+    private Rating rating3;
+    @FXML
+    private TextArea contenu3;
+    @FXML
+    private Pagination paginatorc;
+    private ObservableList<Commentaire> data;
+    List<Commentaire> listec;
+    Commentaire c = new Commentaire();
 
     /**
      * Initializes the controller class.
@@ -119,6 +160,7 @@ public class AfficherTopRecommendationFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         details.setVisible(false);
+        com.setVisible(false);
         RecommendationService rs = new RecommendationService();
         liste = new ArrayList<>();
         //ObservableList<String> list = FXCollections.observableArrayList("Restaurant", "Produit", "Prestation", "Voyage", "Evenement");
@@ -200,30 +242,23 @@ public class AfficherTopRecommendationFXMLController implements Initializable {
             box.setOnMouseClicked((MouseEvent e) -> {
                 initialiserDetails(TroisAnnonces.get(0));
                 details.setVisible(true);
-                 btn1.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
-               
-    @Override
-    public void handle(ActionEvent actionEvent) {
-        Recommendation.id_recModifier = TroisAnnonces.get(0).id;
-        ((Node) (actionEvent.getSource())).getScene().getWindow().hide();
-        Stage stage = new Stage();
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getResource("AfficherCommentaireFXML.fxml"));
-        } catch (IOException ex) {
-            Logger.getLogger(AfficherTopRecommendationFXMLController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-});
+
             });
             btn.setOnMouseClicked((MouseEvent e)
                     -> {
-                Recommendation.id_recModifier = TroisAnnonces.get(0).id;
+                initialiserDetailsc(0,TroisAnnonces.get(0).id);
+                com.setVisible(true);
                 
+               
+            
+        
+        //cate.getValue().toString();
+
+       
+                
+
             });
+            
 
         } else {
             box.setVisible(false);
@@ -242,23 +277,23 @@ public class AfficherTopRecommendationFXMLController implements Initializable {
                 details.setVisible(true);
             });
             btn1.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
-               
-    @Override
-    public void handle(ActionEvent actionEvent) {
-        Recommendation.id_recModifier = TroisAnnonces.get(1).id;
-        ((Node) (actionEvent.getSource())).getScene().getWindow().hide();
-        Stage stage = new Stage();
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getResource("AfficherCommentaireFXML.fxml"));
-        } catch (IOException ex) {
-            Logger.getLogger(AfficherTopRecommendationFXMLController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-});
+
+                @Override
+                public void handle(ActionEvent actionEvent) {
+                    Recommendation.id_recModifier = TroisAnnonces.get(1).id;
+                    ((Node) (actionEvent.getSource())).getScene().getWindow().hide();
+                    Stage stage = new Stage();
+                    Parent root = null;
+                    try {
+                        root = FXMLLoader.load(getClass().getResource("AfficherCommentaireFXML.fxml"));
+                    } catch (IOException ex) {
+                        Logger.getLogger(AfficherTopRecommendationFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    Scene scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
+                }
+            });
             btn1.setOnMouseClicked((MouseEvent e)
                     -> {
                 Recommendation.id_recModifier = TroisAnnonces.get(1).id;
@@ -269,7 +304,7 @@ public class AfficherTopRecommendationFXMLController implements Initializable {
                 } catch (IOException ex) {
                     Logger.getLogger(AfficherTopRecommendationFXMLController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
+
             });
 
         } else {
@@ -288,29 +323,29 @@ public class AfficherTopRecommendationFXMLController implements Initializable {
                 //Recommendation.id_recModifier = TroisAnnonces.get(2).id;
                 //System.out.println(TroisAnnonces.get(2).id);
             });
-             btn1.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
-               
-    @Override
-    public void handle(ActionEvent actionEvent) {
-        Recommendation.id_recModifier = TroisAnnonces.get(2).id;
-        ((Node) (actionEvent.getSource())).getScene().getWindow().hide();
-        Stage stage = new Stage();
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getResource("AfficherCommentaireFXML.fxml"));
-        } catch (IOException ex) {
-            Logger.getLogger(AfficherTopRecommendationFXMLController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-});
+            btn1.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
+
+                @Override
+                public void handle(ActionEvent actionEvent) {
+                    Recommendation.id_recModifier = TroisAnnonces.get(2).id;
+                    ((Node) (actionEvent.getSource())).getScene().getWindow().hide();
+                    Stage stage = new Stage();
+                    Parent root = null;
+                    try {
+                        root = FXMLLoader.load(getClass().getResource("AfficherCommentaireFXML.fxml"));
+                    } catch (IOException ex) {
+                        Logger.getLogger(AfficherTopRecommendationFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    Scene scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
+                }
+            });
             btn2.setOnMouseClicked((MouseEvent e)
                     -> {
                 Recommendation.id_recModifier = TroisAnnonces.get(2).id;
                 System.out.println(TroisAnnonces.get(2).id);
-                
+
             });
 
         } else {
@@ -350,17 +385,9 @@ public class AfficherTopRecommendationFXMLController implements Initializable {
     private void annuler(ActionEvent event) {
         details.setVisible(false);
     }
-    @FXML
-     public void commentaire(ActionEvent event) throws IOException {
-        ((Node) (event.getSource())).getScene().getWindow().hide();
-        Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("AfficherCommentaireFXML.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
 
-    }@FXML
-     public void affichercommentaire(ActionEvent event) throws IOException {
+    @FXML
+    public void commentaire(ActionEvent event) throws IOException {
         ((Node) (event.getSource())).getScene().getWindow().hide();
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("AfficherCommentaireFXML.fxml"));
@@ -369,5 +396,159 @@ public class AfficherTopRecommendationFXMLController implements Initializable {
         stage.show();
 
     }
+
+    @FXML
+    public void affichercommentaire(ActionEvent event) throws IOException {
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("AfficherCommentaireFXML.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+    }
+
+    private void setNbPagesc() {
+ if (listec.size() % 3 != 0) {
+            paginatorc.setPageCount((listec.size() / 3) + 1);
+        } else {
+            paginatorc.setPageCount(listec.size() / 3);
+        }
+
+        paginatorc.currentPageIndexProperty().addListener((obs, oldIndex, newIndex) -> {
+            initAnnoncePagec(newIndex.intValue());
+        });    }
+
+    private void initAnnoncePagec(int intValue) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void initialiserDetailsc(int i,int id) {
+  CommentaireService cs = new CommentaireService();
+
+
+        listec = new ArrayList<>();
+        listec=cs.AfficherCommentaire(id);
+        paginatorc.setCurrentPageIndex(0);
+        List<Commentaire> TroisAnnoncesc = getAnnoncesPagec(i);
+        if (TroisAnnoncesc.size() >= 1) {
+            boxc.setVisible(true);
+           name.setText("achraf");
+           contenu.setText(TroisAnnoncesc.get(0).contenu);
+           rating.setRating(TroisAnnoncesc.get(0).note);
+            
+        
+        //cate.getValue().toString();
+
+       
+                
+
+           
+            
+
+        } else {
+            box.setVisible(false);
+        }
+       /* if (TroisAnnoncesc.size() >= 2) {
+            box1.setVisible(true);
+            Image img = new Image("http://localhost/PIDEV/web/uploads/" + TroisAnnonces.get(1).photo);
+            image1.setImage(img);
+            categorie1.setText(TroisAnnonces.get(1).getCategorie());
+            titre1.setText(TroisAnnonces.get(1).getTitre());
+            text1.setText(TroisAnnonces.get(1).getDescription());
+            System.out.println(TroisAnnonces.get(1).getId());
+            //Recommendation.id_recModifier = TroisAnnonces.get(1).id;
+            box1.setOnMouseClicked((MouseEvent e) -> {
+                initialiserDetails(TroisAnnonces.get(1));
+                details.setVisible(true);
+            });
+            btn1.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
+
+                @Override
+                public void handle(ActionEvent actionEvent) {
+                    Recommendation.id_recModifier = TroisAnnonces.get(1).id;
+                    ((Node) (actionEvent.getSource())).getScene().getWindow().hide();
+                    Stage stage = new Stage();
+                    Parent root = null;
+                    try {
+                        root = FXMLLoader.load(getClass().getResource("AfficherCommentaireFXML.fxml"));
+                    } catch (IOException ex) {
+                        Logger.getLogger(AfficherTopRecommendationFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    Scene scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
+                }
+            });
+            btn1.setOnMouseClicked((MouseEvent e)
+                    -> {
+                Recommendation.id_recModifier = TroisAnnonces.get(1).id;
+                System.out.println("------");
+                ActionEvent event = null;
+                try {
+                    affichercommentaire(event);
+                } catch (IOException ex) {
+                    Logger.getLogger(AfficherTopRecommendationFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            });
+
+        } else {
+            box1.setVisible(false);
+        }
+        if (TroisAnnonces.size() >= 3) {
+            box2.setVisible(true);
+            Image img = new Image("http://localhost/PIDEV/web/uploads/" + TroisAnnonces.get(2).photo);
+            image2.setImage(img);
+            categorie2.setText(TroisAnnonces.get(2).getCategorie());
+            titre2.setText(TroisAnnonces.get(2).getTitre());
+            text2.setText(TroisAnnonces.get(2).getDescription());
+            box2.setOnMouseClicked((MouseEvent e) -> {
+                initialiserDetails(TroisAnnonces.get(2));
+                details.setVisible(true);
+                //Recommendation.id_recModifier = TroisAnnonces.get(2).id;
+                //System.out.println(TroisAnnonces.get(2).id);
+            });
+            btn1.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
+
+                @Override
+                public void handle(ActionEvent actionEvent) {
+                    Recommendation.id_recModifier = TroisAnnonces.get(2).id;
+                    ((Node) (actionEvent.getSource())).getScene().getWindow().hide();
+                    Stage stage = new Stage();
+                    Parent root = null;
+                    try {
+                        root = FXMLLoader.load(getClass().getResource("AfficherCommentaireFXML.fxml"));
+                    } catch (IOException ex) {
+                        Logger.getLogger(AfficherTopRecommendationFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    Scene scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
+                }
+            });
+            btn2.setOnMouseClicked((MouseEvent e)
+                    -> {
+                Recommendation.id_recModifier = TroisAnnonces.get(2).id;
+                System.out.println(TroisAnnonces.get(2).id);
+
+            });
+
+        } else {
+            box2.setVisible(false);}*/
+        }
+        private List<Commentaire> getAnnoncesPagec(int i) {
+        int start = 3 * i;
+        int fin = start + 3;
+        if (listec.size() > start) {
+            if (listec.size() > fin) {
+                return listec.subList(start, fin);
+            } else {
+                return listec.subList(start, liste.size());
+            }
+        }
+        return listec.subList(0, 2);
+    }
+
 
 }

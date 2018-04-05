@@ -5,9 +5,11 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Pagination?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
+<?import org.controlsfx.control.Rating?>
 
 <AnchorPane id="AnchorPane" fx:id="winodow" prefHeight="573.0" prefWidth="678.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bonplan.gui.AfficherTopRecommendationFXMLController">
    <children>
@@ -22,7 +24,7 @@
             <Label fx:id="titre" layoutX="209.0" layoutY="14.0" text="Titre" />
             <Label fx:id="categorie" layoutX="207.0" layoutY="41.0" text="Categorie" />
             <Text fx:id="text" layoutX="208.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-            <Button fx:id="btn" layoutX="471.0" layoutY="75.0" mnemonicParsing="false" onAction="#commentaire" text="Afficher Commentaire" />
+            <Button fx:id="btn" layoutX="471.0" layoutY="75.0" mnemonicParsing="false" text="Afficher Commentaire" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="box1" layoutX="40.0" layoutY="221.0" prefHeight="126.0" prefWidth="589.0">
@@ -66,6 +68,47 @@
             <Label fx:id="emaild" layoutX="297.0" layoutY="213.0" text="Label" />
             <Button fx:id="aff" layoutX="217.0" layoutY="377.0" mnemonicParsing="false" text="Afficher les comentaires" />
             <Button layoutX="478.0" layoutY="24.0" mnemonicParsing="false" onAction="#annuler" text="Close" />
+         </children>
+      </AnchorPane>
+      <AnchorPane id="AnchorPane" fx:id="com" layoutX="10.0" layoutY="10.0" prefHeight="720.0" prefWidth="600.0" style="-fx-background-color: white;">
+         <children>
+            <Label layoutX="238.0" layoutY="29.0" text="Liste des commentaires" />
+            <AnchorPane fx:id="boxc" layoutX="58.0" layoutY="71.0" prefHeight="146.0" prefWidth="484.0">
+               <children>
+                  <Text fx:id="contenu" layoutX="80.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="329.13671875" />
+                  <Label fx:id="name" layoutX="77.0" layoutY="14.0" text="Label" />
+                  <Rating fx:id="rating" layoutX="80.0" layoutY="73.0" />
+                  <Button layoutX="331.0" layoutY="80.0" mnemonicParsing="false" text="Modifier" />
+                  <Button layoutX="401.0" layoutY="80.0" mnemonicParsing="false" text="Supprimer" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="boxc1" layoutX="66.0" layoutY="217.0" prefHeight="146.0" prefWidth="484.0">
+               <children>
+                  <Text fx:id="contenu1" layoutX="80.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="329.13671875" />
+                  <Label fx:id="name1" layoutX="77.0" layoutY="14.0" text="Label" />
+                  <Rating fx:id="rating1" layoutX="80.0" layoutY="73.0" />
+                  <Button layoutX="331.0" layoutY="80.0" mnemonicParsing="false" text="Modifier" />
+                  <Button layoutX="401.0" layoutY="80.0" mnemonicParsing="false" text="Supprimer" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="boxc2" layoutX="69.0" layoutY="377.0" prefHeight="146.0" prefWidth="484.0">
+               <children>
+                  <Text fx:id="contenu2" layoutX="80.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="329.13671875" />
+                  <Label fx:id="nom2" layoutX="77.0" layoutY="14.0" text="Label" />
+                  <Rating fx:id="rating2" layoutX="80.0" layoutY="73.0" />
+                  <Button layoutX="331.0" layoutY="80.0" mnemonicParsing="false" text="Modifier" />
+                  <Button layoutX="401.0" layoutY="80.0" mnemonicParsing="false" text="Supprimer" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="box4" layoutX="77.0" layoutY="523.0" prefHeight="146.0" prefWidth="484.0">
+               <children>
+                  <Rating fx:id="rating3" layoutX="65.0" layoutY="98.0" />
+                  <Button layoutX="369.0" layoutY="102.0" mnemonicParsing="false" text="Ajouter" />
+                  <TextArea fx:id="contenu3" layoutX="53.0" layoutY="19.0" prefHeight="67.0" prefWidth="379.0" />
+               </children>
+            </AnchorPane>
+            <Pagination fx:id="paginator1" layoutX="208.0" layoutY="686.0" prefHeight="104.0" prefWidth="200.0" />
+            <Button layoutX="524.0" layoutY="25.0" mnemonicParsing="false" text="back" />
          </children>
       </AnchorPane>
    </children>
