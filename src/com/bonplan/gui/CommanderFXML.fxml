@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.CommanderFXMLController">
+   <children>
+      <AnchorPane layoutX="16.0" layoutY="32.0" prefHeight="185.0" prefWidth="1070.0" style="-fx-effect: dropshadow(gaussian,rgb(0.0,0.0,0.0,0.15),6.0,0.7,0.0,1.5); -fx-background-color: white;">
+         <children>
+            <Label fx:id="nom11" alignment="CENTER" layoutX="6.0" layoutY="8.0" prefHeight="39.0" prefWidth="1057.0" styleClass="names" stylesheets="@../../../css/Master.css" text="Ajouter votre Commande" />
+            <Separator layoutX="3.0" layoutY="43.0" prefHeight="4.0" prefWidth="1064.0" />
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="920.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/2e1fee564b64677b4c05b411237ef3b9.jpeg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="164.0" fitWidth="222.0" layoutX="606.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/5d63efa1f250bbe172139c29ddf47969.jpeg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="233.0" layoutX="290.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/2e1fee564b64677b4c05b411237ef3b9.jpeg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="140.0" fitWidth="208.0" layoutX="5.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/0aba6fb5a5a6396bf3fb852accd3b3eb.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="19.0" layoutY="253.0" prefHeight="381.0" prefWidth="1067.0" style="-fx-effect: dropshadow(gaussian,rgb(0.0,0.0,0.0,0.15),6.0,0.7,0.0,1.5); -fx-background-color: white;">
+         <children>
+            <Label alignment="CENTER" layoutX="6.0" layoutY="8.0" prefHeight="39.0" prefWidth="1062.0" styleClass="names" stylesheets="@../../../css/Master.css" text="Renseignez ces informations" />
+            <Separator layoutX="3.0" layoutY="43.0" prefHeight="4.0" prefWidth="1064.0" />
+            <Line endX="100.0" layoutX="313.0" layoutY="226.0" rotate="90.0" startX="-150.0" />
+            <Line endX="100.0" layoutX="709.0" layoutY="226.0" rotate="90.0" startX="-160.0" />
+            <Pane layoutX="698.0" layoutY="90.0" prefHeight="200.0" prefWidth="369.0" />
+            <Label layoutX="24.0" layoutY="56.0" prefHeight="30.0" prefWidth="589.0" text="     Ajouter la quantité désiser à commander" textFill="#0f0fa4">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="quantiteInsertion" labelFloat="true" layoutX="350.0" layoutY="191.0" prefHeight="25.0" prefWidth="252.0" promptText="Qunatite .. " />
+            <JFXButton id="button" buttonType="RAISED" layoutX="774.0" layoutY="320.0" onAction="#actionInsertion2" prefHeight="38.0" prefWidth="216.0" ripplerFill="#f5e5ff" style="-fx-background-color: #00C0EF;" text="Commander" textAlignment="CENTER" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Ressource/images/checkmark.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
