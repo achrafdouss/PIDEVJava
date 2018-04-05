@@ -14,7 +14,7 @@ public class Commentaire {
     public int id_owner;
     public int id_rec;
     public String contenu;
-    public float note;
+    public double note;
 
     public int getId_com() {
         return id_com;
@@ -40,15 +40,15 @@ public class Commentaire {
         this.contenu = contenu;
     }
 
-    public float getNote() {
+    public double getNote() {
         return note;
     }
 
-    public void setNote(float note) {
+    public void setNote(double note) {
         this.note = note;
     }
 
-    public Commentaire(int id_com, int id_owner, int id_rec, String contenu, float note) {
+    public Commentaire(int id_com, int id_owner, int id_rec, String contenu, double note) {
         this.id_com = id_com;
         this.id_owner = id_owner;
         this.id_rec = id_rec;
@@ -67,7 +67,7 @@ public class Commentaire {
         this.id_rec = id_rec;
     }
 
-    public Commentaire(int id_owner, int id_rec, String contenu, float note) {
+    public Commentaire(int id_owner, int id_rec, String contenu, double note) {
         this.id_owner = id_owner;
         this.id_rec = id_rec;
         this.contenu = contenu;

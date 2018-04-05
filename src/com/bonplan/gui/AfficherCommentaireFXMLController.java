@@ -11,6 +11,7 @@ import com.bonplan.entities.User;
 import com.bonplan.services.CommentaireService;
 import com.bonplan.services.RecommendationService;
 import com.bonplan.services.UserServices;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +20,13 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Pagination;
 import javafx.scene.control.TextArea;
@@ -29,6 +35,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import org.controlsfx.control.Rating;
 
 /**
@@ -72,6 +79,7 @@ public class AfficherCommentaireFXMLController implements Initializable {
     private Pagination paginator;
       private ObservableList<Commentaire> data;
        List<Commentaire> liste;
+       Commentaire c = new Commentaire();
 
     /**
      * Initializes the controller class.
@@ -119,59 +127,46 @@ public class AfficherCommentaireFXMLController implements Initializable {
             liste = cs.AfficherCommentaire(Recommendation.id_recModifier);
         
         paginator.setCurrentPageIndex(i);
-        List<Recommendation> TroisAnnonces = getAnnoncesPage(i);
+        List<Commentaire> TroisAnnonces = getAnnoncesPage(i);
         if (TroisAnnonces.size() >= 1) {
             box.setVisible(true);
             UserServices us=UserServices.getInstance();
-            User u=us
-            name.setText(TroisAnnonces.get(0).);
+            User u=us.AfficherUserId(TroisAnnonces.get(0).id_owner);
+            name.setText(u.getNom());
+            contenu.setText(TroisAnnonces.get(0).getContenu());
+            rating.setRating(TroisAnnonces.get(0).note);
+            
+
 
         } else {
             box.setVisible(false);
         }
         if (TroisAnnonces.size() >= 2) {
             box1.setVisible(true);
-            Image img = new Image("http://localhost/PIDEV/web/uploads/" + TroisAnnonces.get(1).photo);
-            image1.setImage(img);
-            categorie1.setText(TroisAnnonces.get(1).getCategorie());
-            titre1.setText(TroisAnnonces.get(1).getTitre());
-            text1.setText(TroisAnnonces.get(1).getDescription());
-            box1.setOnMouseClicked((MouseEvent e) -> {
-                initialiserDetails(TroisAnnonces.get(1));
-                details.setVisible(true);
-            });
-            btn1.setOnMouseClicked((MouseEvent e)
-                    -> {
-                Recommendation.id_recModifier = TroisAnnonces.get(1).id;
-                
-            });
+           
+            UserServices us=UserServices.getInstance();
+            User u=us.AfficherUserId(TroisAnnonces.get(1).id_owner);
+            name1.setText(u.getNom());
+            contenu1.setText(TroisAnnonces.get(1).getContenu());
+            rating1.setRating(TroisAnnonces.get(1).note);
 
         } else {
             box1.setVisible(false);
         }
         if (TroisAnnonces.size() >= 3) {
-            box2.setVisible(true);
-            Image img = new Image("http://localhost/PIDEV/web/uploads/" + TroisAnnonces.get(2).photo);
-            image2.setImage(img);
-            categorie2.setText(TroisAnnonces.get(2).getCategorie());
-            titre2.setText(TroisAnnonces.get(2).getTitre());
-            text2.setText(TroisAnnonces.get(2).getDescription());
-            box2.setOnMouseClicked((MouseEvent e) -> {
-                initialiserDetails(TroisAnnonces.get(2));
-                details.setVisible(true);
-            });
-            btn2.setOnMouseClicked((MouseEvent e)
-                    -> {
-                Recommendation.id_recModifier = TroisAnnonces.get(2).id;
-                
-            });
+           box2.setVisible(true);
+            UserServices us=UserServices.getInstance();
+            User u=us.AfficherUserId(TroisAnnonces.get(2).id_owner);
+            nom2.setText(u.getNom());
+            contenu2.setText(TroisAnnonces.get(2).getContenu());
+            rating2.setRating(TroisAnnonces.get(2).note);
 
         } else {
             box2.setVisible(false);
         }
 
     }
-     private List<Recommendation> getAnnoncesPage(int i) {
+     private List<Commentaire> getAnnoncesPage(int i) {
         int start = 3 * i;
         int fin = start + 3;
         if (liste.size() > start) {
@@ -182,6 +177,37 @@ public class AfficherCommentaireFXMLController implements Initializable {
             }
         }
         return liste.subList(0, 2);
+    }
+     @FXML
+     public void AjouterCommentaire(ActionEvent event) throws IOException {
+        CommentaireService cs=new CommentaireService();
+         System.out.println(contenu3.getText());
+         System.out.println(User.getUserconnected());
+         System.out.println(rating3.getRating());
+         System.out.println(Recommendation.id_recModifier);
+        c.setContenu(contenu3.getText());
+        c.setId_owner(User.getUserconnected());
+        c.setNote(rating3.getRating());
+        c.setId_rec(Recommendation.id_recModifier);
+        cs.AjoutCommentaire(c);
+        
+         ((Node) (event.getSource())).getScene().getWindow().hide();
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("AfficherCommentaireFXML.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+    }
+     @FXML
+     public void back(ActionEvent event) throws IOException {
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("AfficherTopRecommendationFXML.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
     }
     
 }

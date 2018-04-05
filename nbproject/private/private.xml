@@ -3,13 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Radhouen/Documents/NetBeansProjects/PIDEVJava/src/com/bonplan/interfaces/VoyageInterface.java</file>
-            <file>file:/C:/Users/Radhouen/Documents/NetBeansProjects/PIDEVJava/src/com/bonplan/gui/AjoutRecommendationFXMLController.java</file>
-            <file>file:/C:/Users/Radhouen/Documents/NetBeansProjects/PIDEVJava/src/com/bonplan/gui/ModifierRecommendationFXMLController.java</file>
-            <file>file:/C:/Users/Radhouen/Documents/NetBeansProjects/PIDEVJava/src/com/bonplan/gui/AjouterVoyageFXMLController.java</file>
-            <file>file:/C:/Users/Radhouen/Documents/NetBeansProjects/PIDEVJava/src/com/bonplan/entities/Voyage.java</file>
-            <file>file:/C:/Users/Radhouen/Documents/NetBeansProjects/PIDEVJava/src/com/bonplan/gui/ModifierVoyageFXMLController.java</file>
-            <file>file:/C:/Users/Radhouen/Documents/NetBeansProjects/PIDEVJava/src/com/bonplan/services/VoyageService.java</file>
+            <file>file:/C:/Users/Achraf/Documents/NetBeansProjects/PIDEVJava/src/com/bonplan/gui/AfficherTopRecommendationFXMLController.java</file>
+            <file>file:/C:/Users/Achraf/Documents/NetBeansProjects/PIDEVJava/src/com/bonplan/gui/AfficherCommentaireFXMLController.java</file>
         </group>
     </open-files>
 </project-private>

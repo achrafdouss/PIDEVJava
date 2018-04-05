@@ -41,7 +41,7 @@ public class CommentaireService implements CommentaireInterface{
             st.setInt(1, c.getId_owner());
             st.setInt(2, c.getId_rec());
             st.setString(3, c.getContenu());
-            st.setFloat(4, c.getNote());
+            st.setDouble(4, c.getNote());
             
 
             st.executeUpdate();
@@ -61,7 +61,7 @@ String req = "UPDATE commentaire SET id_owner = ?, `id_rec`= ? , `contenu`= ? , 
             st.setInt(1, c.getId_owner());
             st.setInt(2, c.getId_rec());
             st.setString(3, c.getContenu());
-            st.setFloat(4, c.getNote());
+            st.setDouble(4, c.getNote());
             
 
             st.executeUpdate();
