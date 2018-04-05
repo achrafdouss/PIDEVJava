@@ -164,7 +164,7 @@ String path = "C:/wamp64/www/PIDEV/web/uploads/";
      public void Back(ActionEvent event) throws IOException {
         ((Node) (event.getSource())).getScene().getWindow().hide();
         Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("ListeVoyageFXML.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("AllVoyagesFXML.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
