@@ -105,6 +105,8 @@ private ObservableList<Produit> data = FXCollections.observableArrayList();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+          details.setVisible(false);
+
          ProduitService es= new ProduitService();
 
         liste = es.consulterProduit();
@@ -157,7 +159,7 @@ private ObservableList<Produit> data = FXCollections.observableArrayList();
             stock.setText(Integer.toString(TroisAnnonces.get(0).getStockProduit()));
             description.setText(TroisAnnonces.get(0).getDescriptionProduit());
  box.setOnMouseClicked((MouseEvent e) -> {
-                initialiserDetails(p=TroisAnnonces.get(1));
+                initialiserDetails(p=TroisAnnonces.get(0));
                 details.setVisible(true);
                 box.setVisible(false);
            box2.setVisible(false);
@@ -226,7 +228,7 @@ private List<Produit> getAnnoncesPage(int i) {
          Produit.setId_pModifier(p.getIdProduit());
         ((Node) (event.getSource())).getScene().getWindow().hide();
         Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("ModifierProduitFXML.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("UpdateProduitFXML.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -235,7 +237,7 @@ private List<Produit> getAnnoncesPage(int i) {
       private void initialiserDetails(Produit p) {
         
         Image img=new Image("http://localhost/uploadsimg/"+p.getPhotoProduit());
-            image.setImage(img);
+            photo.setImage(img);
             nomD.setText(p.getNomProduit());
             categorieD.setText(p.getCategorieProduit());
             descriptionD.setText(p.getDescriptionProduit());

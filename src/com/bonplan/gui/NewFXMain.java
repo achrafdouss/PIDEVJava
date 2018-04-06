@@ -40,12 +40,12 @@ public class NewFXMain extends Application {
   
     @Override
     public void start(Stage stage) throws IOException, SQLException {
- //Parent root = FXMLLoader.load(getClass().getResource("FXMLAjoutProduit.fxml"));
- Parent root = FXMLLoader.load(getClass().getResource("AfficherAllProduitFXML.fxml"));
+//Parent root = FXMLLoader.load(getClass().getResource("FXMLAjoutProduit.fxml"));
+Parent root = FXMLLoader.load(getClass().getResource("AfficherAllProduitFXML.fxml"));
 
 //  Parent root = FXMLLoader.load(getClass().getResource("FXMLListeProduit.fxml"));
 //Parent root = FXMLLoader.load(getClass().getResource("AjoutProduit2FXML.fxml"));
-//System.out.println(p.getIdProduit());
+System.out.println(p.getIdProduit());
 CommandeService cs = new CommandeService();
 Commande c = new Commande(owner, 5,p );
       // System.out.println(c);

@@ -19,8 +19,11 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
@@ -29,6 +32,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.util.Duration;
 import tray.notification.NotificationType;
@@ -86,7 +90,7 @@ public class FXMLAjoutProduitController implements Initializable {
     }    
 
     @FXML
-    private void actionInsertion2(ActionEvent event) {
+    private void actionInsertion2(ActionEvent event) throws IOException {
            if ((PrixInsertion.getText().trim().equals("")) || (stockInsertion.getText().trim().equals(""))
                 || (NomInsertion.getText().trim().equals("")) ||  (choixInsertion.getValue().isEmpty())
                 || (descriptionInsertion.getText().trim().equals("")) || (PrixInsertion.getText().trim().equals("")) ) {
@@ -105,7 +109,7 @@ public class FXMLAjoutProduitController implements Initializable {
               
 
 
-                if ((!isInteger(stockInsertion)) ) {
+                if ((Integer.parseInt(stockInsertion.getText())<0) || Float.parseFloat(PrixInsertion.getText())<0 ) {
                     Alert alert = new Alert(Alert.AlertType.WARNING, "Le champs Stock doit être un entier positif et le champs Prix doit être un float positif", ButtonType.CLOSE);
                     alert.show();
                 } else {
@@ -128,11 +132,17 @@ public class FXMLAjoutProduitController implements Initializable {
                     PrixInsertion.setText("");
                     stockInsertion.setText("");
                     
-                    
+             
                    
           TrayNotification tray = new TrayNotification("Notification !", "Produit ajoutée avec succée", NotificationType.SUCCESS);
         tray.showAndDismiss(Duration.seconds(6));
                 }
+                        ((Node) (event.getSource())).getScene().getWindow().hide();
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("AfficherAllProduitFXML.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
 
             }
 

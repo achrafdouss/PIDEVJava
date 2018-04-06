@@ -139,6 +139,23 @@ public class ProduitService implements iProduitService {
             Logger.getLogger(ProduitService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+     public Produit AfficherDetailProduit(int id_prod) {
+        ArrayList<Produit> listN = new ArrayList<Produit>();
+        try {
+            stmt = cnx.createStatement();
+            ResultSet rs = stmt.executeQuery("Select * from produit WHERE produit.`id_produit` = '" + id_prod + "'");
+            while (rs.next()) {
+                listN.add(new Produit(rs.getString(1), rs.getString(2),
+                        rs.getString(3), rs.getFloat(4), rs.getInt(5), rs.getString(6)));
+                       
+            }
+            stmt.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Produit.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return listN.get(0);
+    }
   
 
               public int getnbrInfo() {
