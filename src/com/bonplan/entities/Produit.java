@@ -24,6 +24,7 @@ public class Produit {
     private float prixProduit;
     private int stockProduit;
    private File Image;
+    public static int id_pModifier;
 
     public Produit() {
     }
@@ -167,6 +168,14 @@ public class Produit {
 
     public void setIdOwer(int idOwer) {
         this.idOwer = idOwer;
+    }
+
+    public static int getId_pModifier() {
+        return id_pModifier;
+    }
+
+    public static void setId_pModifier(int id_pModifier) {
+        Produit.id_pModifier = id_pModifier;
     }
 
     

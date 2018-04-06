@@ -57,7 +57,7 @@ public class ProduitService implements iProduitService {
     @Override
     public void supprimerProduit(int id_produit) {
         try {
-            String req = "DELETE FROM `produit` WHERE `produit`.`id_produit` = ? ";
+            String req = "DELETE FROM produit WHERE produit.`id_produit` = ? ";
             PreparedStatement st = cnx.prepareStatement(req);
             st.setInt(1, id_produit);
             st.executeUpdate();
@@ -68,6 +68,9 @@ public class ProduitService implements iProduitService {
         }
     }
 
+    
+    
+    
     @Override
     public List<Produit> consulterProduit() {
         ArrayList<Produit> listN = new ArrayList<Produit>();

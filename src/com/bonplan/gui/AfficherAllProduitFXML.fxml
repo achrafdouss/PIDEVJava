@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" fx:id="winodow" prefHeight="573.0" prefWidth="678.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bonplan.gui.AfficherAllProduitFXMLController">
+   <children>
+      <Pagination fx:id="paginator" layoutX="210.0" layoutY="449.0" prefHeight="91.0" prefWidth="282.0" />
+      <AnchorPane fx:id="box" layoutX="38.0" layoutY="65.0" prefHeight="215.0" prefWidth="603.0">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <children>
+            <ImageView fx:id="image" fitHeight="126.0" fitWidth="200.0" layoutX="7.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="categorie" layoutX="209.0" layoutY="14.0" prefHeight="17.0" prefWidth="59.0" text="Categorie" />
+            <Label fx:id="nom" layoutX="214.0" layoutY="37.0" text="Nom" />
+            <Text fx:id="prix" layoutX="208.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prix" />
+            <Button fx:id="favori" layoutX="509.0" layoutY="31.0" mnemonicParsing="false" text="Favoris" />
+            <Button fx:id="modifier" layoutX="475.0" layoutY="66.0" mnemonicParsing="false" text="Modifier" />
+            <Label fx:id="stock" layoutX="207.0" layoutY="92.0" prefHeight="17.0" prefWidth="89.0" text="Stock" />
+            <Label fx:id="description" layoutX="207.0" layoutY="119.0" prefHeight="17.0" prefWidth="89.0" text="Description" />
+            <Button fx:id="supprimer" layoutX="457.0" layoutY="105.0" mnemonicParsing="false" onAction="#supprimer" text="Supprimer" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="box2" layoutX="24.0" layoutY="288.0" prefHeight="191.0" prefWidth="609.0">
+         <children>
+            <ImageView fx:id="image2" fitHeight="126.0" fitWidth="200.0" layoutX="8.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="categorie2" layoutX="217.0" layoutY="20.0" text="Categorie" />
+            <Label fx:id="nom2" layoutX="217.0" layoutY="45.0" text="Nom" />
+            <Text fx:id="prix2" layoutX="218.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prix" />
+            <Button fx:id="fovori2" layoutX="503.0" layoutY="28.0" mnemonicParsing="false" text="Favoris" />
+            <Button fx:id="modifier2" layoutX="463.0" layoutY="75.0" mnemonicParsing="false" text="Modifier" />
+            <Text fx:id="stock2" layoutX="218.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stock" />
+            <Text fx:id="description2" layoutX="221.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" />
+            <Button fx:id="Sypprimer2" layoutX="473.0" layoutY="113.0" mnemonicParsing="false" onAction="#supprimer" text="Supprimer" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="details" layoutX="75.0" layoutY="47.0" prefHeight="511.0" prefWidth="565.0" style="-fx-background-color: white;">
+         <children>
+            <Label layoutX="250.0" layoutY="79.0" text="Nom :" />
+            <ImageView fx:id="photo" fitHeight="140.0" fitWidth="200.0" layoutX="31.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true" />
+            <Label layoutX="250.0" layoutY="48.0" text="Catégorie :" />
+            <Label layoutX="252.0" layoutY="145.0" text="Stock" />
+            <Label layoutX="248.0" layoutY="113.0" text="Prix:" />
+            <Label layoutX="58.0" layoutY="245.0" text="Description : " />
+            <Text fx:id="descriptionD" layoutX="58.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+            <Label fx:id="categorieD" layoutX="307.0" layoutY="48.0" text="Label" />
+            <Label fx:id="nomD" layoutX="321.0" layoutY="79.0" text="Label" />
+            <Label fx:id="stockD" layoutX="321.0" layoutY="145.0" text="Label" />
+            <Label fx:id="prixD" layoutX="321.0" layoutY="113.0" text="Label" />
+            <Button layoutX="414.0" layoutY="423.0" mnemonicParsing="false" onAction="#Modifier" prefHeight="33.0" prefWidth="123.0" style="-fx-background-color: #F50057; -fx-text-fill: white; -fx-font-size: 12;" text="Modifier" />
+            <Button layoutX="291.0" layoutY="423.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="33.0" prefWidth="116.0" style="-fx-background-color: #337AB7; -fx-text-fill: white; -fx-font-size: 12;" text="Supprimer" textFill="#7c0a0a" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

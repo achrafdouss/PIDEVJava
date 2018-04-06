@@ -10,6 +10,7 @@ import com.bonplan.entities.Favoris;
 import com.bonplan.entities.Produit;
 import com.bonplan.services.CommandeService;
 import com.bonplan.services.FavoriService;
+import com.bonplan.services.ProduitService;
 import java.io.IOException;
 import java.sql.SQLException;
 import javafx.application.Application;
@@ -39,7 +40,9 @@ public class NewFXMain extends Application {
   
     @Override
     public void start(Stage stage) throws IOException, SQLException {
- Parent root = FXMLLoader.load(getClass().getResource("FXMLAjoutProduit.fxml"));
+ //Parent root = FXMLLoader.load(getClass().getResource("FXMLAjoutProduit.fxml"));
+ Parent root = FXMLLoader.load(getClass().getResource("AfficherAllProduitFXML.fxml"));
+
 //  Parent root = FXMLLoader.load(getClass().getResource("FXMLListeProduit.fxml"));
 //Parent root = FXMLLoader.load(getClass().getResource("AjoutProduit2FXML.fxml"));
 //System.out.println(p.getIdProduit());
@@ -47,7 +50,8 @@ CommandeService cs = new CommandeService();
 Commande c = new Commande(owner, 5,p );
       // System.out.println(c);
 //cs.CreateProduitsCommand(c);
-
+ProduitService ps = new ProduitService();
+//ps.supprimerProduit(39);
 
 FavoriService fs = new FavoriService();
 Favoris f = new Favoris(p, owner);
