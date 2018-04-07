@@ -40,8 +40,8 @@ public class NewFXMain extends Application {
   
     @Override
     public void start(Stage stage) throws IOException, SQLException {
-//Parent root = FXMLLoader.load(getClass().getResource("FXMLAjoutProduit.fxml"));
-Parent root = FXMLLoader.load(getClass().getResource("AfficherAllProduitFXML.fxml"));
+Parent root = FXMLLoader.load(getClass().getResource("FXMLAjoutProduit.fxml"));
+//Parent root = FXMLLoader.load(getClass().getResource("AfficherAllProduitFXML.fxml"));
 
 //  Parent root = FXMLLoader.load(getClass().getResource("FXMLListeProduit.fxml"));
 //Parent root = FXMLLoader.load(getClass().getResource("AjoutProduit2FXML.fxml"));

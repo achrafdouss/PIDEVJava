@@ -49,7 +49,19 @@
             <Line endX="100.0" layoutX="709.0" layoutY="226.0" rotate="90.0" startX="-160.0" />
             <Pane layoutX="698.0" layoutY="90.0" prefHeight="200.0" prefWidth="369.0">
                <children>
-                  <JFXButton id="button" fx:id="upload" buttonType="RAISED" layoutX="35.0" layoutY="78.0" onAction="#fileChoosing" prefHeight="38.0" prefWidth="117.0" ripplerFill="#f5e5ff" style="-fx-background-color: #00C0EF;" text="Image 1" textAlignment="CENTER" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+                  <JFXButton id="button" fx:id="upload" buttonType="RAISED" layoutX="35.0" layoutY="78.0" onAction="#fileChoosing" prefHeight="38.0" prefWidth="117.0" ripplerFill="#f5e5ff" style="-fx-background-color: #00C0EF;" text="Image " textAlignment="CENTER" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../Ressource/images/icon-image-128.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton id="button" fx:id="lbvideo" buttonType="RAISED" layoutX="212.0" layoutY="125.0" onAction="#uploadvideo" prefHeight="38.0" prefWidth="117.0" ripplerFill="#f5e5ff" style="-fx-background-color: #00C0EF;" text="Video" textAlignment="CENTER" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>

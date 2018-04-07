@@ -14,9 +14,13 @@ import com.bonplan.entities.Produit;
 import com.bonplan.entities.Upload;
 import com.bonplan.services.ProduitService;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -59,6 +63,7 @@ public class FXMLAjoutProduitController implements Initializable {
     private ChoiceBox<String> choixInsertion;
     @FXML
     private JFXTextArea descriptionInsertion;
+
    private File file;
       private File file1 = new File("");
        String vid;
@@ -67,6 +72,8 @@ public class FXMLAjoutProduitController implements Initializable {
             private FileChooser.ExtensionFilter extFilterJPG;
     private FileChooser.ExtensionFilter extFilterjpg;
      private Image image;
+    @FXML
+    private JFXButton lbvideo;
     /**
      * Initializes the controller class.
      */
@@ -162,6 +169,29 @@ public class FXMLAjoutProduitController implements Initializable {
             pic=new Upload().upload(file,"img");
             System.out.println(pic);
             image= new Image("http://localhost/uploads/"+pic);
+    }
+   
+    @FXML
+    private void uploadvideo(ActionEvent event) {
+        
+FileInputStream input = null;
+            FileChooser fileChooser = new FileChooser();
+            //Set extension filter
+            extFilterJPG = new FileChooser.ExtensionFilter("mp4 files (*.MP4)", "*.mp4");
+            extFilterjpg
+                    = new FileChooser.ExtensionFilter("mkv files (*.MKV)", "*.mkv");
+            fileChooser.getExtensionFilters()
+                    .addAll(extFilterJPG, extFilterjpg);
+            up = new Upload();
+            file1 = fileChooser.showOpenDialog(null);
+
+            lbvideo.setText(file1.getPath());
+            
+            try {
+                input = new FileInputStream(file1.getPath());
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(AjoutProduit2FXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }
     public boolean isInteger(JFXTextField input) {
         try {

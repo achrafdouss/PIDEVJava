@@ -105,7 +105,7 @@ private ObservableList<Produit> data = FXCollections.observableArrayList();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-          details.setVisible(false);
+        details.setVisible(false);
 
          ProduitService es= new ProduitService();
 
@@ -158,11 +158,11 @@ private ObservableList<Produit> data = FXCollections.observableArrayList();
             prix.setText(Integer.toString((int) TroisAnnonces.get(0).getPrixProduit()));
             stock.setText(Integer.toString(TroisAnnonces.get(0).getStockProduit()));
             description.setText(TroisAnnonces.get(0).getDescriptionProduit());
- box.setOnMouseClicked((MouseEvent e) -> {
+               box.setOnMouseClicked((MouseEvent e) -> {
                 initialiserDetails(p=TroisAnnonces.get(0));
                 details.setVisible(true);
-                box.setVisible(false);
-           box2.setVisible(false);
+                box2.setVisible(false);
+           box.setVisible(false);
             });
             
            
@@ -241,7 +241,7 @@ private List<Produit> getAnnoncesPage(int i) {
             nomD.setText(p.getNomProduit());
             categorieD.setText(p.getCategorieProduit());
             descriptionD.setText(p.getDescriptionProduit());
-            prix.setText(Float.toString(p.getPrixProduit()));
+            prixD.setText(Float.toString(p.getPrixProduit()));
             stockD.setText(Integer.toString(p.getStockProduit()));
         
         

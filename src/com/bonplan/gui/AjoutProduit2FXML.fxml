@@ -9,7 +9,7 @@
       <ImageView fitHeight="687.0" fitWidth="1301.0" layoutY="-53.0" pickOnBounds="true" />
       <AnchorPane fx:id="anchorPaneA" layoutX="4.0" layoutY="6.0" prefHeight="649.0" prefWidth="1289.0">
          <children>
-            <ScrollPane fx:id="scrollPanePublication" layoutY="20.0" prefHeight="294.0" prefWidth="904.0" style="-fx-background-color: #FEFEFE;" AnchorPane.bottomAnchor="-3.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
+            <ScrollPane fx:id="scrollPanePublication" layoutY="22.0" prefHeight="294.0" prefWidth="904.0" style="-fx-background-color: #FEFEFE;" AnchorPane.bottomAnchor="-5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="22.0" />
          </children>
       </AnchorPane>
    </children>
