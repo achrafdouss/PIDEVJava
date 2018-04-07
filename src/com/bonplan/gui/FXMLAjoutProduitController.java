@@ -73,7 +73,11 @@ public class FXMLAjoutProduitController implements Initializable {
     private FileChooser.ExtensionFilter extFilterjpg;
      private Image image;
     @FXML
-    private JFXButton lbvideo;
+    private Label lbvideo;
+    @FXML
+    private JFXButton btvideo;
+    public static Produit pp;
+
     /**
      * Initializes the controller class.
      */
@@ -85,14 +89,6 @@ public class FXMLAjoutProduitController implements Initializable {
 
         
 
-        ToggleGroup groupi = new ToggleGroup();
-        ToggleGroup groupm = new ToggleGroup();
-
-        ToggleGroup groupvi = new ToggleGroup();
-        ToggleGroup groupvm = new ToggleGroup();
-
-        ToggleGroup groupdi = new ToggleGroup();
-        ToggleGroup groupdm = new ToggleGroup();
 
     }    
 
@@ -120,13 +116,26 @@ public class FXMLAjoutProduitController implements Initializable {
                     Alert alert = new Alert(Alert.AlertType.WARNING, "Le champs Stock doit être un entier positif et le champs Prix doit être un float positif", ButtonType.CLOSE);
                     alert.show();
                 } else {
+                        boolean ajoute = true;
+        Produit p = new Produit();
+        if (file1.isFile()) {
+                    try {
+                          
+             vid=up.upload(file1, "video");                                
+
+                    } catch (IOException ex) {
+                        Logger.getLogger(AjoutProduit2FXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    
+                }
                     as.ajouterProduit(new Produit(
                             choixInsertion.getValue(),
                             descriptionInsertion.getText(),
                             pic,
                             Float.parseFloat(PrixInsertion.getText()),
                             Integer.parseInt(stockInsertion.getText()),
-                            NomInsertion.getText()
+                            NomInsertion.getText(),
+                            vid
                            ));
                       String desc = descriptionInsertion.getText().toString();
         FTTS FTTSProduit = new FTTS(desc);
@@ -172,26 +181,25 @@ public class FXMLAjoutProduitController implements Initializable {
     }
    
     @FXML
-    private void uploadvideo(ActionEvent event) {
-        
+    void uploadvideo(ActionEvent event) {
 FileInputStream input = null;
             FileChooser fileChooser = new FileChooser();
             //Set extension filter
-            extFilterJPG = new FileChooser.ExtensionFilter("mp4 files (*.MP4)", "*.mp4");
+            extFilterJPG
+                    = new FileChooser.ExtensionFilter("mp4 files (*.MP4)", "*.mp4");
             extFilterjpg
                     = new FileChooser.ExtensionFilter("mkv files (*.MKV)", "*.mkv");
             fileChooser.getExtensionFilters()
                     .addAll(extFilterJPG, extFilterjpg);
             up = new Upload();
             file1 = fileChooser.showOpenDialog(null);
-
             lbvideo.setText(file1.getPath());
-            
             try {
                 input = new FileInputStream(file1.getPath());
             } catch (FileNotFoundException ex) {
-                Logger.getLogger(AjoutProduit2FXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(FXMLAjoutProduitController.class.getName()).log(Level.SEVERE, null, ex);
             }
+    
     }
     public boolean isInteger(JFXTextField input) {
         try {

@@ -38,7 +38,7 @@ public class VideoProduitController implements Initializable {
    
     public VideoProduitController()
     {
-        p=AjoutProduit2FXMLController.pp;
+        p=FXMLAjoutProduitController.pp;
               MEDIA_URL  = "http://localhost/uploadsvideo/"+p.getVideoProduit();
 
     }

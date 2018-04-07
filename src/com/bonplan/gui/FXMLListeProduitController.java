@@ -182,19 +182,10 @@ public class FXMLListeProduitController implements Initializable {
           Image image = new Image(file.toURI().toString());
 
 photo1.setImage(image);
-//            photo1.setFitHeight(225);
-  //          photo1.setFitWidth(250);
+         photo1.setFitHeight(225);
+          photo1.setFitWidth(250);
 
-          /*  modif1.setOnAction((ActionEvent e) -> {
-                modifierannonce(produit.get(0), u);
-                valider.setOnAction((ActionEvent el) -> {
-                    modifier(QuatreAnnonceAccouplements.get(0).getId());
-                });
-            });
-            supp1.setOnAction((ActionEvent e) -> {
-                supprimerannonce(QuatreAnnonceAccouplements.get(0).getId());
-            });
-*/
+
         } else {
             box1.setVisible(false);
         }
