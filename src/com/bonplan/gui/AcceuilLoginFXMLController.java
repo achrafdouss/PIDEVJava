@@ -66,7 +66,7 @@ public class AcceuilLoginFXMLController implements Initializable {
      public void Voyages(ActionEvent event) throws IOException {
         ((Node) (event.getSource())).getScene().getWindow().hide();
         Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("AllVoyagesFXML.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("ListeVoyageFXML.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

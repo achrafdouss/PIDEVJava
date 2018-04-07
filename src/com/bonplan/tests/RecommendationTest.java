@@ -7,9 +7,11 @@ package com.bonplan.tests;
 
 import com.bonplan.entities.Commentaire;
 import com.bonplan.entities.Recommendation;
+import com.bonplan.entities.Reservation;
 import com.bonplan.entities.User;
 import com.bonplan.services.CommentaireService;
 import com.bonplan.services.RecommendationService;
+import com.bonplan.services.ReserverService;
 import com.bonplan.services.UserServices;
 
 /**
@@ -18,9 +20,7 @@ import com.bonplan.services.UserServices;
  */
 public class RecommendationTest {
     public static void main(String[] args) {
-        Recommendation r=new Recommendation(8,1, "abc", "aaa", "aaa", "aaa", "aaa", "2213156", "aaa", 4, "aaaa");
-Recommendation r1= new Recommendation(8, 1, "aaa", "zzzz", "zzzz", "zzzz", "zzz", "zzzz", "zzzz", 4, "zzzz");
-        RecommendationService rs= new RecommendationService();
+        
        // rs.AjoutRecommendation(r);
         //rs.ModifierRecommendation(1,r);
         //rs.SupprimerRecommendation(1);
@@ -34,21 +34,22 @@ Recommendation r1= new Recommendation(8, 1, "aaa", "zzzz", "zzzz", "zzzz", "zzz"
         //System.out.println(r1.id);
        // cs.AfficherCommentaire(r1).forEach(System.out::println);
        // cs.ModifierCommentaire(c);
-        User u=new User("user", "aaa", 0, "123", "0", "aaa", "aaa", "aaa", 4654654);
-        UserServices us=new UserServices();
+        
         //us.AfficherUser("user").toString();
         //us.AjouterUser(u);
         //if(us.Login("user", "123")){
           //  System.out.println("success");}
         //else{ System.out.println("failed");}
         //System.out.println(us.verifAdmin("assil"));
-        us.AfficherUserId(2).toString();
+      
           // User u1=new User("radhouen", "radhouen@abidi.com", 0, "123"+"{"+"radhouen"+"}", "0", "radhouen", "abidi", "ariana", 27326457);
         //us.ModiferUser(1, u);
        // us.UpdateEnabledUser(1, 0);
       //  rs.AfficherRecommendationById(2).forEach(a->a.getId());
-      CommentaireService cs= new CommentaireService();
-      Commentaire c =new Commentaire(1, 4, "zaeaze", 4);
-      cs.AjoutCommentaire(c);
+      User.setUserconnected(1);
+        ReserverService res= new ReserverService();
+        Reservation x=new Reservation(14,1,4);
+        res.ReserverVoyage(x);
+        
     }
 }
