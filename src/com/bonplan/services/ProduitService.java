@@ -145,8 +145,9 @@ public class ProduitService implements iProduitService {
             stmt = cnx.createStatement();
             ResultSet rs = stmt.executeQuery("Select * from produit WHERE produit.`id_produit` = '" + id_prod + "'");
             while (rs.next()) {
-                listN.add(new Produit(rs.getString(1), rs.getString(2),
-                        rs.getString(3), rs.getFloat(4), rs.getInt(5), rs.getString(6)));
+                listN.add(new Produit( rs.getInt(1), 
+                        rs.getString(3), rs.getString(4),
+                        rs.getString(5), rs.getFloat(6), rs.getInt(7), rs.getString(8)));
                        
             }
             stmt.close();
@@ -234,4 +235,20 @@ public class ProduitService implements iProduitService {
         }
         return x;    
     }
-}
+           
+             public void quantiteApresCommande(Produit p,int stockn) {
+            
+     try {    
+         System.out.println("produit"+p.getIdProduit());
+         System.out.println("Stock aprés Commande ****** ");
+       String req= "UPDATE produit SET stock_produit='"+stockn+"'WHERE id_produit='"+p.getIdProduit()+"'";
+       PreparedStatement st = cnx.prepareStatement(req);
+
+       st.executeUpdate();
+
+        }catch (SQLException ex)
+                {
+                     Logger.getLogger(VoyageService.class.getName()).log(Level.SEVERE, null, ex);
+
+                }
+} }

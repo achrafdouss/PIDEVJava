@@ -37,6 +37,17 @@ public class Produit {
         this.Image = Image;
     }
 
+    
+     public Produit(int idProduit ,String nomProduit , String descriptionProduit, String photoProduit,  float prixProduit, int stockProduit,  String categorieProduit
+) {        this.nomProduit = nomProduit;
+
+        this.categorieProduit = categorieProduit;
+        this.descriptionProduit = descriptionProduit;
+        this.photoProduit = photoProduit;
+        this.prixProduit = prixProduit;
+        this.stockProduit = stockProduit;
+    }
+    
     public Produit( String categorieProduit, String descriptionProduit, String photoProduit, String videoProduit, float prixProduit, int stockProduit,  String nomProduit
 ) {        this.nomProduit = nomProduit;
 

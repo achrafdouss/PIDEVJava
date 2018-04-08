@@ -12,19 +12,20 @@ package com.bonplan.entities;
 public class Commande {
 
     private int idCommandeProduit;
-    private Produit Produit;
+    private int idproduitroduit;
     private int idAcheteur;
     private int quantiteCommandeProduit;
 
     public Commande() {
     }
 
-    public Commande(int idAcheteur, int quantiteCommandeProduit ,Produit idProduit) {
+    public Commande(int idproduitroduit, int idAcheteur, int quantiteCommandeProduit) {
+        this.idproduitroduit = idproduitroduit;
         this.idAcheteur = idAcheteur;
         this.quantiteCommandeProduit = quantiteCommandeProduit;
-                this.Produit = idProduit;
-
     }
+
+  
 
     public Commande(int idAcheteur) {
         this.idAcheteur = idAcheteur;
@@ -38,13 +39,15 @@ public class Commande {
         this.idCommandeProduit = idCommandeProduit;
     }
 
-    public Produit getProduit() {
-        return Produit;
+    public int getIdproduitroduit() {
+        return idproduitroduit;
     }
 
-    public void setProduit(Produit Produit) {
-        this.Produit = Produit;
+    public void setIdproduitroduit(int idproduitroduit) {
+        this.idproduitroduit = idproduitroduit;
     }
+
+   
 
     public int getIdAcheteur() {
         return idAcheteur;
@@ -64,8 +67,10 @@ public class Commande {
 
     @Override
     public String toString() {
-        return "Commande{" + "idCommandeProduit=" + idCommandeProduit + ", Produit=" + Produit.getIdProduit() + ", idAcheteur=" + idAcheteur + ", quantiteCommandeProduit=" + quantiteCommandeProduit + '}';
+        return "Commande{" + "idCommandeProduit=" + idCommandeProduit + ", idproduitroduit=" + idproduitroduit + ", idAcheteur=" + idAcheteur + ", quantiteCommandeProduit=" + quantiteCommandeProduit + '}';
     }
+
+   
 
    
 

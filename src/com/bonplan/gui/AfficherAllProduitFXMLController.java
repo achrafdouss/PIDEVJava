@@ -6,7 +6,9 @@
 package com.bonplan.gui;
 
 import com.bonplan.entities.Produit;
+import com.bonplan.entities.User;
 import com.bonplan.services.ProduitService;
+import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -99,6 +101,8 @@ private ObservableList<Produit> data = FXCollections.observableArrayList();
     private Label stockD;
     @FXML
     private Label prixD;
+    @FXML
+    private JFXButton commander;
     /**
      * Initializes the controller class.
      */
@@ -235,7 +239,10 @@ private List<Produit> getAnnoncesPage(int i) {
 
     }
       private void initialiserDetails(Produit p) {
-        
+         if(User.getUserconnected()==p.getIdOwer())
+                commander.setVisible(false);
+            else
+                commander.setVisible(true);
         Image img=new Image("http://localhost/uploadsimg/"+p.getPhotoProduit());
             photo.setImage(img);
             nomD.setText(p.getNomProduit());
@@ -243,8 +250,20 @@ private List<Produit> getAnnoncesPage(int i) {
             descriptionD.setText(p.getDescriptionProduit());
             prixD.setText(Float.toString(p.getPrixProduit()));
             stockD.setText(Integer.toString(p.getStockProduit()));
-        
+        Produit.id_pModifier=p.getIdProduit();
+            System.out.println(p.getIdProduit());
         
         
     } 
+        @FXML
+     public void CommanderProduit(ActionEvent event) throws IOException {
+         
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("CommanderFXML.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+    }
 }

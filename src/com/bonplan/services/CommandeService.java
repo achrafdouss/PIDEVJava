@@ -39,7 +39,7 @@ public class CommandeService implements iCommandeService{
              pst = cnx.prepareStatement(req1);
        pst.setInt(1, c.getIdAcheteur());
        pst.setInt(2, c.getQuantiteCommandeProduit());
-       pst.setInt(3, c.getProduit().getIdProduit());
+       pst.setInt(3, c.getIdproduitroduit());
         
                 pst.executeUpdate();
        
@@ -50,8 +50,7 @@ public class CommandeService implements iCommandeService{
     
         
     }
- 
-    
+
         public float CalculerPrixProduitParQuantite(int id_produit,int quantite) throws SQLException{
         float somme = 0;
         

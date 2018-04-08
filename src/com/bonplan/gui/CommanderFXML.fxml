@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.CommanderFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bonplan.gui.CommanderFXMLController">
    <children>
       <AnchorPane layoutX="16.0" layoutY="32.0" prefHeight="185.0" prefWidth="1070.0" style="-fx-effect: dropshadow(gaussian,rgb(0.0,0.0,0.0,0.15),6.0,0.7,0.0,1.5); -fx-background-color: white;">
          <children>
@@ -52,7 +52,7 @@
                </font>
             </Label>
             <JFXTextField fx:id="quantiteInsertion" labelFloat="true" layoutX="350.0" layoutY="191.0" prefHeight="25.0" prefWidth="252.0" promptText="Qunatite .. " />
-            <JFXButton id="button" buttonType="RAISED" layoutX="774.0" layoutY="320.0" onAction="#actionInsertion2" prefHeight="38.0" prefWidth="216.0" ripplerFill="#f5e5ff" style="-fx-background-color: #00C0EF;" text="Commander" textAlignment="CENTER" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+            <JFXButton id="button" buttonType="RAISED" layoutX="774.0" layoutY="320.0" onAction="#commander" prefHeight="38.0" prefWidth="216.0" ripplerFill="#f5e5ff" style="-fx-background-color: #00C0EF;" text="Commander" textAlignment="CENTER" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
