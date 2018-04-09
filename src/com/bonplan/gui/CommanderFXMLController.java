@@ -10,6 +10,7 @@ import com.bonplan.entities.Produit;
 import com.bonplan.entities.User;
 import com.bonplan.services.CommandeService;
 import com.bonplan.services.ProduitService;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
@@ -25,6 +26,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /**
@@ -37,8 +39,8 @@ public class CommanderFXMLController implements Initializable {
     @FXML
     private Label nom11;
     @FXML
-    private JFXTextField quantiteInsertion;
-    Produit p = new Produit();
+    private TextField quantiteInsertion;
+    Produit v = new Produit();
 
     /**
      * Initializes the controller class.
@@ -49,22 +51,23 @@ public class CommanderFXMLController implements Initializable {
     }
 
     @FXML
-    private void actionInsertion2(ActionEvent event) throws IOException, SQLException {
-        CommandeService cs = new CommandeService();
-        ProduitService ps = new ProduitService();
-        p = ps.AfficherDetailProduit(Produit.id_pModifier);
+    private void CommanderProd(ActionEvent event) throws IOException, SQLException {
+         CommandeService srp=new CommandeService();
+         ProduitService vs=new ProduitService();
+       v= vs.AfficherDetailProduit(Produit.id_pModifier);
 
-        int quantite = Integer.parseInt(quantiteInsertion.getText());
-        System.out.println("yaya" + p.getStockProduit());
-        System.out.println(quantite);
-        int test9 = p.getStockProduit() - quantite;
+      int nbr=Integer.parseInt(quantiteInsertion.getText());
+        System.out.println("aaaaaa"+v.getStockProduit());
+        System.out.println(nbr);
+        int test9=v.getStockProduit()-nbr;
         System.out.println(test9);
-        Commande r = new Commande(Produit.id_pModifier, User.getUserconnected(), quantite);
+     Commande  r=new Commande(Produit.id_pModifier,User.getUserconnected(),nbr);
         System.out.println(r);
 
-        if (test9 >= 0) {
-            cs.CreateProduitsCommand(r);
-            ps.quantiteApresCommande(p, test9);
+        if (test9>=0)         
+{srp.CreateProduitsCommand(r);
+vs.quantiteApresCommande(v, test9);
+   
 
         } else {
    Alert alert = new Alert(Alert.AlertType.WARNING, " Stock insuffisant ", ButtonType.CLOSE);
@@ -77,6 +80,7 @@ public class CommanderFXMLController implements Initializable {
         stage.show();
 
     }
+
 }
 
 

@@ -7,6 +7,7 @@ package com.bonplan.services;
 
 import com.bonplan.util.DataSource;
 import com.bonplan.entities.Produit;
+import com.bonplan.entities.Recommendation;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -139,24 +140,7 @@ public class ProduitService implements iProduitService {
             Logger.getLogger(ProduitService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-     public Produit AfficherDetailProduit(int id_prod) {
-        ArrayList<Produit> listN = new ArrayList<Produit>();
-        try {
-            stmt = cnx.createStatement();
-            ResultSet rs = stmt.executeQuery("Select * from produit WHERE produit.`id_produit` = '" + id_prod + "'");
-            while (rs.next()) {
-                listN.add(new Produit( rs.getInt(1), 
-                        rs.getString(3), rs.getString(4),
-                        rs.getString(5), rs.getFloat(6), rs.getInt(7), rs.getString(8)));
-                       
-            }
-            stmt.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(Produit.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return listN.get(0);
-    }
+    
   
 
               public int getnbrInfo() {
@@ -236,10 +220,12 @@ public class ProduitService implements iProduitService {
         return x;    
     }
            
+      
+           
              public void quantiteApresCommande(Produit p,int stockn) {
             
      try {    
-         System.out.println("produit"+p.getIdProduit());
+        // System.out.println("produit"+p.getIdProduit());
          System.out.println("Stock aprés Commande ****** ");
        String req= "UPDATE produit SET stock_produit='"+stockn+"'WHERE id_produit='"+p.getIdProduit()+"'";
        PreparedStatement st = cnx.prepareStatement(req);
@@ -251,4 +237,90 @@ public class ProduitService implements iProduitService {
                      Logger.getLogger(VoyageService.class.getName()).log(Level.SEVERE, null, ex);
 
                 }
-} }
+}
+
+    public ArrayList<Produit> findAllFiltrer(String filtre) {
+        String sql = "SELECT * FROM `produit` where categorie_produit	=? and stock_produit <> '0'";
+         try {
+             PreparedStatement statement = this.cnx.prepareStatement(sql);
+             statement.setString(1,filtre);
+             ResultSet results =  statement.executeQuery();
+             ArrayList<Produit> produits = new ArrayList<>();
+             Produit produit;
+             while (results.next()) {
+                 produit = new Produit(results.getInt("id_produit"),results.getString("nom_produit"),results.getString("description"),results.getString("photo"),results.getFloat("prix_produit"),results.getInt("stock_produit"),results.getString("categorie"));
+                 produits.add(produit);
+             }
+             return produits;
+         } catch (SQLException ex) {
+             System.out.println("erreur affichage produit");
+         }
+        return null;
+    }
+    
+     public ArrayList<Produit> findAllFiltrerup(String filtre) {
+        String sql = "SELECT * FROM `produit` where categorie_produit=? and stock_produit <> '0' order by prix_produit";
+         try {
+             PreparedStatement statement = this.cnx.prepareStatement(sql);
+             statement.setString(1,filtre);
+             ResultSet results =  statement.executeQuery();
+             ArrayList<Produit> produits = new ArrayList<>();
+             Produit produit;
+             while (results.next()) {
+                 produit = new Produit(results.getInt("id_produit"),results.getString("nom_produit"),results.getString("description"),results.getString("photo"),results.getFloat("prix_produit"),results.getInt("stock_produit"),results.getString("categorie"));
+                 produits.add(produit);
+             }
+             return produits;
+         } catch (SQLException ex) {
+             System.out.println("erreur affichage produit");
+         }
+        return null;
+    }       
+         
+            public ArrayList<Produit> findAllFiltrerdown(String filtre) {
+        String sql = "SELECT * FROM `produit` where categorie_produit=? and stock_produit <> '0' order by prix_produit desc";
+         try {
+             PreparedStatement statement = this.cnx.prepareStatement(sql);
+             statement.setString(1,filtre);
+             ResultSet results =  statement.executeQuery();
+             ArrayList<Produit> produits = new ArrayList<>();
+             Produit produit;
+             while (results.next()) {
+                 produit = new Produit(results.getInt("id_produit"),results.getString("nom_produit"),results.getString("description"),results.getString("photo"),results.getFloat("prix_produit"),results.getInt("stock_produit"),results.getString("categorie"));
+                 produits.add(produit);
+             }
+             return produits;
+         } catch (SQLException ex) {
+             System.out.println("erreur affichage produit");
+         }
+        return null;
+    }       
+
+    public Produit AfficherDetailProduit(int id_prod) {
+ArrayList<Produit> listN = new ArrayList<Produit>();
+        try {
+            stmt = cnx.createStatement();
+            ResultSet rs = stmt.executeQuery("Select * from produit WHERE produit.`id_produit` = '" + id_prod+ "'");
+            while (rs.next()) {
+                listN.add(new Produit(
+                          rs.getInt(1),
+                       rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getFloat(6),
+                        rs.getInt(7),
+                        rs.getString(8),
+                        rs.getString(9)
+                ));
+            }
+            stmt.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Recommendation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return listN.get(0);
+    }
+    }
+   
+
+

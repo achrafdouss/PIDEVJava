@@ -102,7 +102,30 @@ private ObservableList<Produit> data = FXCollections.observableArrayList();
     @FXML
     private Label prixD;
     @FXML
-    private JFXButton commander;
+    private Button commander;
+    private List<Produit> all_articles;
+    ProduitService produitservice ;
+    @FXML
+    private AnchorPane box1;
+    @FXML
+    private ImageView image1;
+    @FXML
+    private Label categorie1;
+    @FXML
+    private Label nom1;
+    @FXML
+    private Text prix1;
+    @FXML
+    private Button favori1;
+    @FXML
+    private Button modifier1;
+    @FXML
+    private Label stock1;
+    @FXML
+    private Label description1;
+    @FXML
+    private Button supprimer1;
+
     /**
      * Initializes the controller class.
      */
@@ -129,23 +152,30 @@ private ObservableList<Produit> data = FXCollections.observableArrayList();
     
        private void setNbPages() {
 
-       if (liste.size() % 2 != 0) {
-            paginator.setPageCount((liste.size() / 2) + 1);
+         if (liste.size() % 3 != 0) {
+            paginator.setPageCount((liste.size() / 3) + 1);
         } else {
-            paginator.setPageCount(liste.size() / 2);
+            paginator.setPageCount(liste.size() / 3);
         }
         
         paginator.currentPageIndexProperty().addListener((obs, oldIndex, newIndex) -> {
             initAnnoncePage(newIndex.intValue());
         });
     }
+        
        private void initAnnoncePage(int i) {
         ProduitService es= new ProduitService();
         
         liste= new ArrayList<>();
         liste = es.consulterProduit();
         paginator.setCurrentPageIndex(i);
-        List<Produit> TroisAnnonces = getAnnoncesPage(i);     
+        List<Produit> TroisAnnonces = getAnnoncesPage(i); 
+        
+  
+        
+        
+        
+        
         if (TroisAnnonces.size() >= 1) {
             box.setVisible(true);
                         System.out.println("    858585858"+TroisAnnonces.get(0).getPhotoProduit());
@@ -161,6 +191,7 @@ private ObservableList<Produit> data = FXCollections.observableArrayList();
             nom.setText(TroisAnnonces.get(0).getNomProduit());
             prix.setText(Integer.toString((int) TroisAnnonces.get(0).getPrixProduit()));
             stock.setText(Integer.toString(TroisAnnonces.get(0).getStockProduit()));
+           
             description.setText(TroisAnnonces.get(0).getDescriptionProduit());
                box.setOnMouseClicked((MouseEvent e) -> {
                 initialiserDetails(p=TroisAnnonces.get(0));
@@ -168,31 +199,65 @@ private ObservableList<Produit> data = FXCollections.observableArrayList();
                 box2.setVisible(false);
            box.setVisible(false);
             });
-            
+        
            
             
         }   
         else { 
             box.setVisible(false);
         }
-       
         if (TroisAnnonces.size() >= 2) {
-            System.out.println("    hhhhh"+TroisAnnonces.get(1).getPrixProduit());
-            box2.setVisible(true);
-            Image img =new Image("http://localhost/uploadsimg/"+TroisAnnonces.get(1).getPhotoProduit());
-            image2.setImage(img);
-           categorie2.setText(TroisAnnonces.get(1).getCategorieProduit());
+            box1.setVisible(true);
+                        System.out.println("    858585858"+TroisAnnonces.get(1).getPhotoProduit());
 
-            nom2.setText(TroisAnnonces.get(1).getNomProduit());
-            prix2.setText(Integer.toString((int) TroisAnnonces.get(1).getPrixProduit()));
-            stock2.setText(Integer.toString(TroisAnnonces.get(1).getStockProduit()));
-            description2.setText(TroisAnnonces.get(1).getDescriptionProduit());
-            box2.setOnMouseClicked((MouseEvent e) -> {
+            System.out.println("    lololololo"+TroisAnnonces.get(1).getPhotoProduit());
+           
+
+            Image img=new Image("http://localhost/uploadsimg/"+TroisAnnonces.get(1).getPhotoProduit());
+
+            image1.setImage(img);
+            categorie1.setText(TroisAnnonces.get(1).getCategorieProduit());
+
+            nom1.setText(TroisAnnonces.get(1).getNomProduit());
+            prix1.setText(Integer.toString((int) TroisAnnonces.get(1).getPrixProduit()));
+            stock1.setText(Integer.toString(TroisAnnonces.get(0).getStockProduit()));
+           
+            description1.setText(TroisAnnonces.get(1).getDescriptionProduit());
+               box1.setOnMouseClicked((MouseEvent e) -> {
                 initialiserDetails(p=TroisAnnonces.get(1));
                 details.setVisible(true);
                 box.setVisible(false);
            box2.setVisible(false);
+           box1.setVisible(false);
             });
+            
+     
+        }else { 
+            box2.setVisible(false);
+        }
+
+       
+        if (TroisAnnonces.size() >= 3) {
+            System.out.println("    hhhhh"+TroisAnnonces.get(2).getPrixProduit());
+            box2.setVisible(true);
+            Image img =new Image("http://localhost/uploadsimg/"+TroisAnnonces.get(2).getPhotoProduit());
+            image2.setImage(img);
+           categorie2.setText(TroisAnnonces.get(2).getCategorieProduit());
+
+            nom2.setText(TroisAnnonces.get(2).getNomProduit());
+            prix2.setText(Integer.toString((int) TroisAnnonces.get(2).getPrixProduit()));
+            stock2.setText(Integer.toString(TroisAnnonces.get(2).getStockProduit()));
+            description2.setText(TroisAnnonces.get(2).getDescriptionProduit());
+            box2.setOnMouseClicked((MouseEvent e) -> {
+                initialiserDetails(p=TroisAnnonces.get(2));
+
+              details.setVisible(true);
+           box.setVisible(false);
+           box2.setVisible(false);
+           box1.setVisible(false);
+            });
+            System.out.println("deeetaail ");
+             
             
         }   
         else { 
@@ -201,8 +266,8 @@ private ObservableList<Produit> data = FXCollections.observableArrayList();
 
     }
 private List<Produit> getAnnoncesPage(int i) {
-        int start = 2 * i;
-        int fin = start + 2;
+           int start = 3 * i;
+        int fin = start + 3;
         if (liste.size() > start) {
             if (liste.size() > fin) {
                 return liste.subList(start, fin);
@@ -210,7 +275,7 @@ private List<Produit> getAnnoncesPage(int i) {
                 return liste.subList(start, liste.size());
             }
         }
-        return liste.subList(0, 1);    
+        return liste.subList(0, 2);    
     }    
   
          @FXML
@@ -239,9 +304,9 @@ private List<Produit> getAnnoncesPage(int i) {
 
     }
       private void initialiserDetails(Produit p) {
-         if(User.getUserconnected()==p.getIdOwer())
-                commander.setVisible(false);
-            else
+       /*if(User.getUserconnected()==p.getIdOwer())
+                commander.setVisible(false);*/
+           
                 commander.setVisible(true);
         Image img=new Image("http://localhost/uploadsimg/"+p.getPhotoProduit());
             photo.setImage(img);
@@ -266,4 +331,39 @@ private List<Produit> getAnnoncesPage(int i) {
         stage.show();
 
     }
-}
+     
+       private void Habillement(ActionEvent event) {
+        
+         all_articles = produitservice.findAllFiltrer("Habillement et bien etre");
+            
+                setNbPages();
+                initAnnoncePage(0);
+            }  
+       
+        private void Immobilier(ActionEvent event) {
+        
+         all_articles = produitservice.findAllFiltrer("Immobilier");
+            
+                setNbPages();
+                initAnnoncePage(0);
+            } 
+          private void Vehicule(ActionEvent event) {
+        
+         all_articles = produitservice.findAllFiltrer("Vehicule");
+            
+                setNbPages();
+                initAnnoncePage(0);
+            } 
+              private void Informatique(ActionEvent event) {
+        
+         all_articles = produitservice.findAllFiltrer("Informatique et multimédia");
+            
+                setNbPages();
+                initAnnoncePage(0);
+            } 
+              
+       
+    }
+
+
+
