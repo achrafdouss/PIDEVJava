@@ -80,7 +80,7 @@ public class AjouterVoyageFXMLController implements Initializable {
             System.out.println(file.getAbsolutePath());
             String img = file.getName();
             
-String path = "C:/wamp64/www/PIDEV/web/uploads/";
+String path = "C:/xamp/htdocs/Our/web/uploads/";
             
                 Files.copy(file.toPath(),
                         (new File(path + file.getName())).toPath(),
@@ -164,7 +164,7 @@ String path = "C:/wamp64/www/PIDEV/web/uploads/";
      public void Back(ActionEvent event) throws IOException {
         ((Node) (event.getSource())).getScene().getWindow().hide();
         Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("ListeVoyageFXML.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("AllVoyagesFXML.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

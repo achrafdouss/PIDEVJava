@@ -9,7 +9,6 @@ import com.bonplan.entities.Recommendation;
 import com.bonplan.entities.User;
 import com.bonplan.entities.Voyage;
 import com.bonplan.interfaces.VoyageInterface;
-import java.util.List;
 import com.bonplan.util.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,7 +18,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
-import java.sql.Timestamp;
+import java.util.stream.Collectors;
 
 
 import java.util.logging.Level;
@@ -101,9 +100,13 @@ try {
     public void SupprimerVoyage(int id_voy) {
          try {
             String req = "DELETE FROM voyage WHERE voyage.`id_voyage` = ? ";
+            String req2="DELETE FROM reserver_voyage WHERE reserver_voyage.`id_voyage` = ? ";
             PreparedStatement st = cnx.prepareStatement(req);
+            PreparedStatement st1 = cnx.prepareStatement(req2);
             st.setInt(1, id_voy);
+            st1.setInt(1, id_voy);
             st.executeUpdate();
+            st1.executeUpdate();
             System.out.println("Voyage supprimé !!");
 
         } catch (SQLException ex) {
@@ -129,7 +132,8 @@ try {
                         rs.getDate(6),
                         rs.getFloat(7),
                         rs.getString(8),
-                        rs.getString(9)
+                        rs.getString(9),
+                        rs.getInt(11)
                         
                         
                         
@@ -194,9 +198,84 @@ try {
         
         
     }
+ @Override
+    public Voyage RechercherVoyageByID(int id_voy) {
+        String requete = "select * from voyage where voyage.`id_voyage` = '" + id_voy + "'";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(requete);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                Integer cat = rs.getInt("id_voyage");
+                Date date_depart  = rs.getDate("date_depart");
+                Date date_arrivee = rs.getDate("date_arrivee");
+                float prix = rs.getFloat("prix");
+                
+                return (new Voyage(id_voy, date_depart, date_arrivee, prix));
+            }
 
-  
+        } catch (SQLException ex) {
+            System.out.println("erreur lors de la recherche  " + ex.getMessage());
+        }
+        return null;
+        
+        
+    }
+    
+
+    @Override
+    public void ModifierVRes(Voyage v,int nbr_place_nouv) {
+            
+     try {    
+         System.out.println("get ID VOYAGE"+v.getId_voyage());
+         System.out.println("Nouveau nmbre de place");
+       String req= "UPDATE voyage SET nbr_place='"+nbr_place_nouv+"'WHERE id_voyage='"+v.getId_voyage()+"'";
+       PreparedStatement st = cnx.prepareStatement(req);
+
+       st.executeUpdate();
+
+        }catch (SQLException ex)
+                {
+                     Logger.getLogger(VoyageService.class.getName()).log(Level.SEVERE, null, ex);
+
+                }
+        
+    }
+
+    
+    @Override
+    public List<Voyage> find(String PrixMax, String PrixMin, String Destination, String Categorie) {
+        List<Voyage> list = new ArrayList<>();
+        VoyageService es = new VoyageService();
+        list = es.AfficherVoyage();
+        if (!Categorie.equals("")) {
+            list = list.stream().filter(e -> e.getCategorie().equals(Categorie)).collect(Collectors.toCollection(ArrayList<Voyage>::new));
+            System.out.println("**1");
+        }
+        if (!Destination.equals("")) {
+            list = list.stream().filter(e -> e.getDestination().equals(Destination)).collect(Collectors.toCollection(ArrayList<Voyage>::new));
+            System.out.println("**2");
+        }
+
+        if (!PrixMax.equals("0")) {
+            list = list.stream().filter(e ->e.getPrix() <= Float.parseFloat(PrixMax)).collect(Collectors.toCollection(ArrayList<Voyage>::new));
+            System.out.println("**3");
+        }
+
+        if (!PrixMin.equals("0")) {
+            list = list.stream().filter(e -> e.getPrix() >= Float.parseFloat(PrixMin)).collect(Collectors.toCollection(ArrayList<Voyage>::new));
+            System.out.println("**4");
+        }
+        return list;
+    }
    
     
-    
+     @Override
+    public Voyage getVoyage(int id_voy) {
+        VoyageService es = new VoyageService();
+        Voyage ev = new Voyage();
+        ev = es.AfficherVoyage().stream().filter(e -> e.id_voyage == id_voy).findFirst().get();
+        return ev;
+
+    }
+        
 }

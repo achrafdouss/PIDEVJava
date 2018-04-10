@@ -21,6 +21,11 @@ public interface VoyageInterface {
     public List<Voyage> AfficherVoyage();
     public Voyage AfficherDetailVoyage(int id_voy);
     public Voyage RechercherVoyage(String categorie);
+    public void ModifierVRes(Voyage v,int nbr_place_nouv);
+    public Voyage RechercherVoyageByID(int id_voy);
+    public List<Voyage> find(String PrixMax, String PrixMin, String Destination, String Categorie);
+     public Voyage getVoyage(int id_voy);
+
  
 
     
