@@ -27,6 +27,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -35,30 +36,30 @@ import javafx.stage.Stage;
  *
  * @author Achraf
  */
-public class ModifierRecommendationFXMLController implements Initializable {
+public class ModifierRecommendationFXMLController extends AfficheRecommendationUserFXMLController {
 
     @FXML
-    private TextField titre;
+    private TextField titremr;
     @FXML
-    private MenuItem restaurant;
+    private MenuItem restaurantmr;
     @FXML
-    private MenuItem prestation;
+    private MenuItem prestationmr;
     @FXML
-    private MenuItem produit;
+    private MenuItem produitmr;
     @FXML
-    private MenuItem voyage;
+    private MenuItem voyagemr;
     @FXML
-    private MenuItem evenement;
+    private MenuItem evenementmr;
     @FXML
-    private TextArea description;
+    private TextArea descriptionmr;
     @FXML
-    private TextField nom;
+    private TextField nommr;
     @FXML
-    private TextField adresse;
+    private TextField adressemr;
     @FXML
-    private TextField num_tel;
+    private TextField num_telmr;
     @FXML
-    private TextField email;
+    private TextField emailmr;
     public File file;
     public Stage stage;
     Recommendation r;
@@ -72,13 +73,13 @@ public class ModifierRecommendationFXMLController implements Initializable {
         Recommendation rec=rs.AfficherDetailRecommendation(Recommendation.getId_recModifier());
         r=rec;
         
-        titre.setText(rec.getTitre());
+        titremr.setText(rec.getTitre());
         
-        description.setText(rec.getDescription());
-        nom.setText(rec.getNom());
-        adresse.setText(rec.getAdresse());
-        num_tel.setText(rec.getNum_tel());
-        email.setText(rec.getEmail());
+        descriptionmr.setText(rec.getDescription());
+        nommr.setText(rec.getNom());
+        adressemr.setText(rec.getAdresse());
+        num_telmr.setText(rec.getNum_tel());
+        emailmr.setText(rec.getEmail());
 
     }    
     @FXML
@@ -102,74 +103,75 @@ public class ModifierRecommendationFXMLController implements Initializable {
     @SuppressWarnings("empty-statement")
     public void modifier(ActionEvent event) throws IOException{
         boolean valid = true;
-        if (titre.getText().equals("")) {
-            titre.setText("Field is empty !");
-            titre.setVisible(true);
+        if (titremr.getText().equals("")) {
+            titremr.setText("Field is empty !");
+            titremr.setVisible(true);
             valid = false;
         }
 
-        if (description.getText().equals("")) {
-            description.setText("Field is empty !");
-            description.setVisible(true);
-            valid = false;
-        }
-
-        
-        if (nom.getText().equals("")) {
-            nom.setText("Field is empty !");
-            nom.setVisible(true);
+        if (descriptionmr.getText().equals("")) {
+            descriptionmr.setText("Field is empty !");
+            descriptionmr.setVisible(true);
             valid = false;
         }
 
         
-        if (adresse.getText().equals("")) {
-            adresse.setText("Field is empty !");
-            adresse.setVisible(true);
+        if (nommr.getText().equals("")) {
+            nommr.setText("Field is empty !");
+            nommr.setVisible(true);
             valid = false;
         }
-        if (num_tel.getText().equals("")) {
-            num_tel.setText("Field is empty !");
-            num_tel.setVisible(true);
+
+        
+        if (adressemr.getText().equals("")) {
+            adressemr.setText("Field is empty !");
+            adressemr.setVisible(true);
+            valid = false;
+        }
+        if (num_telmr.getText().equals("")) {
+            num_telmr.setText("Field is empty !");
+            num_telmr.setVisible(true);
             valid = false;
         
         }
-        if (email.getText().equals("")) {
-            email.setText("Field is empty !");
-            email.setVisible(true);
+        if (emailmr.getText().equals("")) {
+            emailmr.setText("Field is empty !");
+            emailmr.setVisible(true);
             valid = false;
         
         }
       if(valid=true){
 
         
-        if(titre.getText().equals(""))
+        if(titremr.getText().equals(""))
             r.setTitre(r.getTitre());
-        else r.setTitre(titre.getText());
-        if(description.getText().equals(""))
+        else r.setTitre(titremr.getText());
+        if(descriptionmr.getText().equals(""))
             r.setDescription(r.getDescription());
-        else r.setDescription(description.getText());
-        if(nom.getText().equals(""))
+        else r.setDescription(descriptionmr.getText());
+        if(nommr.getText().equals(""))
             r.setNom(r.getNom());
-        else r.setNom(nom.getText());
-        if(adresse.getText().equals(""))
+        else r.setNom(nommr.getText());
+        if(adressemr.getText().equals(""))
             r.setAdresse(r.getAdresse());
-        else r.setAdresse(adresse.getText());
-        if(num_tel.getText().equals(""))
+        else r.setAdresse(adressemr.getText());
+        if(num_telmr.getText().equals(""))
             r.setNum_tel(r.getNum_tel());
-        else r.setNum_tel(num_tel.getText());
-        if(email.getText().equals(""))
+        else r.setNum_tel(num_telmr.getText());
+        if(emailmr.getText().equals(""))
             r.setEmail(r.getEmail());
-        else r.setEmail(email.getText());
+        else r.setEmail(emailmr.getText());
         r.setPhoto(r.getPhoto());
         
        RecommendationService rs=new RecommendationService();
         rs.ModifierRecommendation(Recommendation.getId_recModifier(), r);
-        ((Node) (event.getSource())).getScene().getWindow().hide();
-        Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("AfficheRecommendationUserFXML.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        FXMLLoader loader=new FXMLLoader(getClass().getResource(("AfficheRecommendationuserFXML.fxml")));
+            loader.load();
+            AnchorPane parentContent = loader.getRoot();
+            window = (AnchorPane) titremr.getParent().getParent();
+            AfficheRecommendationUserFXMLController cont=loader.getController();
+  
+            window.getChildren().setAll(parentContent);
     }
     
 }}

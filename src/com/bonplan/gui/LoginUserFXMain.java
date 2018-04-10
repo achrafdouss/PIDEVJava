@@ -15,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  *
@@ -25,9 +26,13 @@ public class LoginUserFXMain extends Application {
     
     @Override
     public void start(Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("LoginUserFXML.fxml"));
+         Parent root = FXMLLoader.load(getClass().getResource("LoginUserFXML.fxml"));
+        
         Scene scene = new Scene(root);
-        stage.setScene(scene);
+      
+        stage.initStyle(StageStyle.UNDECORATED);
+                stage.setScene(scene);
+        //stage.setFullScreen(true);
         stage.show();
     }
 

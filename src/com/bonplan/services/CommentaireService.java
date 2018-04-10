@@ -23,18 +23,18 @@ import java.util.logging.Logger;
  *
  * @author Achraf
  */
-public class CommentaireService implements CommentaireInterface{
+public class CommentaireService implements CommentaireInterface {
+
     Connection cnx;
     Statement stmt;
 
     public CommentaireService() {
         this.cnx = DataSource.getInstance().getConnection();
     }
-    
 
     @Override
     public void AjoutCommentaire(Commentaire c) {
-         try {
+        try {
             String req = "INSERT INTO commentaire (id_owner,id_rec,contenu,note) VALUES (?,?,?,?)";
 
             PreparedStatement st = cnx.prepareStatement(req);
@@ -42,7 +42,6 @@ public class CommentaireService implements CommentaireInterface{
             st.setInt(2, c.getId_rec());
             st.setString(3, c.getContenu());
             st.setDouble(4, c.getNote());
-            
 
             st.executeUpdate();
             System.out.println("commentaire ajoutée !!");
@@ -53,29 +52,28 @@ public class CommentaireService implements CommentaireInterface{
     }
 
     @Override
-    public void ModifierCommentaire(int id,Commentaire c) {
+    public void ModifierCommentaire(int id, Commentaire c) {
         try {
-String req = "UPDATE commentaire SET id_owner = ?, `id_rec`= ? , `contenu`= ? , `note`= ?"
-                    + " WHERE id_com = '"+c.getId_com()+"'";
+            String req = "UPDATE commentaire SET id_owner = ?, `id_rec`= ? , `contenu`= ? , `note`= ?"
+                    + " WHERE id_com = '" + id + "'";
             PreparedStatement st = cnx.prepareStatement(req);
             st.setInt(1, c.getId_owner());
             st.setInt(2, c.getId_rec());
             st.setString(3, c.getContenu());
             st.setDouble(4, c.getNote());
-            
 
             st.executeUpdate();
             System.out.println("Recommendation modilfer !!");
 
         } catch (SQLException ex) {
             Logger.getLogger(RecommendationService.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        }
 
     }
 
     @Override
     public void SupprimerCommentaire(int id_com) {
-try {
+        try {
             String req = "DELETE FROM commentaire WHERE commentaire.`id_com` = ? ";
             PreparedStatement st = cnx.prepareStatement(req);
             st.setInt(1, id_com);
@@ -84,7 +82,8 @@ try {
 
         } catch (SQLException ex) {
             Logger.getLogger(CommentaireService.class.getName()).log(Level.SEVERE, null, ex);
-        }      }
+        }
+    }
 
     @Override
     public List<Commentaire> AfficherCommentaire(int r) {
@@ -93,18 +92,32 @@ try {
             stmt = cnx.createStatement();
             ResultSet rs = stmt.executeQuery("Select * from commentaire WHERE commentaire.`id_rec` = '" + r + "'");
             while (rs.next()) {
-                System.out.println("id " + rs.getString(1) + "contenu  " + rs.getString(4) );
+                System.out.println("id " + rs.getString(1) + "contenu  " + rs.getString(4));
                 listN.add(new Commentaire(
                         rs.getInt(1),
                         rs.getInt(2),
                         rs.getInt(3),
                         rs.getString(4),
                         rs.getFloat(5)
-                        ));
+                ));
             }
             stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(Recommendation.class.getName()).log(Level.SEVERE, null, ex);
-        } return listN;   }
-    
+        }
+        return listN;
+    }
+
+    public void UpdateNote(int id_rec) throws SQLException {
+        
+String req = "UPDATE recommendation SET note =(Select avg(note) from commentaire WHERE commentaire.`id_rec` = '" + id_rec + "')"
+                    + " WHERE id = '" + id_rec + "'";
+            PreparedStatement st = cnx.prepareStatement(req);
+            
+
+            st.executeUpdate();
+            System.out.println("note modilfer !!");
+
+    }
+
 }

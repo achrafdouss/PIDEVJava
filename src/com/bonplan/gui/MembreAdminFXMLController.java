@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -29,6 +30,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
@@ -36,29 +38,34 @@ import javafx.stage.Stage;
  *
  * @author Achraf
  */
-public class MembreAdminFXMLController implements Initializable {
+public class MembreAdminFXMLController extends AcceuilFXMLController {
 
     @FXML
     private TableView<User> table;
     @FXML
-    private TableColumn<UserServices, String> username;
+    private Button bt_banne;
     @FXML
-    private TableColumn<UserServices, String> email;
+    private Button removeBanButton;
     @FXML
-    private TableColumn<UserServices, String> nom;
+    private TableColumn<User, String> userna;
     @FXML
-    private TableColumn<UserServices, String> prenom;
+    private TableColumn<User, String> emailm;
     @FXML
-    private TableColumn<UserServices, String> adresse;
+    private TableColumn<User, String> nomm;
     @FXML
-    private TableColumn<UserServices, Integer> telephone;
+    private TableColumn<User, String> prenomm;
     @FXML
-    private TableColumn<UserServices, Integer> enabled;
+    private TableColumn<User, String> adressem;
+    @FXML
+    private TableColumn<User, Integer> telephonem;
+    @FXML
+    private TableColumn<User, Integer> enabledm;
     private ObservableList<User> data;
  
     @FXML
     private TextField txt_id;
     private int selected_id;
+    @FXML
    
 
     /**
@@ -78,24 +85,54 @@ public class MembreAdminFXMLController implements Initializable {
             data.add(i);
         }
 
-        username.setCellValueFactory(new PropertyValueFactory<>("username"));
-        email.setCellValueFactory(new PropertyValueFactory<>("email"));
-        nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-        adresse.setCellValueFactory(new PropertyValueFactory<>("addresse"));
-        telephone.setCellValueFactory(new PropertyValueFactory<>("telephone"));
-        enabled.setCellValueFactory(new PropertyValueFactory<>("enabled"));
+        userna.setCellValueFactory(new PropertyValueFactory<>("username"));
+        emailm.setCellValueFactory(new PropertyValueFactory<>("email"));
+        nomm.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        prenomm.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+        adressem.setCellValueFactory(new PropertyValueFactory<>("addresse"));
+        telephonem.setCellValueFactory(new PropertyValueFactory<>("telephone"));
+        enabledm.setCellValueFactory(new PropertyValueFactory<>("enabled"));
         
 
         table.setItems(null);
         table.setItems(data);
+        table.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                User u = (User) table.getSelectionModel().getSelectedItem();
+//        txt_id.setText(String.valueOf(u.getId()));
+        if(u.getEnabled()== 1){
+            bt_banne.setVisible(true);
+            removeBanButton.setVisible(false);
+            return;
+        }else{
+        removeBanButton.setVisible(true);
+        bt_banne.setVisible(false);
+        
+        }
+            }
+        });
     }    
-    @FXML
-    private void Banner_click(MouseEvent event) throws IOException {
+     @FXML
+    private void Banner_click(MouseEvent event) {
+        User u = (User) table.getSelectionModel().getSelectedItem();
+        txt_id.setText(String.valueOf(u.getId()));
+        if(u.getEnabled()== 1){
+            bt_banne.setVisible(true);
+            removeBanButton.setVisible(false);
+            return;
+        }else{
+        removeBanButton.setVisible(true);
+        bt_banne.setVisible(false);
+        
+        }
+    }
+   /* @FXML
+    private void Banner_click(ActionEvent event) throws IOException {
         User u = (User) table.getSelectionModel().getSelectedItem();
         //txt_id.setText(String.valueOf(u.getId()));
         UserServices us= new UserServices();
-        System.out.println(u.getEnabled());
+        System.out.println("+++++++"+u.getEnabled());
         us.UpdateEnabledUser(u.getEnabled(), 0);
          ((Node) (event.getSource())).getScene().getWindow().hide();
         Stage stage = new Stage();
@@ -103,34 +140,44 @@ public class MembreAdminFXMLController implements Initializable {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-    }
+    }*/
+    
     @FXML
     private void BannerAction(ActionEvent event) throws IOException{
         
-            if(txt_id == null || txt_id.getText().isEmpty()) return;
-            UserServices us = UserServices.getInstance();
-            us.UpdateEnabledUser(Integer.parseInt(txt_id.getText()), 0);
-            ((Node) (event.getSource())).getScene().getWindow().hide();
-        Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("MembreAdminFXML.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+             User u = (User) table.getSelectionModel().getSelectedItem();
+        //txt_id.setText(String.valueOf(u.getId()));
+        UserServices us= new UserServices();
+        System.out.println("+++++++"+u.getEnabled());
+        us.UpdateEnabledUser(u.getId(), 0);
+       
+       FXMLLoader loader=new FXMLLoader(getClass().getResource(("MembreAdminFXML.fxml")));
+            loader.load();
+            AnchorPane parentContent = loader.getRoot();
+            window = (AnchorPane) table.getParent().getParent();
+            MembreAdminFXMLController cont=loader.getController();
+  
+            window.getChildren().setAll(parentContent);
+       // Parent root = FXMLLoader.load(getClass().getResource("MembreAdminFXML.fxml"));
+        
         
     }
 
     @FXML
     private void removeBann(ActionEvent event) throws IOException {
         
-            if(txt_id == null || txt_id.getText().isEmpty()) return;
-            UserServices us = UserServices.getInstance();
-            us.UpdateEnabledUser(Integer.parseInt(txt_id.getText()),1);
-             ((Node) (event.getSource())).getScene().getWindow().hide();
-        Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("MembreAdminFXML.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+         User u = (User) table.getSelectionModel().getSelectedItem();
+        //txt_id.setText(String.valueOf(u.getId()));
+        UserServices us= new UserServices();
+        System.out.println("+++++++"+u.getEnabled());
+        us.UpdateEnabledUser(u.getId(), 1);
+         FXMLLoader loader=new FXMLLoader(getClass().getResource(("MembreAdminFXML.fxml")));
+            loader.load();
+            AnchorPane parentContent = loader.getRoot();
+            window = (AnchorPane) table.getParent().getParent();
+            MembreAdminFXMLController cont=loader.getController();
+  
+            window.getChildren().setAll(parentContent);
         
     }
     

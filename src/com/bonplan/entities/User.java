@@ -21,6 +21,7 @@ public class User {
     String addresse;
     int telephone;
     private static int userconnected;
+    
 
     public User(int id, String username, String email, int enabled, String password, String confirmation_token, String nom, String prenom, String addresse, int telephone) {
         this.id = id;

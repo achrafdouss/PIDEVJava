@@ -43,7 +43,7 @@ public class RecommendationService implements RecommendationInterfaces {
             st.setString(4, r.getDescription());
             st.setString(5, r.getNom());
             st.setString(6, r.getAdresse());
-            st.setString(7, r.getNum_tel());
+            st.setInt(7, Integer.parseInt(r.getNum_tel()));
             st.setString(8, r.getEmail());
             st.setFloat(9, r.getNote());
             st.setString(10, r.getPhoto());
@@ -212,5 +212,75 @@ public class RecommendationService implements RecommendationInterfaces {
         }
 
         return listN;
+    }
+
+    public List<String> listerNom(String newValue) {
+        ArrayList<String> list=new ArrayList<String>();
+        if(newValue.equals("Restaurant")){
+            try {
+            stmt = cnx.createStatement();
+            ResultSet rs = stmt.executeQuery("Select * from restaurant");
+            while (rs.next()) {
+                System.out.println("titre " + rs.getString(3) );
+                list.add(rs.getString(3));
+            }
+            stmt.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Recommendation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+        if(newValue.equals("Produit")){
+            try {
+            stmt = cnx.createStatement();
+            ResultSet rs = stmt.executeQuery("Select * from produit");
+            while (rs.next()) {
+                System.out.println("titre " + rs.getString(4) );
+                list.add(rs.getString(4));
+            }
+            stmt.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Recommendation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+        if(newValue.equals("Voyage")){
+            try {
+            stmt = cnx.createStatement();
+            ResultSet rs = stmt.executeQuery("Select * from voyage");
+            while (rs.next()) {
+                System.out.println("titre " + rs.getString(10) );
+                list.add(rs.getString(10));
+            }
+            stmt.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Recommendation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+        if(newValue.equals("Prestation")){
+            try {
+            stmt = cnx.createStatement();
+            ResultSet rs = stmt.executeQuery("Select * from prestation");
+            while (rs.next()) {
+                System.out.println("titre " + rs.getString(4) );
+                list.add(rs.getString(4));
+            }
+            stmt.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Recommendation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+        if(newValue.equals("evenement")){
+            try {
+            stmt = cnx.createStatement();
+            ResultSet rs = stmt.executeQuery("Select * from evenement");
+            while (rs.next()) {
+                System.out.println("titre " + rs.getString(9) );
+                list.add(rs.getString(9));
+            }
+            stmt.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Recommendation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+        return list;
     }
 }

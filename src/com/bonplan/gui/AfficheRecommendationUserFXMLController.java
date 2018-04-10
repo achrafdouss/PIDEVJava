@@ -25,6 +25,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
@@ -32,7 +33,7 @@ import javafx.stage.Stage;
  *
  * @author Achraf
  */
-public class AfficheRecommendationUserFXMLController implements Initializable {
+public class AfficheRecommendationUserFXMLController extends AcceuilFXMLController {
 
     @FXML
     private TableView<Recommendation> table;
@@ -53,7 +54,7 @@ public class AfficheRecommendationUserFXMLController implements Initializable {
     @FXML
     private TableColumn<Recommendation, Integer> telephone;
     @FXML
-    private TableColumn<Recommendation, String> email;
+    private TableColumn<Recommendation, String> emailar;
     @FXML
     private TableColumn<Recommendation, Double> note;
      private ObservableList<Recommendation> data;
@@ -86,7 +87,7 @@ public class AfficheRecommendationUserFXMLController implements Initializable {
         telephone.setCellValueFactory(new PropertyValueFactory<>("num_tel"));
         nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         note.setCellValueFactory(new PropertyValueFactory<>("note"));
-        email.setCellValueFactory(new PropertyValueFactory<>("email"));
+        emailar.setCellValueFactory(new PropertyValueFactory<>("email"));
         
         
 
@@ -97,24 +98,26 @@ public class AfficheRecommendationUserFXMLController implements Initializable {
          Recommendation rec=table.getSelectionModel().getSelectedItem();
          RecommendationService rs=new RecommendationService();
          rs.SupprimerRecommendation(rec.getId());
-        ((Node) (event.getSource())).getScene().getWindow().hide();
-        Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("AfficheRecommendationUserFXML.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        FXMLLoader loader=new FXMLLoader(getClass().getResource(("AfficheRecommendationUserFXML.fxml")));
+            loader.load();
+            AnchorPane parentContent = loader.getRoot();
+            window = (AnchorPane) table.getParent().getParent();
+            AfficheRecommendationUserFXMLController cont=loader.getController();
+  
+            window.getChildren().setAll(parentContent);
 
     }
      @FXML
      public void Modifier(ActionEvent event) throws IOException {
          Recommendation rec=table.getSelectionModel().getSelectedItem();
          Recommendation.setId_recModifier(rec.getId());
-        ((Node) (event.getSource())).getScene().getWindow().hide();
-        Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("ModifierRecommendationFXML.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        FXMLLoader loader=new FXMLLoader(getClass().getResource(("ModifierRecommendationFXML.fxml")));
+            loader.load();
+            AnchorPane parentContent = loader.getRoot();
+            window = (AnchorPane) table.getParent().getParent();
+            ModifierRecommendationFXMLController cont=loader.getController();
+  
+            window.getChildren().setAll(parentContent);
 
     }
      

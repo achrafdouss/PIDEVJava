@@ -22,6 +22,7 @@ public class Recommendation {
     public float note;
     public String photo;
     public static int id_recModifier;
+    static int id_owner_rec;
     public Recommendation(){
         
     };
@@ -157,6 +158,15 @@ public class Recommendation {
     public String toString() {
         return "Recommendation{" + "id=" + id + ", id_owner=" + id_owner + ", titre=" + titre + ", categorie=" + categorie + ", description=" + description + ", nom=" + nom + ", adresse=" + adresse + ", num_tel=" + num_tel + ", email=" + email + ", note=" + note + ", photo=" + photo + '}';
     }
+
+    public static int getId_owner_rec() {
+        return id_owner_rec;
+    }
+
+    public static void setId_owner_rec(int id_owner_rec) {
+        Recommendation.id_owner_rec = id_owner_rec;
+    }
+    
     
     
 }

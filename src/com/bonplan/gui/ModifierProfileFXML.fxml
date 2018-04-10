@@ -5,21 +5,20 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="560.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bonplan.gui.ModifierProfileFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="560.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bonplan.gui.ModifierProfileFXMLController">
    <children>
-      <Label layoutX="107.0" layoutY="106.0" text="Username" />
-      <Label layoutX="107.0" layoutY="149.0" text="Adresse Email" />
-      <Label layoutX="107.0" layoutY="193.0" text="Nom" />
-      <Label layoutX="107.0" layoutY="236.0" text="Prenom" />
-      <Label layoutX="107.0" layoutY="280.0" text="Adresse" />
-      <Label layoutX="107.0" layoutY="323.0" text="Telephone" />
-      <TextField fx:id="username" layoutX="209.0" layoutY="102.0" />
-      <TextField fx:id="email" layoutX="209.0" layoutY="145.0" />
-      <TextField fx:id="nom" layoutX="209.0" layoutY="189.0" />
-      <TextField fx:id="prenom" layoutX="209.0" layoutY="232.0" />
-      <TextField fx:id="adresse" layoutX="209.0" layoutY="276.0" />
-      <Button layoutX="413.0" layoutY="420.0" mnemonicParsing="false" onAction="#register" text="Update" />
-      <Button layoutX="55.0" layoutY="28.0" mnemonicParsing="false" text="Back" />
-      <TextField fx:id="telep" layoutX="209.0" layoutY="319.0" />
+      <Label layoutX="439.0" layoutY="113.0" text="Username" />
+      <Label layoutX="439.0" layoutY="156.0" text="Adresse Email" />
+      <Label layoutX="439.0" layoutY="200.0" text="Nom" />
+      <Label layoutX="439.0" layoutY="243.0" text="Prenom" />
+      <Label layoutX="439.0" layoutY="287.0" text="Adresse" />
+      <Label layoutX="439.0" layoutY="330.0" text="Telephone" />
+      <TextField fx:id="usernamemp" layoutX="541.0" layoutY="109.0" />
+      <TextField fx:id="emailmp" layoutX="541.0" layoutY="152.0" />
+      <TextField fx:id="nommp" layoutX="541.0" layoutY="196.0" />
+      <TextField fx:id="prenommp" layoutX="541.0" layoutY="239.0" />
+      <TextField fx:id="adressemp" layoutX="541.0" layoutY="283.0" />
+      <Button layoutX="745.0" layoutY="427.0" mnemonicParsing="false" onAction="#register" text="Update" />
+      <TextField fx:id="telepmp" layoutX="541.0" layoutY="326.0" />
    </children>
 </AnchorPane>

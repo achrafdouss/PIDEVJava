@@ -7,6 +7,9 @@ package com.bonplan.gui;
 
 import com.bonplan.entities.User;
 import com.bonplan.services.UserServices;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,8 +24,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -33,13 +38,15 @@ public class LoginUserFXMLController implements Initializable {
 
     int logged = 0;
     @FXML
-    private TextField login;
+    private JFXTextField login;
     @FXML
-    private TextField password;
+    private JFXPasswordField password;
     @FXML
     private Button button;
     @FXML
     private Button buttonAdmin;
+    @FXML
+    private ImageView close;
 
     /**
      * Initializes the controller class.
@@ -49,7 +56,7 @@ public class LoginUserFXMLController implements Initializable {
         // TODO
     }
 
-    public void login(ActionEvent event) throws IOException {
+    public void log(ActionEvent event) throws IOException {
         UserServices us = new UserServices();
 if (login.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -59,17 +66,24 @@ if (login.getText().isEmpty()) {
 
             alert.showAndWait();
 
-        } else if (password.getText().isEmpty()) {
+        } /*else if (password.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Insert your Password");
             alert.setHeaderText("Insert your Password");
             alert.setContentText("Insert your Password");
 
             alert.showAndWait();
-        } else{
+        } */
+        else{
+    //char[] pass=password.g
+    String passText = password.getText();
+    System.out.println("++++++"+passText);
             User u=us.AfficherUser(login.getText());
+            
          if (u != null) {
         if (us.Login(login.getText(), password.getText())) {
+            System.out.println(us.verifAdmin(login.getText()));
+            System.out.println("+++++"+u.getConfirmation_token());
             if (u.getEnabled()== 0) {
                  Alert alert = new Alert(Alert.AlertType.ERROR);
                             alert.setTitle("Blocked");
@@ -77,16 +91,47 @@ if (login.getText().isEmpty()) {
                             alert.setContentText(" You are blocked !");
                              alert.showAndWait();
             }
+            else if(u.getConfirmation_token().equals("0")||u.getConfirmation_token().equals("")){
+                 Alert alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setTitle("Comfirmation");
+                            alert.setHeaderText("You are blocked ! ");
+                            alert.setContentText(" Comfirmation doesn't token");
+                             alert.showAndWait();
+            }
                 
+            else if(us.verifAdmin(login.getText())){
+                
+            FXMLLoader loader = new FXMLLoader();
+            User.setUserconnected(u.getId());
+        loader.setLocation(getClass().getResource("AcceuilFXML.fxml"));
+        loader.load();
+        AcceuilFXMLController cnt = loader.getController();
+        Parent root = loader.getRoot();
+        Stage stage=new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        Scene scene = new Scene(root);
+        
+        stage.setScene(scene);
+        stage.show();
+        closeStage();
             
-            else{
-                ((Node) (event.getSource())).getScene().getWindow().hide();
+        }
+            else {
                 User.setUserconnected(u.getId());
-            Stage stage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("AcceuilLoginFXML.fxml"));
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+                 FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("AcceuilFXML.fxml"));
+        loader.load();
+        AcceuilFXMLController cnt = loader.getController();
+        
+        
+        Parent root = loader.getRoot();
+        Stage stage=new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        Scene scene = new Scene(root);
+        
+        stage.setScene(scene);
+        stage.show();
+        closeStage();
             }
             
 
@@ -98,13 +143,25 @@ if (login.getText().isEmpty()) {
     }}}
 
     public void register(ActionEvent event) throws IOException {
-        ((Node) (event.getSource())).getScene().getWindow().hide();
-        Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("RegisterUserFXML.fxml"));
+        
+          FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("RegisterUserFXML.fxml"));
+        loader.load();
+        RegisterUserFXMLController cnt = loader.getController();
+        
+        
+        Parent root = loader.getRoot();
+        Stage stage=new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
         Scene scene = new Scene(root);
+        
         stage.setScene(scene);
         stage.show();
+        closeStage();
 
+    }
+    private void closeStage() {
+        ((Stage)login.getScene().getWindow()).close();
     }
     @FXML
      public void back(ActionEvent event) throws IOException {
@@ -116,6 +173,20 @@ if (login.getText().isEmpty()) {
         stage.show();
 
     }
-   
+   @FXML
+     public void profile(ActionEvent event) throws IOException {
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("LoginAdminFXML.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+    }
+   @FXML
+    private void closeWindow(MouseEvent event) {
+        Stage stage = (Stage) close.getScene().getWindow();
+        stage.close();
+    }
 
 }

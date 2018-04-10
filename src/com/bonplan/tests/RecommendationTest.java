@@ -11,13 +11,14 @@ import com.bonplan.entities.User;
 import com.bonplan.services.CommentaireService;
 import com.bonplan.services.RecommendationService;
 import com.bonplan.services.UserServices;
+import java.sql.SQLException;
 
 /**
  *
  * @author Achraf
  */
 public class RecommendationTest {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         Recommendation r=new Recommendation(8,1, "abc", "aaa", "aaa", "aaa", "aaa", "2213156", "aaa", 4, "aaaa");
 Recommendation r1= new Recommendation(8, 1, "aaa", "zzzz", "zzzz", "zzzz", "zzz", "zzzz", "zzzz", 4, "zzzz");
         RecommendationService rs= new RecommendationService();
@@ -35,7 +36,9 @@ Recommendation r1= new Recommendation(8, 1, "aaa", "zzzz", "zzzz", "zzzz", "zzz"
        // cs.AfficherCommentaire(r1).forEach(System.out::println);
        // cs.ModifierCommentaire(c);
         User u=new User("user", "aaa", 0, "123", "0", "aaa", "aaa", "aaa", 4654654);
+         
         UserServices us=new UserServices();
+       // us.AjouterUser(u);
         //us.AfficherUser("user").toString();
         //us.AjouterUser(u);
         //if(us.Login("user", "123")){
@@ -47,8 +50,11 @@ Recommendation r1= new Recommendation(8, 1, "aaa", "zzzz", "zzzz", "zzzz", "zzz"
         //us.ModiferUser(1, u);
        // us.UpdateEnabledUser(1, 0);
       //  rs.AfficherRecommendationById(2).forEach(a->a.getId());
-      CommentaireService cs= new CommentaireService();
-      Commentaire c =new Commentaire(1, 4, "zaeaze", 4);
-      cs.AjoutCommentaire(c);
+      //CommentaireService cs= new CommentaireService();
+      //Commentaire c =new Commentaire(1, 4, "zaeaze", 4);
+      //cs.AjoutCommentaire(c);
+        System.out.println(us.verifAdmin("assil"));
+        CommentaireService cs=new CommentaireService();
+        cs.UpdateNote(4);
     }
 }
