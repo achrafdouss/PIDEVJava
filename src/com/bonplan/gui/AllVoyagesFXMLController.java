@@ -6,16 +6,11 @@
 package com.bonplan.gui;
 
 import com.bonplan.entities.Recommendation;
-import com.bonplan.entities.Reservation;
-import com.bonplan.entities.User;
 import com.bonplan.entities.Voyage;
 import com.bonplan.services.RecommendationService;
-import com.bonplan.services.ReserverService;
 import com.bonplan.services.VoyageService;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +24,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Pagination;
@@ -39,9 +33,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import java.sql.PreparedStatement;
-import javafx.scene.control.Button;
-
 
 /**
  * FXML Controller class
@@ -107,17 +98,13 @@ public class AllVoyagesFXMLController implements Initializable {
     @FXML
     private Label Nbr_place;
     Voyage v=new Voyage();
-    @FXML
-    private Button reserver;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        
-        
+        // TODO
      details.setVisible(false);
          VoyageService rs= new VoyageService();
         liste= new ArrayList<>();
@@ -171,13 +158,11 @@ private void setNbPages() {
             agence.setText(TroisAnnonces.get(0).getType());
             prix.setText(Float.toString(TroisAnnonces.get(0).getPrix()));
             box.setOnMouseClicked((MouseEvent e) -> {
-                System.out.println("moula l 3amla berassmi"+TroisAnnonces.get(0).getId_owner());
-                initialiserDetails(TroisAnnonces.get(0));
+                initialiserDetails(v=TroisAnnonces.get(0));
                 details.setVisible(true);
                 box.setVisible(false);
            box2.setVisible(false);
            box1.setVisible(false);
-           
             });
             
            
@@ -239,11 +224,6 @@ private List<Voyage> getAnnoncesPage(int i) {
         return liste.subList(0, 2);    
     }  
  private void initialiserDetails(Voyage r) {
-     
-      if(User.getUserconnected()==r.id_owner)
-                reserver.setVisible(false);
-            else
-                reserver.setVisible(true);
         
         Image img=new Image("file:/C:/xampp/htdocs/Our/web/uploads/"+r.getPhoto());
             photo.setImage(img);
@@ -254,10 +234,8 @@ private List<Voyage> getAnnoncesPage(int i) {
             dateArrivd.setValue(LocalDate.parse(r.getDate_arr().toString()));
             prix.setText(Float.toString(r.getPrix()));
             Nbr_place.setText(Integer.toString(r.getNbr_place()));
-            Voyage.id_vModifier=r.getId_voyage();
-            System.out.println(r.getId_voyage());
-           
-           
+        
+        
         
     }    
 
@@ -296,6 +274,7 @@ private List<Voyage> getAnnoncesPage(int i) {
 
     } 
      
+      @FXML
      public void AjouterV(ActionEvent event) throws IOException {
         ((Node) (event.getSource())).getScene().getWindow().hide();
         Stage stage = new Stage();
@@ -316,18 +295,5 @@ private List<Voyage> getAnnoncesPage(int i) {
         stage.show();
 
     } 
-     
     
-    
-    @FXML
-     public void Reserv(ActionEvent event) throws IOException {
-         
-        ((Node) (event.getSource())).getScene().getWindow().hide();
-        Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("ReserverVoyageFXML.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-
-    }
 }

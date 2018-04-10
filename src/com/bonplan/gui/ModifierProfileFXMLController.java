@@ -19,6 +19,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
@@ -26,22 +27,22 @@ import javafx.stage.Stage;
  *
  * @author Achraf
  */
-public class ModifierProfileFXMLController implements Initializable {
+public class ModifierProfileFXMLController extends AfficheProfileFXMLLController {
 
     @FXML
-    private TextField username;
+    private TextField usernamemp;
     @FXML
-    private TextField email;
+    private TextField emailmp;
     @FXML
-    private TextField nom;
+    private TextField nommp;
     @FXML
-    private TextField prenom;
+    private TextField prenommp;
     @FXML
-    private TextField adresse;
+    private TextField adressemp;
     @FXML
-    private TextField tel;
+    private TextField telmp;
     @FXML
-    private TextField telep;
+    private TextField telepmp;
     
 
     /**
@@ -51,12 +52,12 @@ public class ModifierProfileFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
            UserServices us= new UserServices();
         User u=us.AfficherUserId(User.getUserconnected());
-        nom.setText(u.getNom());
-        username.setText(u.getUsername());
-        email.setText(u.getEmail());
-        prenom.setText(u.getPrenom());
-        adresse.setText(u.getAddresse());
-        telep.setText(Integer.toString(u.getTelephone()));
+        nommp.setText(u.getNom());
+        usernamemp.setText(u.getUsername());
+        emailmp.setText(u.getEmail());
+        prenommp.setText(u.getPrenom());
+        adressemp.setText(u.getAddresse());
+        telepmp.setText(Integer.toString(u.getTelephone()));
     }    
     @FXML
      public void profile(ActionEvent event) throws IOException {
@@ -72,39 +73,39 @@ public class ModifierProfileFXMLController implements Initializable {
     @SuppressWarnings("empty-statement")
     public void register(ActionEvent event) throws IOException{
         boolean valid = true;
-        if (nom.getText().equals("")) {
-            nom.setText("Field is empty !");
-            nom.setVisible(true);
+        if (nommp.getText().equals("")) {
+            nommp.setText("Field is empty !");
+            nommp.setVisible(true);
             valid = false;
         }
 
-        if (prenom.getText().equals("")) {
-            prenom.setText("Field is empty !");
-            prenom.setVisible(true);
+        if (prenommp.getText().equals("")) {
+            prenommp.setText("Field is empty !");
+            prenommp.setVisible(true);
             valid = false;
         }
 
         
-        if (username.getText().equals("")) {
-            username.setText("Field is empty !");
-            username.setVisible(true);
+        if (usernamemp.getText().equals("")) {
+            usernamemp.setText("Field is empty !");
+            usernamemp.setVisible(true);
             valid = false;
         }
 
-        if (!MailVerification.validate(email.getText())) {
-            email.setText("E-mail is not valid !");
-            email.setVisible(true);
+        if (!MailVerification.validate(emailmp.getText())) {
+            emailmp.setText("E-mail is not valid !");
+            emailmp.setVisible(true);
             valid = false;
        
         }
-        if (telep.getText().equals("")) {
-            telep.setText("Field is empty !");
-            telep.setVisible(true);
+        if (telepmp.getText().equals("")) {
+            telepmp.setText("Field is empty !");
+            telepmp.setVisible(true);
             valid = false;
         }
-        if (adresse.getText().equals("")) {
-            adresse.setText("Field is empty !");
-            adresse.setVisible(true);
+        if (adressemp.getText().equals("")) {
+            adressemp.setText("Field is empty !");
+            adressemp.setVisible(true);
             valid = false;
         
         }
@@ -112,33 +113,34 @@ public class ModifierProfileFXMLController implements Initializable {
 
         UserServices us=new UserServices();
         User u=us.AfficherUserId(User.getUserconnected());
-        if(username.getText().equals(""))
+        if(usernamemp.getText().equals(""))
             u.setUsername(u.getUsername());
-        else u.setUsername(username.getText());
-        if(email.getText().equals(""))
+        else u.setUsername(usernamemp.getText());
+        if(emailmp.getText().equals(""))
             u.setEmail(u.getEmail());
-        else u.setEmail(email.getText());
-        if(prenom.getText().equals(""))
+        else u.setEmail(emailmp.getText());
+        if(prenommp.getText().equals(""))
             u.setPrenom(u.getPrenom());
-        else u.setPrenom(prenom.getText());
-        if(adresse.getText().equals(""))
+        else u.setPrenom(prenommp.getText());
+        if(adressemp.getText().equals(""))
             u.setAddresse(u.getAddresse());
-        else u.setAddresse(adresse.getText());
-        if(nom.getText().equals(""))
+        else u.setAddresse(adressemp.getText());
+        if(nommp.getText().equals(""))
             u.setNom(u.getNom());
-        else u.setNom(nom.getText());
-        if(telep.getText().equals(""))
+        else u.setNom(nommp.getText());
+        if(telepmp.getText().equals(""))
             u.setTelephone(u.getTelephone());
-        else u.setTelephone(Integer.parseInt(telep.getText()));
+        else u.setTelephone(Integer.parseInt(telepmp.getText()));
         
        
         us.ModiferUser(User.getUserconnected(), u);
-        ((Node) (event.getSource())).getScene().getWindow().hide();
-        Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("AfficheProfileFXMLL.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+       FXMLLoader loader=new FXMLLoader(getClass().getResource(("AfficheProfileFXMLl.fxml")));
+            loader.load();
+            AnchorPane parentContent = loader.getRoot();
+            window = (AnchorPane) usernamemp.getParent().getParent();
+            AfficheProfileFXMLLController cont=loader.getController();
+  
+            window.getChildren().setAll(parentContent);
     }
     
 }}

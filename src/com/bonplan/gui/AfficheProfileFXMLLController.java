@@ -18,6 +18,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
@@ -25,7 +26,7 @@ import javafx.stage.Stage;
  *
  * @author Achraf
  */
-public class AfficheProfileFXMLLController implements Initializable {
+public class AfficheProfileFXMLLController extends AcceuilFXMLController {
 
     @FXML
     private Label nom1;
@@ -68,12 +69,13 @@ public class AfficheProfileFXMLLController implements Initializable {
 
     }
      public void Modifier(ActionEvent event) throws IOException {
-        ((Node) (event.getSource())).getScene().getWindow().hide();
-        Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("ModifierProfileFXML.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        FXMLLoader loader=new FXMLLoader(getClass().getResource(("ModifierProfileFXML.fxml")));
+            loader.load();
+            AnchorPane parentContent = loader.getRoot();
+            window = (AnchorPane) nom1.getParent().getParent();
+            ModifierProfileFXMLController cont=loader.getController();
+  
+            window.getChildren().setAll(parentContent);
 
     }
     

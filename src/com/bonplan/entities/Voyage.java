@@ -15,19 +15,16 @@ import java.util.Date;
 public class Voyage {
     
     
-    public int id_voyage;
-    public String categorie;
-   public String Type;
-   public int nbr_place;
-   public Date date_dep;
-   public Date date_arr;
-  public  float prix;
-   public String description;
-  public  String destination;
+    int id_voyage;
+    String categorie;
+    String Type;
+    int nbr_place;
+    Date date_dep;
+    Date date_arr;
+    float prix;
+    String description;
+    String destination;
     public static int id_vModifier;
-  public  String photo;
-  public  int id_owner;
-
     
     public Voyage()
     {}
@@ -58,22 +55,6 @@ public class Voyage {
         this.description = description;
         this.destination = destination;
         this.photo = photo;
-        
-        
-    }
-    public Voyage(int id_voyage,String categorie, String Type, int nbr_place, Date date_dep, Date date_arr, float prix, String description, String destination,int id_owner) {
-        
-        this.id_voyage=id_voyage;
-        this.categorie = categorie;
-        this.Type = Type;
-        this.nbr_place = nbr_place;
-        this.date_dep = date_dep;
-        this.date_arr = date_arr;
-        this.prix = prix;
-        this.description = description;
-        this.destination = destination;
-        this.id_owner=id_owner;
-       
         
         
     }
@@ -119,16 +100,6 @@ public class Voyage {
         
         
     }
-     public Voyage(Integer id_voy, Date date_dep, Date date_arr, float prix) {
-        
-        this.id_voyage = id_voy;
-        this.date_dep = date_dep;
-        this.date_arr = date_arr;
-        this.prix = prix;
-        
-        
-        
-    }
     
 
     public String getDestination() {
@@ -138,7 +109,9 @@ public class Voyage {
     public void setDestination(String destination) {
         this.destination = destination;
     }
-   
+    String photo;
+    int id_owner;
+
     public int getId_voyage() {
         return id_voyage;
     }

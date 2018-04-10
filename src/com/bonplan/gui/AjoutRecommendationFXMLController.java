@@ -14,6 +14,8 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -26,6 +28,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -34,7 +37,7 @@ import javafx.stage.Stage;
  *
  * @author Achraf
  */
-public class AjoutRecommendationFXMLController implements Initializable {
+public class AjoutRecommendationFXMLController extends AcceuilFXMLController {
     
     @FXML
     private TextField titre;
@@ -47,9 +50,11 @@ public class AjoutRecommendationFXMLController implements Initializable {
     @FXML
     private TextField num_tel;
     @FXML
-    private TextField email;
+    private TextField emailr;
     @FXML
     private ChoiceBox<String> categorie;
+    @FXML
+    private ChoiceBox<String> namer;
     File file;
     Stage stage;
     Recommendation r = new Recommendation();
@@ -61,6 +66,16 @@ public class AjoutRecommendationFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         ObservableList<String> list = FXCollections.observableArrayList("Restaurant", "Produit", "Prestation", "Voyage", "Evenement");
         categorie.setItems(list);
+        categorie.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+           RecommendationService rs=new RecommendationService();
+                   ObservableList<String> listn = FXCollections.observableArrayList(rs.listerNom(newValue));
+
+           namer.setItems(listn );
+           
+            }
+        });
     }
     
     @FXML
@@ -101,11 +116,7 @@ String path = "C:/wamp64/www/PIDEV/web/uploads/";
             valid = false;
         }
         
-        if (nom.getText().equals("")) {
-            nom.setText("Field is empty !");
-            nom.setVisible(true);
-            valid = false;
-        }
+        
         
         if (adresse.getText().equals("")) {
             adresse.setText("Field is empty !");
@@ -118,9 +129,9 @@ String path = "C:/wamp64/www/PIDEV/web/uploads/";
             valid = false;
             
         }
-        if (email.getText().equals("")) {
-            email.setText("Field is empty !");
-            email.setVisible(true);
+        if (emailr.getText().equals("")) {
+            emailr.setText("Field is empty !");
+            emailr.setVisible(true);
             valid = false;
             
         }
@@ -131,23 +142,24 @@ String path = "C:/wamp64/www/PIDEV/web/uploads/";
             r.setId_owner(User.getUserconnected());
             r.setDescription(description.getText());
             
-            r.setNom(nom.getText());
+            r.setNom(namer.getValue());
             
             r.setAdresse(adresse.getText());
             
             r.setNum_tel(num_tel.getText());
             
-            r.setEmail(email.getText());
+            r.setEmail(emailr.getText());
             r.setPhoto(r.getPhoto());
             
             RecommendationService rs = new RecommendationService();
             rs.AjoutRecommendation(r);
-            ((Node) (event.getSource())).getScene().getWindow().hide();
-            Stage stage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("AfficheRecommendationUserFXML.fxml"));
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+             FXMLLoader loader=new FXMLLoader(getClass().getResource(("AfficheRecommendationFXML.fxml")));
+            loader.load();
+            AnchorPane parentContent = loader.getRoot();
+            window = (AnchorPane) titre.getParent().getParent();
+            AjoutRecommendationFXMLController cont=loader.getController();
+  
+            window.getChildren().setAll(parentContent);
         }
     }
     

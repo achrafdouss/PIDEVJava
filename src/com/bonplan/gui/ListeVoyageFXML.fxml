@@ -22,6 +22,5 @@
       <Button layoutX="78.0" layoutY="423.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="36.0" prefWidth="112.0" text="Supprimer" />
       <Button layoutX="223.0" layoutY="423.0" mnemonicParsing="false" onAction="#Modifier" prefHeight="36.0" prefWidth="112.0" text="Modifier" />
       <Button layoutX="358.0" layoutY="423.0" mnemonicParsing="false" onAction="#AjouterV" prefHeight="36.0" prefWidth="112.0" text="Ajouter" />
-      <Button layoutX="500.0" layoutY="423.0" mnemonicParsing="false" onAction="#Partager" prefHeight="36.0" prefWidth="112.0" text="Partager" />
    </children>
 </AnchorPane>

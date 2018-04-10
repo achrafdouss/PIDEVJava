@@ -6,10 +6,10 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="533.0" prefWidth="760.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bonplan.gui.AfficheRecommendationUserFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="350.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bonplan.gui.AfficheRecommendationUserFXMLController">
    <children>
-      <Label layoutX="303.0" layoutY="46.0" prefHeight="38.0" prefWidth="155.0" text="Mes Recommendations" />
-      <TableView fx:id="table" layoutX="70.0" layoutY="119.0" prefHeight="200.0" prefWidth="610.0">
+      <Label layoutX="557.0" layoutY="42.0" prefHeight="38.0" prefWidth="155.0" text="Mes Recommendations" />
+      <TableView fx:id="table" layoutX="353.0" layoutY="97.0" prefHeight="200.0" prefWidth="610.0">
         <columns>
           <TableColumn fx:id="titre" prefWidth="75.0" text="Titre" />
           <TableColumn fx:id="categorie" prefWidth="75.0" text="Categorie" />
@@ -17,12 +17,12 @@
             <TableColumn fx:id="nom" prefWidth="75.0" text="Nom" />
             <TableColumn fx:id="adresse" prefWidth="75.0" text="Adresse" />
             <TableColumn fx:id="telephone" prefWidth="75.0" text="Numero de Telephone" />
-            <TableColumn fx:id="email" prefWidth="75.0" text="Email" />
+            <TableColumn fx:id="emailar" prefWidth="75.0" text="Email" />
             <TableColumn fx:id="note" prefWidth="75.0" text="Note" />
             <TableColumn fx:id="iddd" prefWidth="75.0" text="id" />
         </columns>
       </TableView>
-      <Button layoutX="70.0" layoutY="368.0" mnemonicParsing="false" onAction="#supprimer" text="Supprimer" />
-      <Button layoutX="157.0" layoutY="368.0" mnemonicParsing="false" onAction="#Modifier" text="Modifier" />
+      <Button layoutX="432.0" layoutY="317.0" mnemonicParsing="false" onAction="#supprimer" text="Supprimer" />
+      <Button layoutX="519.0" layoutY="317.0" mnemonicParsing="false" onAction="#Modifier" text="Modifier" />
    </children>
 </AnchorPane>

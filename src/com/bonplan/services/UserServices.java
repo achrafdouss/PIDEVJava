@@ -144,7 +144,7 @@ public void UpdateEnabledUser(int id, int enabled) {
                         u.setUsername(rs.getString(2));
                         u.setEmail(rs.getString(4));
                         u.setEnabled(rs.getInt(6));
-                       
+                       //u.setConfirmation_token(rs.getString(10));
                         u.setPassword(rs.getString(8));
                         u.setConfirmation_token(rs.getString(10));
                         u.setNom(rs.getString(13));
@@ -259,13 +259,13 @@ public void UpdateEnabledUser(int id, int enabled) {
             stmt = cnx.createStatement();
             ResultSet rs = stmt.executeQuery("Select * from fos_user where fos_user.`username`='"+username+"' and fos_user.`roles` like '%ROLE_AGENT%' ");
             if(rs.next())
-                return false;
+                return true;
             
             stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(Recommendation.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return true;
+        return false;
         
     }
 

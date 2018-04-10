@@ -129,8 +129,7 @@ try {
                         rs.getDate(6),
                         rs.getFloat(7),
                         rs.getString(8),
-                        rs.getString(9),
-                        rs.getInt(11)
+                        rs.getString(9)
                         
                         
                         
@@ -195,51 +194,8 @@ try {
         
         
     }
- @Override
-    public Voyage RechercherVoyageByID(int id_voy) {
-        String requete = "select * from voyage where voyage.`id_voyage` = '" + id_voy + "'";
-        try {
-            PreparedStatement ps = cnx.prepareStatement(requete);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                Integer cat = rs.getInt("id_voyage");
-                Date date_depart  = rs.getDate("date_depart");
-                Date date_arrivee = rs.getDate("date_arrivee");
-                float prix = rs.getFloat("prix");
-                
-                return (new Voyage(id_voy, date_depart, date_arrivee, prix));
-            }
 
-        } catch (SQLException ex) {
-            System.out.println("erreur lors de la recherche  " + ex.getMessage());
-        }
-        return null;
-        
-        
-    }
-    
-
-    @Override
-    public void ModifierVRes(Voyage v,int nbr_place_nouv) {
-            
-     try {    
-         System.out.println("get ID VOYAGE"+v.getId_voyage());
-         System.out.println("Nouveau nmbre de place");
-       String req= "UPDATE voyage SET nbr_place='"+nbr_place_nouv+"'WHERE id_voyage='"+v.getId_voyage()+"'";
-       PreparedStatement st = cnx.prepareStatement(req);
-
-       st.executeUpdate();
-
-        }catch (SQLException ex)
-                {
-                     Logger.getLogger(VoyageService.class.getName()).log(Level.SEVERE, null, ex);
-
-                }
-        
-    }
-
-        
-
+  
    
     
     

@@ -11,16 +11,17 @@
       <Label layoutX="75.0" layoutY="41.0" text="Liste des membres" />
       <TableView fx:id="table" layoutX="74.0" layoutY="100.0" prefHeight="200.0" prefWidth="447.0">
         <columns>
-          <TableColumn fx:id="username" prefWidth="75.0" text="Username" />
-          <TableColumn fx:id="email" prefWidth="75.0" text="Email" />
-            <TableColumn fx:id="nom" prefWidth="75.0" text="Nom" />
-            <TableColumn fx:id="prenom" prefWidth="75.0" text="Prenom" />
-            <TableColumn fx:id="adresse" prefWidth="75.0" text="Adresse" />
-            <TableColumn fx:id="telephone" prefWidth="75.0" text="Telephone" />
-            <TableColumn fx:id="enabled" prefWidth="75.0" text="enabled" />
+          <TableColumn fx:id="userna" prefWidth="75.0" text="Username" />
+          <TableColumn fx:id="emailm" prefWidth="75.0" text="Email" />
+            <TableColumn fx:id="nomm" prefWidth="75.0" text="Nom" />
+            <TableColumn fx:id="prenomm" prefWidth="75.0" text="Prenom" />
+            <TableColumn fx:id="adressem" prefWidth="75.0" text="Adresse" />
+            <TableColumn fx:id="telephonem" prefWidth="75.0" text="Telephone" />
+            <TableColumn fx:id="enabledm" prefWidth="75.0" text="enabled" />
         </columns>
       </TableView>
       <Label fx:id="text_id" layoutX="229.0" layoutY="329.0" text="Label" />
-      <Button layoutX="335.0" layoutY="325.0" mnemonicParsing="false" onAction="#Banner_click" text="Bloque" />
+      <Button fx:id="bt_banne" layoutX="335.0" layoutY="325.0" mnemonicParsing="false" onAction="#BannerAction" text="Bloque" />
+      <Button fx:id="removeBanButton" layoutX="328.0" layoutY="325.0" mnemonicParsing="false" onAction="#removeBann" text="Débloqué" />
    </children>
 </AnchorPane>
