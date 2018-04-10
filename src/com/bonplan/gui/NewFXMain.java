@@ -33,7 +33,7 @@ import javafx.stage.Stage;
  * @author bouyo
  */
 public class NewFXMain extends Application {
-
+    public static  int owner=1;
     @Override
     public void start(Stage stage) throws IOException, SQLException {
 

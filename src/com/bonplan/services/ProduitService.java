@@ -80,7 +80,8 @@ public class ProduitService implements iProduitService {
             ResultSet rs = stmt.executeQuery("Select * from produit");
             while (rs.next()) {
                 System.out.println("nom Produit " + rs.getString(3) + "description de Produit " + rs.getString(4) + "photo de produit " + rs.getString(5) + "prix de produit " + rs.getFloat(6) + "sttock de produit " + rs.getInt(7) + "catégorie de produit " + rs.getString(8) + "video de produit " + rs.getString(9));
-                listN.add(new Produit(rs.getString(3),
+                listN.add(new Produit( rs.getInt(1),
+                        rs.getString(3),
                         rs.getString(4),
                         rs.getString(5),
                         rs.getFloat(6),

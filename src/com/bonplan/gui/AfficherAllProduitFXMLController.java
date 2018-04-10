@@ -5,10 +5,13 @@
  */
 package com.bonplan.gui;
 
+import com.bonplan.entities.Favoris;
 import com.bonplan.entities.Produit;
 import com.bonplan.entities.User;
+import com.bonplan.services.FavoriService;
 import com.bonplan.services.ProduitService;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXRadioButton;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -26,10 +29,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Pagination;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -73,18 +78,6 @@ public class AfficherAllProduitFXMLController implements Initializable {
     @FXML
     private Text description2;
         List<Produit> liste=new ArrayList<>();
-    @FXML
-    private Button favori;
-    @FXML
-    private Button modifier;
-    @FXML
-    private Button supprimer;
-    @FXML
-    private Button fovori2;
-    @FXML
-    private Button modifier2;
-    @FXML
-    private Button Sypprimer2;
 Produit p = new Produit();
 private ObservableList<Produit> data = FXCollections.observableArrayList();
     @FXML
@@ -116,15 +109,34 @@ private ObservableList<Produit> data = FXCollections.observableArrayList();
     @FXML
     private Text prix1;
     @FXML
-    private Button favori1;
-    @FXML
-    private Button modifier1;
-    @FXML
     private Label stock1;
     @FXML
     private Label description1;
     @FXML
-    private Button supprimer1;
+    private Label idp1;
+    @FXML
+    private Pane filter_type;
+    @FXML
+    private Label filt;
+    @FXML
+    private JFXRadioButton Habillement;
+    @FXML
+    private ToggleGroup type;
+    @FXML
+    private JFXRadioButton Immobilier;
+    @FXML
+    private JFXRadioButton Vehicule;
+    @FXML
+    private JFXRadioButton Informatique;
+    @FXML
+    private Label filt1;
+    @FXML
+    private JFXRadioButton prixup;
+    @FXML
+    private ToggleGroup type3;
+    @FXML
+    private JFXRadioButton prixdown;
+    Favoris f = new Favoris();
 
     /**
      * Initializes the controller class.
@@ -178,18 +190,19 @@ private ObservableList<Produit> data = FXCollections.observableArrayList();
         
         if (TroisAnnonces.size() >= 1) {
             box.setVisible(true);
-                        System.out.println("    858585858"+TroisAnnonces.get(0).getPhotoProduit());
+                       // System.out.println("    858585858"+TroisAnnonces.get(0).getPhotoProduit());
 
-            System.out.println("    lololololo"+TroisAnnonces.get(1).getPhotoProduit());
+            //System.out.println("    lololololo"+TroisAnnonces.get(1).getPhotoProduit());
            
 
             Image img=new Image("http://localhost/uploadsimg/"+TroisAnnonces.get(0).getPhotoProduit());
 
             image.setImage(img);
             categorie.setText(TroisAnnonces.get(0).getCategorieProduit());
-
+            idp1.setText(Integer.toString((int)TroisAnnonces.get(0).getIdProduit()));
+            System.out.println("  mmmmmmm"+idp1.getText().toString());
             nom.setText(TroisAnnonces.get(0).getNomProduit());
-            prix.setText(Integer.toString((int) TroisAnnonces.get(0).getPrixProduit()));
+            prix.setText(Integer.toString((int) TroisAnnonces.get(0).getPrixProduit())+"DT");
             stock.setText(Integer.toString(TroisAnnonces.get(0).getStockProduit()));
            
             description.setText(TroisAnnonces.get(0).getDescriptionProduit());
@@ -198,6 +211,7 @@ private ObservableList<Produit> data = FXCollections.observableArrayList();
                 details.setVisible(true);
                 box2.setVisible(false);
            box.setVisible(false);
+           box1.setVisible(false);
             });
         
            
@@ -208,9 +222,9 @@ private ObservableList<Produit> data = FXCollections.observableArrayList();
         }
         if (TroisAnnonces.size() >= 2) {
             box1.setVisible(true);
-                        System.out.println("    858585858"+TroisAnnonces.get(1).getPhotoProduit());
+                        //System.out.println("    858585858"+TroisAnnonces.get(1).getPhotoProduit());
 
-            System.out.println("    lololololo"+TroisAnnonces.get(1).getPhotoProduit());
+            //System.out.println("    lololololo"+TroisAnnonces.get(1).getPhotoProduit());
            
 
             Image img=new Image("http://localhost/uploadsimg/"+TroisAnnonces.get(1).getPhotoProduit());
@@ -219,8 +233,8 @@ private ObservableList<Produit> data = FXCollections.observableArrayList();
             categorie1.setText(TroisAnnonces.get(1).getCategorieProduit());
 
             nom1.setText(TroisAnnonces.get(1).getNomProduit());
-            prix1.setText(Integer.toString((int) TroisAnnonces.get(1).getPrixProduit()));
-            stock1.setText(Integer.toString(TroisAnnonces.get(0).getStockProduit()));
+            prix1.setText(Integer.toString((int) TroisAnnonces.get(1).getPrixProduit())+"DT");
+            stock1.setText(Integer.toString(TroisAnnonces.get(1).getStockProduit()));
            
             description1.setText(TroisAnnonces.get(1).getDescriptionProduit());
                box1.setOnMouseClicked((MouseEvent e) -> {
@@ -233,7 +247,7 @@ private ObservableList<Produit> data = FXCollections.observableArrayList();
             
      
         }else { 
-            box2.setVisible(false);
+            box1.setVisible(false);
         }
 
        
@@ -245,7 +259,7 @@ private ObservableList<Produit> data = FXCollections.observableArrayList();
            categorie2.setText(TroisAnnonces.get(2).getCategorieProduit());
 
             nom2.setText(TroisAnnonces.get(2).getNomProduit());
-            prix2.setText(Integer.toString((int) TroisAnnonces.get(2).getPrixProduit()));
+            prix2.setText(Integer.toString((int) TroisAnnonces.get(2).getPrixProduit())+"DT");
             stock2.setText(Integer.toString(TroisAnnonces.get(2).getStockProduit()));
             description2.setText(TroisAnnonces.get(2).getDescriptionProduit());
             box2.setOnMouseClicked((MouseEvent e) -> {
@@ -256,7 +270,7 @@ private ObservableList<Produit> data = FXCollections.observableArrayList();
            box2.setVisible(false);
            box1.setVisible(false);
             });
-            System.out.println("deeetaail ");
+           // System.out.println("deeetaail ");
              
             
         }   
@@ -302,12 +316,19 @@ private List<Produit> getAnnoncesPage(int i) {
         stage.setScene(scene);
         stage.show();
 
+        
+        
     }
       private void initialiserDetails(Produit p) {
        /*if(User.getUserconnected()==p.getIdOwer())
                 commander.setVisible(false);*/
-           
-                commander.setVisible(true);
+           if (p.getStockProduit() == 0) {
+            commander.setDisable(true);
+          
+        } else {
+            commander.setDisable(false);
+            
+        }
         Image img=new Image("http://localhost/uploadsimg/"+p.getPhotoProduit());
             photo.setImage(img);
             nomD.setText(p.getNomProduit());
@@ -316,8 +337,8 @@ private List<Produit> getAnnoncesPage(int i) {
             prixD.setText(Float.toString(p.getPrixProduit()));
             stockD.setText(Integer.toString(p.getStockProduit()));
         Produit.id_pModifier=p.getIdProduit();
-            System.out.println(p.getIdProduit());
-        
+            System.out.println(idp1.getText().toString());
+      
         
     } 
         @FXML
@@ -332,6 +353,7 @@ private List<Produit> getAnnoncesPage(int i) {
 
     }
      
+    @FXML
        private void Habillement(ActionEvent event) {
         
          all_articles = produitservice.findAllFiltrer("Habillement et bien etre");
@@ -340,13 +362,13 @@ private List<Produit> getAnnoncesPage(int i) {
                 initAnnoncePage(0);
             }  
        
+    @FXML
         private void Immobilier(ActionEvent event) {
         
          all_articles = produitservice.findAllFiltrer("Immobilier");
             
-                setNbPages();
-                initAnnoncePage(0);
             } 
+    @FXML
           private void Vehicule(ActionEvent event) {
         
          all_articles = produitservice.findAllFiltrer("Vehicule");
@@ -354,6 +376,7 @@ private List<Produit> getAnnoncesPage(int i) {
                 setNbPages();
                 initAnnoncePage(0);
             } 
+    @FXML
               private void Informatique(ActionEvent event) {
         
          all_articles = produitservice.findAllFiltrer("Informatique et multimédia");
@@ -361,6 +384,28 @@ private List<Produit> getAnnoncesPage(int i) {
                 setNbPages();
                 initAnnoncePage(0);
             } 
+
+    @FXML
+    private void prixup(ActionEvent event) {
+    }
+
+    @FXML
+    private void prixdown(ActionEvent event) {
+    }
+
+    @FXML
+    private void Favoris() throws IOException {
+         FavoriService ps=new FavoriService();
+        System.out.println("Fooovooriii"+f.getProduit().getIdProduit());
+        System.out.println("hethi"+f);
+         /*ps.ajouterFavoris(f);
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("AfficherAllProduitFXML.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();*/
+    }
               
        
     }

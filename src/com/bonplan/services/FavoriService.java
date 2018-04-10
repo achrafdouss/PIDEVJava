@@ -8,6 +8,7 @@ package com.bonplan.services;
 import com.bonplan.util.DataSource;
 import com.bonplan.entities.Favoris;
 import com.bonplan.entities.Produit;
+import com.bonplan.gui.NewFXMain;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -41,9 +42,9 @@ Favoris favori = new Favoris();
                       
         String req1 = "insert into produitfavories (id_produit,id_owner) values(?,?) ";
          try {
-             pst = cnx.prepareStatement(req1);
-       pst.setInt(1, f.getProduit().getIdProduit());
-       pst.setInt(2, f.getIdOwner());
+             PreparedStatement pst = cnx.prepareStatement(req1);
+             pst.setInt(1, f.getProduit().getIdProduit());
+             pst.setInt(2,  NewFXMain.owner);
         
                 pst.executeUpdate();
        

@@ -16,9 +16,15 @@ public class Commande {
     private int idAcheteur;
     private int quantiteCommandeProduit;
 
-    public Commande(int idproduit, int idAcheteur, int quantiteCommandeProduit) {
+   
+     public Commande(int idAcheteur,int idproduit, int quantiteCommandeProduit) {
         this.idproduit = idproduit;
         this.idAcheteur = idAcheteur;
+        this.quantiteCommandeProduit = quantiteCommandeProduit;
+    }
+      public Commande(int idproduit, int quantiteCommandeProduit) {
+        this.idproduit = idproduit;
+       // this.idAcheteur = idAcheteur;
         this.quantiteCommandeProduit = quantiteCommandeProduit;
     }
 

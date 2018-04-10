@@ -61,7 +61,7 @@ public class CommanderFXMLController implements Initializable {
         System.out.println(nbr);
         int test9=v.getStockProduit()-nbr;
         System.out.println(test9);
-     Commande  r=new Commande(Produit.id_pModifier,User.getUserconnected(),nbr);
+     Commande  r=new Commande(Produit.id_pModifier,nbr);
         System.out.println(r);
 
         if (test9>=0)         

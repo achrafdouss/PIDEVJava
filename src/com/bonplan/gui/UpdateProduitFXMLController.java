@@ -70,6 +70,8 @@ public class UpdateProduitFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        choixInsertion.getItems().setAll("Informatique et multimédia", "Vehicule", "Immobilier","Habillement et bien etre","Informatique et multimédia");
+       
        ProduitService rs= new ProduitService();
         Produit ps=rs.AfficherDetailProduit(Produit.getId_pModifier());
         p=ps;
