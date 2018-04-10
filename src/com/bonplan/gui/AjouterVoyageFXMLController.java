@@ -80,7 +80,7 @@ public class AjouterVoyageFXMLController implements Initializable {
             System.out.println(file.getAbsolutePath());
             String img = file.getName();
             
-String path = "C:/wamp64/www/PIDEV/web/uploads/";
+String path = "C:/xamp/htdocs/Our/web/uploads/";
             
                 Files.copy(file.toPath(),
                         (new File(path + file.getName())).toPath(),

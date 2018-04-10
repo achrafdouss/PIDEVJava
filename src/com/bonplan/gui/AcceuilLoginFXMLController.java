@@ -82,4 +82,14 @@ public class AcceuilLoginFXMLController implements Initializable {
         stage.show();
 
     }
+      @FXML
+     public void MesReservations(ActionEvent event) throws IOException {
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("MesReservationsFXML.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+    }
 }

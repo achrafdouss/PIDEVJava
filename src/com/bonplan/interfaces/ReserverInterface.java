@@ -19,6 +19,7 @@ public interface ReserverInterface {
     public void ModifierReservation(Reservation r);
     public void AnnulerReservation(int id_res);
     public List<Reservation> AfficherReservation(int id_user);
+     public Reservation ReturnRes(int idInscrit, int id_voy);
   
     
 }

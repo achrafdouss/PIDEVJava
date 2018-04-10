@@ -5,6 +5,7 @@
  */
 package com.bonplan.entities;
 
+import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import java.util.Objects;
 import java.util.Date;
 
@@ -12,7 +13,7 @@ import java.util.Date;
  *
  * @author Radhouen
  */
-public class Voyage {
+public class Voyage extends RecursiveTreeObject<Voyage> {
     
     
     public int id_voyage;

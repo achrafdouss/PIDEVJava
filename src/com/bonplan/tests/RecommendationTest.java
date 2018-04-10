@@ -46,10 +46,11 @@ public class RecommendationTest {
         //us.ModiferUser(1, u);
        // us.UpdateEnabledUser(1, 0);
       //  rs.AfficherRecommendationById(2).forEach(a->a.getId());
-      User.setUserconnected(1);
+      
         ReserverService res= new ReserverService();
-        Reservation x=new Reservation(14,1,4);
-        res.ReserverVoyage(x);
+       
+        res.AfficherReservation(2);
+        System.out.println(res.AfficherReservation(2));
         
     }
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="538.0" prefWidth="702.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bonplan.gui.MesReservationsFXMLController">
+   <children>
+      <TableView fx:id="table" layoutX="89.0" layoutY="42.0" prefHeight="239.0" prefWidth="498.0">
+        <columns>
+          <TableColumn fx:id="Dest" prefWidth="75.0" text="Destination" />
+          <TableColumn fx:id="nbrpla" prefWidth="122.0" text="Nombre de place" />
+            <TableColumn fx:id="prix" prefWidth="99.0" text="Prix" />
+            <TableColumn fx:id="dateDep" minWidth="4.0" prefWidth="72.0" text="DateDep" />
+            <TableColumn fx:id="DateArriv" minWidth="7.0" prefWidth="106.0" text="DateArriv" />
+        </columns>
+      </TableView>
+      <Button layoutX="162.0" layoutY="381.0" mnemonicParsing="false" onAction="#AnnulerReservation" prefHeight="29.0" prefWidth="134.0" text="Annuler Reservation" />
+      <Button layoutX="351.0" layoutY="379.0" mnemonicParsing="false" onAction="#exporter_pdf_reservation" prefHeight="29.0" prefWidth="134.0" text="Get PDF" />
+   </children>
+</AnchorPane>

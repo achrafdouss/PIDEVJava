@@ -15,12 +15,17 @@ public class Reservation {
     int id_voy;
     int id_inscrit;
     int nbr_place_resv;
-    
+     public Reservation(){} 
     public Reservation(int id_voy,int id_inscrit,int nbr_place_res)
     {this.id_voy=id_voy;
     this.id_inscrit=id_inscrit;
     this.nbr_place_resv=nbr_place_res;
     }
+    public Reservation(int id_voy,int id_inscrit,int nbr_place_res,int id_resv)
+    {this.id_voy=id_voy;
+    this.id_inscrit=id_inscrit;
+    this.nbr_place_resv=nbr_place_res;
+    this.id_resv=id_resv;   }
 
     public int getId_resv() {
         return id_resv;
