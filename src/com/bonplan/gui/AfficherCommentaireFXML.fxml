@@ -4,55 +4,81 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Pagination?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 <?import org.controlsfx.control.Rating?>
 
 <AnchorPane id="AnchorPane" prefHeight="350.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bonplan.gui.AfficherCommentaireFXMLController">
    <children>
-      <Label layoutX="629.0" layoutY="29.0" text="Liste des commentaires" />
-      <AnchorPane fx:id="box" layoutX="449.0" layoutY="57.0" prefHeight="128.0" prefWidth="484.0">
+      <Label layoutX="629.0" layoutY="29.0" text="Liste des commentaires" textFill="#030cff">
+         <font>
+            <Font size="24.0" />
+         </font></Label>
+      <AnchorPane fx:id="box" layoutX="480.0" layoutY="107.0" prefHeight="128.0" prefWidth="547.0" style="-fx-background-color: white;">
          <children>
             <Text fx:id="contenu" layoutX="80.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="329.13671875" />
-            <Label fx:id="name" layoutX="77.0" layoutY="14.0" text="Label" />
+            <Label fx:id="name" layoutX="77.0" layoutY="14.0" text="Label">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font></Label>
             <Rating fx:id="rating" layoutX="80.0" layoutY="73.0" />
-            <Button fx:id="modif" layoutX="331.0" layoutY="80.0" mnemonicParsing="false" text="Modifier" />
-            <Button fx:id="supp" layoutX="401.0" layoutY="80.0" mnemonicParsing="false" text="Supprimer" />
+            <Button fx:id="modif" layoutX="347.0" layoutY="81.0" mnemonicParsing="false" text="Modifier" />
+            <Button fx:id="supp" layoutX="417.0" layoutY="81.0" mnemonicParsing="false" text="Supprimer" />
          </children>
+         <effect>
+            <DropShadow />
+         </effect>
       </AnchorPane>
-      <AnchorPane fx:id="box1" layoutX="457.0" layoutY="176.0" prefHeight="121.0" prefWidth="484.0">
+      <AnchorPane fx:id="box1" layoutX="480.0" layoutY="251.0" prefHeight="128.0" prefWidth="547.0" style="-fx-background-color: white;">
          <children>
             <Text fx:id="contenu1" layoutX="80.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="329.13671875" />
-            <Label fx:id="name1" layoutX="77.0" layoutY="14.0" text="Label" />
+            <Label fx:id="name1" layoutX="77.0" layoutY="14.0" text="Label">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font></Label>
             <Rating fx:id="rating1" layoutX="80.0" layoutY="73.0" />
-            <Button fx:id="modif1" layoutX="331.0" layoutY="80.0" mnemonicParsing="false" text="Modifier" />
-            <Button fx:id="supp1" layoutX="401.0" layoutY="80.0" mnemonicParsing="false" text="Supprimer" />
+            <Button fx:id="modif1" layoutX="346.0" layoutY="80.0" mnemonicParsing="false" text="Modifier" />
+            <Button fx:id="supp1" layoutX="416.0" layoutY="80.0" mnemonicParsing="false" text="Supprimer" />
          </children>
+         <effect>
+            <DropShadow />
+         </effect>
       </AnchorPane>
-      <AnchorPane fx:id="box2" layoutX="457.0" layoutY="297.0" prefHeight="121.0" prefWidth="484.0">
+      <AnchorPane fx:id="box2" layoutX="480.0" layoutY="391.0" prefHeight="121.0" prefWidth="547.0" style="-fx-background-color: white;">
          <children>
             <Text fx:id="contenu2" layoutX="80.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="329.13671875" />
-            <Label fx:id="nom2" layoutX="77.0" layoutY="14.0" text="Label" />
-            <Rating fx:id="rating2" blendMode="COLOR_BURN" layoutX="80.0" layoutY="73.0" />
-            <Button fx:id="modif2" layoutX="331.0" layoutY="80.0" mnemonicParsing="false" text="Modifier" />
-            <Button fx:id="supp2" layoutX="401.0" layoutY="80.0" mnemonicParsing="false" text="Supprimer" />
+            <Label fx:id="nom2" layoutX="77.0" layoutY="14.0" text="Label">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font></Label>
+            <Button fx:id="modif2" layoutX="346.0" layoutY="80.0" mnemonicParsing="false" text="Modifier" />
+            <Button fx:id="supp2" layoutX="416.0" layoutY="80.0" mnemonicParsing="false" text="Supprimer" />
+            <Rating fx:id="rating2" layoutX="79.0" layoutY="76.0" />
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
+      <AnchorPane fx:id="box4" layoutX="480.0" layoutY="519.0" prefHeight="146.0" prefWidth="547.0">
+         <children>
+            <Rating fx:id="rating3" layoutX="103.0" layoutY="98.0" />
+            <Button layoutX="407.0" layoutY="102.0" mnemonicParsing="false" onAction="#AjouterCommentaire" text="Ajouter" />
+            <TextArea fx:id="contenu3" layoutX="91.0" layoutY="19.0" prefHeight="67.0" prefWidth="379.0" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="box4" layoutX="472.0" layoutY="418.0" prefHeight="146.0" prefWidth="484.0">
+      <Pagination fx:id="paginator" layoutX="622.0" layoutY="635.0" prefHeight="60.0" prefWidth="200.0" />
+      <AnchorPane fx:id="boxm" layoutX="488.0" layoutY="118.0" prefHeight="355.0" prefWidth="471.0" style="-fx-background-color: white;" visible="false">
          <children>
-            <Rating fx:id="rating3" layoutX="65.0" layoutY="98.0" />
-            <Button layoutX="369.0" layoutY="102.0" mnemonicParsing="false" onAction="#AjouterCommentaire" text="Ajouter" />
-            <TextArea fx:id="contenu3" layoutX="53.0" layoutY="19.0" prefHeight="67.0" prefWidth="379.0" />
+            <TextArea fx:id="contenum" layoutX="68.0" layoutY="97.0" prefHeight="103.0" prefWidth="329.0" />
+            <Rating fx:id="ratingm" layoutX="81.0" layoutY="233.0" />
+            <Button fx:id="modifm" layoutX="329.0" layoutY="237.0" mnemonicParsing="false" text="Modifier" />
+            <Button fx:id="backm" layoutX="397.0" layoutY="23.0" mnemonicParsing="false" onAction="#annuler" text="Back" />
          </children>
-      </AnchorPane>
-      <Pagination fx:id="paginator" layoutX="614.0" layoutY="587.0" prefHeight="60.0" prefWidth="200.0" />
-      <AnchorPane fx:id="boxm" layoutX="480.0" layoutY="70.0" prefHeight="440.0" prefWidth="450.0" style="-fx-background-color: white;">
-         <children>
-            <TextArea fx:id="contenum" layoutX="68.0" layoutY="72.0" prefHeight="128.0" prefWidth="285.0" />
-            <Rating fx:id="ratingm" layoutX="55.0" layoutY="242.0" />
-            <Button fx:id="modifm" layoutX="332.0" layoutY="249.0" mnemonicParsing="false" text="Modifier" />
-            <Button fx:id="backm" layoutX="369.0" layoutY="23.0" mnemonicParsing="false" onAction="#annuler" text="Back" />
-         </children>
+         <effect>
+            <DropShadow />
+         </effect>
       </AnchorPane>
    </children>
 </AnchorPane>

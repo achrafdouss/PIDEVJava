@@ -43,7 +43,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
-import paw.mainUI.FXMLCnxController;
+
 
 /**
  * FXML Controller class
@@ -194,7 +194,15 @@ public class AcceuilFXMLController implements Initializable {
                                         loadSplashScreen("MembreAdminFXML.fxml");
                                         break;
                                     } catch (Exception ex) {
-                                        Logger.getLogger(FXMLCnxController.class.getName()).log(Level.SEVERE, null, ex);
+                                        Logger.getLogger(AcceuilFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                        }
+                        case "grec": {
+                           try {
+                                        loadSplashScreen("AfficheRecommendationAdminFXML.fxml");
+                                        break;
+                                    } catch (Exception ex) {
+                                        Logger.getLogger(AcceuilFXMLController.class.getName()).log(Level.SEVERE, null, ex);
                                     }
                         }
                     }
@@ -241,7 +249,7 @@ public class AcceuilFXMLController implements Initializable {
                                         loadSplashScreen("AfficherTopRecommendationFXML.fxml");
                                         break;
                                     } catch (Exception ex) {
-                                        Logger.getLogger(FXMLCnxController.class.getName()).log(Level.SEVERE, null, ex);
+                                        Logger.getLogger(AcceuilFXMLController.class.getName()).log(Level.SEVERE, null, ex);
                                     }
                         }
                     }
@@ -330,7 +338,7 @@ public class AcceuilFXMLController implements Initializable {
             try {
                 loader.load();
             } catch (IOException ex) {
-                Logger.getLogger(FXMLCnxController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AcceuilFXMLController.class.getName()).log(Level.SEVERE, null, ex);
             }
             LoginUserFXMLController cnt = loader.getController();
 

@@ -397,7 +397,7 @@ public class AfficherTopRecommendationFXMLController extends AcceuilFXMLControll
     }
 
     @FXML
-    private void annuler(ActionEvent event) {
+    private void annuler(MouseEvent event) {
         details.setVisible(false);
     }
 
