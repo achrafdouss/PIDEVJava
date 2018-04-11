@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="1100.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9" fx:controller="com.bonplan.gui.MyParticipationsController">
+    <children>
+        <TableView fx:id="table" layoutX="145.0" layoutY="105.0" prefHeight="484.0" prefWidth="1100.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="61.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="105.0">
+            <columns>
+                <TableColumn fx:id="categorie" prefWidth="120" text="Nom Participant" />
+                <TableColumn fx:id="date_evenement" prefWidth="120" text="Date Participation" />
+                <TableColumn fx:id="lieu" prefWidth="120" text="Nombre de personne" />
+                <TableColumn fx:id="nomEvenement" prefWidth="120" text="nom Evenement" />
+                <TableColumn fx:id="status" prefWidth="120" text="status" />
+
+            </columns>
+        </TableView>
+        <Button layoutX="516.0" layoutY="597.0" mnemonicParsing="false" onAction="#annulerParticipation" text="Annuler" />
+      <Label layoutX="310.0" layoutY="36.0" prefHeight="46.0" prefWidth="317.0" text="Mes Participations" textFill="#5402f7">
+         <font>
+            <Font size="31.0" />
+         </font>
+         <effect>
+            <Blend />
+         </effect>
+      </Label>
+    </children>  
+</AnchorPane>

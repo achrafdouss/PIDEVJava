@@ -22,7 +22,7 @@
             <Font name="Century Gothic" size="18.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="vet" accessibleText="veterinaire" buttonType="RAISED" layoutX="60.0" layoutY="282.0" prefHeight="70.0" prefWidth="190.0" styleClass="buttons" stylesheets="@style.css" text="Vétérinaires" textFill="WHITE">
+      <JFXButton fx:id="vet" accessibleText="evenement" buttonType="RAISED" layoutX="60.0" layoutY="282.0" prefHeight="70.0" prefWidth="190.0" styleClass="buttons" stylesheets="@../style/style.css" text="Evenement" textFill="WHITE">
          <font>
             <Font name="Century Gothic" size="18.0" />
          </font>
@@ -32,7 +32,7 @@
             <Font name="Century Gothic" size="18.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="adoption" accessibleText="AnnonceAdoption" buttonType="RAISED" layoutX="60.0" layoutY="422.0" prefHeight="70.0" prefWidth="190.0" styleClass="buttons" stylesheets="@style.css" text="Adoption" textFill="WHITE">
+      <JFXButton fx:id="adoption" accessibleText="AnnonceAdoption" buttonType="RAISED" layoutX="60.0" layoutY="422.0" prefHeight="70.0" prefWidth="190.0" styleClass="buttons" stylesheets="@style.css" text="Restaurant" textFill="WHITE">
          <font>
             <Font name="Century Gothic" size="18.0" />
          </font>
@@ -98,28 +98,8 @@
                   <Image url="@../../Ressource/icons/man-protecting-a-dog-with-an-umbrella.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="7">
-               <image>
-                  <Image url="@../../Ressource/images/sitting-dog.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="8">
-               <image>
-                  <Image url="@../../Ressource/images/dog-pawprint-on-a-heart.png" />
-               </image>
-            </ImageView>
          </children>
       </GridPane>
       <Separator layoutX="58.0" layoutY="-1.0" opacity="0.28" orientation="VERTICAL" prefHeight="650.0" prefWidth="8.0" />
-      <JFXButton fx:id="adoption1" accessibleText="sitting" buttonType="RAISED" layoutX="60.0" layoutY="492.0" prefHeight="70.0" prefWidth="190.0" styleClass="buttons" stylesheets="@style.css" text="Sitting" textFill="WHITE">
-         <font>
-            <Font name="Century Gothic" size="18.0" />
-         </font>
-      </JFXButton>
-      <JFXButton fx:id="adoption11" accessibleText="accouplement" buttonType="RAISED" layoutX="60.0" layoutY="562.0" prefHeight="70.0" prefWidth="190.0" styleClass="buttons" stylesheets="@style.css" text="Accouplement" textFill="WHITE">
-         <font>
-            <Font name="Century Gothic" size="18.0" />
-         </font>
-      </JFXButton>
    </children>
 </AnchorPane>

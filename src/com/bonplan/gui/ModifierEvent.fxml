@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1">
+        <children>
+        <TextField fx:id="categorie" layoutX="505.0" layoutY="184.0" />
+        <TextField fx:id="nbreplace" layoutX="505.0" layoutY="230.0" />
+        <TextField fx:id="description" layoutX="506.0" layoutY="294.0" />
+        <TextField fx:id="nomEvent" layoutX="506.0" layoutY="340.0" />
+        <Label layoutX="397.0" layoutY="189.0" text="Categorie" />
+        <Label layoutX="384.0" layoutY="235.0" text="Nombre de Place" />
+        <Label layoutX="402.0" layoutY="294.0" text="Description" />
+        <Label layoutX="402.0" layoutY="340.0" text="Nom Evenement" />
+        <Button layoutX="510.0" layoutY="457.0" mnemonicParsing="false" onAction="#UpdateEvent" text="Update" />
+    </children>
+</AnchorPane>

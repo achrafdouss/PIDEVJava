@@ -195,7 +195,6 @@ public class AcceuilFXMLController implements Initializable {
                                 case "gprest": {
                                     try {
                                         loadSplashScreen("gererPrestation.fxml");
-                                        test.getChildren().remove(drawer);
                                         break;
                                     } catch (Exception ex) {
                                         Logger.getLogger(AcceuilFXMLController.class.getName()).log(Level.SEVERE, null, ex);
@@ -204,7 +203,6 @@ public class AcceuilFXMLController implements Initializable {
                                 case "gvoyage": {
                                     try {
                                         loadSplashScreen("ListeVoyageFXML.fxml");
-                                        test.getChildren().remove(drawer);
                                         break;
                                     } catch (Exception ex) {
                                         Logger.getLogger(AcceuilFXMLController.class.getName()).log(Level.SEVERE, null, ex);
@@ -213,7 +211,6 @@ public class AcceuilFXMLController implements Initializable {
                                 case "grec": {
                                     try {
                                         loadSplashScreen("AfficheRecommendationAdminFXML.fxml");
-                                        test.getChildren().remove(drawer);
                                         break;
                                     } catch (Exception ex) {
                                         Logger.getLogger(AcceuilFXMLController.class.getName()).log(Level.SEVERE, null, ex);
@@ -222,7 +219,14 @@ public class AcceuilFXMLController implements Initializable {
                                 case "gproduit": {
                                     try {
                                         loadSplashScreen("BackProduitFXML.fxml");
-                                        test.getChildren().remove(drawer);
+                                        break;
+                                    } catch (Exception ex) {
+                                        Logger.getLogger(AcceuilFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                }
+                                case "gevenement": {
+                                    try {
+                                        loadSplashScreen("EventBack.fxml");
                                         break;
                                     } catch (Exception ex) {
                                         Logger.getLogger(AcceuilFXMLController.class.getName()).log(Level.SEVERE, null, ex);
@@ -245,6 +249,8 @@ public class AcceuilFXMLController implements Initializable {
                     transition.setRate(transition.getRate() * -1);
                     transition.play();
                     drawer.toggle();
+                                        test.getChildren().remove(drawer);
+
                 }
             });
             hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
@@ -253,9 +259,11 @@ public class AcceuilFXMLController implements Initializable {
 
                 //System.out.println("555555");
                 if (drawer.isShown()) {
+                    test.getChildren().remove(drawer);
                     drawer.close();
                 } else {
-                    //  System.out.println("88888");
+                    test.getChildren().remove(drawer);
+                    test.getChildren().add(drawer);
                     drawer.open();
                 }
             });
@@ -279,7 +287,7 @@ public class AcceuilFXMLController implements Initializable {
                                 }
                                 case "evenement": {
                                     try {
-                                        loadSplashScreen("GestionEvent.fxml");
+                                        loadSplashScreen("test.fxml");
                                         drawer.toggle();
 
                                         test.getChildren().remove(drawer);

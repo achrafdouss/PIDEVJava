@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="1100.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9" fx:controller="com.bonplan.gui.EventBackController">
+  <children>
+        <TableView fx:id="table" layoutX="145.0" layoutY="132.0" onMouseClicked="#hidebutton" prefHeight="457.0" prefWidth="1100.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="61.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="132.0">
+            <columns>
+                <TableColumn fx:id="nomEvenement" prefWidth="184" text="nomEvenement" />
+                <TableColumn fx:id="categorie" prefWidth="183" text="categorie" />
+                <TableColumn fx:id="nbrplace" prefWidth="183" text="nbrplace" />
+                <TableColumn fx:id="date_evenement" prefWidth="183" text="date_evenement" />
+                <TableColumn fx:id="lieu" prefWidth="183" text="lieu" />
+                <TableColumn fx:id="description" prefWidth="184" text="description" />
+            </columns>
+        </TableView>
+       
+
+        <Button fx:id="supprimer" layoutX="476.0" layoutY="602.0" mnemonicParsing="false" onAction="#removeEvent" text="Supprimer" />
+        <Label blendMode="COLOR_BURN" layoutX="412.0" layoutY="47.0" prefHeight="40.0" prefWidth="215.0" text="Mes Evenements" textAlignment="JUSTIFY" textFill="#2300ff" textOverrun="WORD_ELLIPSIS">
+            <font>
+                <Font size="24.0" />
+            </font>
+            <effect>
+                <Blend />
+            </effect>
+        </Label>
+    </children>   
+</AnchorPane>

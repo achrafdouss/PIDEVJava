@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bonplan.gui.DetailsEventController">
+   <children>
+      <ImageView fx:id="image" fitHeight="205.0" fitWidth="233.0" layoutX="24.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@paris.jpg" />
+         </image>
+      </ImageView>
+      <Label fx:id="eventName" layoutX="300.0" layoutY="17.0" text="Event Name" />
+      <TextArea fx:id="eventDescription" editable="false" layoutX="300.0" layoutY="47.0" prefHeight="75.0" prefWidth="270.0" />
+      <Label layoutX="300.0" layoutY="132.0" text="Created By:" />
+      <Label layoutX="300.0" layoutY="154.0" text="Date:" />
+      <Label layoutX="300.0" layoutY="200.0" text="Prix:" />
+      <Label layoutX="300.0" layoutY="223.0" text="Adresse:" />
+      <Label layoutX="300.0" layoutY="177.0" text="Nombrede Place:" />
+      <Label fx:id="id_owner" layoutX="416.0" layoutY="132.0" text="idowner" />
+      <Label fx:id="date" layoutX="416.0" layoutY="154.0" text="date" />
+      <Label fx:id="prix" layoutX="416.0" layoutY="200.0" text="prix" />
+      <Label fx:id="lieu" layoutX="416.0" layoutY="223.0" text="lieu" />
+      <Label fx:id="nbrplace" layoutX="416.0" layoutY="177.0" text="nbrePlace" />
+      <Button fx:id="buutonP" layoutX="469.0" layoutY="280.0" mnemonicParsing="false" onAction="#participer" prefHeight="26.0" prefWidth="84.0" text="Participer" />
+      <TextField fx:id="nombre" layoutX="292.0" layoutY="280.0" />
+      <TextField fx:id="from" layoutX="292.0" layoutY="321.0" />
+      <Button layoutX="469.0" layoutY="321.0" mnemonicParsing="false" onAction="#getDirections" text="Directions" />
+   </children>
+</AnchorPane>

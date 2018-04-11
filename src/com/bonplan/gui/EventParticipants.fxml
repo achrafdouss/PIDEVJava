@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="1100.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9">
+     <children>
+        <TableView fx:id="table" layoutX="145.0" layoutY="59.0" prefHeight="339.0" prefWidth="600.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="61.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <columns>
+                <TableColumn fx:id="categorie" prefWidth="120" text="Nom Participant" />
+                <TableColumn fx:id="date_evenement" prefWidth="120" text="Date Participation" />
+                <TableColumn fx:id="lieu" prefWidth="120" text="Nombre de personne" />
+                <TableColumn fx:id="nomEvenement" prefWidth="120" text="nom Evenement" />
+                <TableColumn fx:id="status" prefWidth="120" text="status" />
+
+            </columns>
+        </TableView>
+        <Button layoutX="361.0" layoutY="599.0" mnemonicParsing="false" onAction="#confirmer" text="Confirmer" />
+    </children>    
+</AnchorPane>
