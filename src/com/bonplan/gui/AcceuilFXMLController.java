@@ -212,7 +212,7 @@ public class AcceuilFXMLController implements Initializable {
                                 }
                                 case "grec": {
                                     try {
-                                        loadSplashScreen("AfficheRecommendationAdmin.fxml");
+                                        loadSplashScreen("AfficheRecommendationAdminFXML.fxml");
                                         test.getChildren().remove(drawer);
                                         break;
                                     } catch (Exception ex) {
