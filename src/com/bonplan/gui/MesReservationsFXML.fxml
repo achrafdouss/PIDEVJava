@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="538.0" prefWidth="702.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bonplan.gui.MesReservationsFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bonplan.gui.MesReservationsFXMLController">
    <children>
-      <TableView fx:id="table" layoutX="89.0" layoutY="42.0" prefHeight="239.0" prefWidth="498.0">
+      <TableView fx:id="table" layoutX="272.0" layoutY="108.0" prefHeight="239.0" prefWidth="602.0">
         <columns>
           <TableColumn fx:id="Dest" prefWidth="75.0" text="Destination" />
           <TableColumn fx:id="nbrpla" prefWidth="122.0" text="Nombre de place" />
@@ -16,7 +18,12 @@
             <TableColumn fx:id="DateArriv" minWidth="7.0" prefWidth="106.0" text="DateArriv" />
         </columns>
       </TableView>
-      <Button layoutX="162.0" layoutY="381.0" mnemonicParsing="false" onAction="#AnnulerReservation" prefHeight="29.0" prefWidth="134.0" text="Annuler Reservation" />
-      <Button layoutX="351.0" layoutY="379.0" mnemonicParsing="false" onAction="#exporter_pdf_reservation" prefHeight="29.0" prefWidth="134.0" text="Get PDF" />
+      <Button layoutX="356.0" layoutY="431.0" mnemonicParsing="false" onAction="#AnnulerReservation" prefHeight="29.0" prefWidth="134.0" text="Annuler Reservation" />
+      <Button layoutX="587.0" layoutY="431.0" mnemonicParsing="false" onAction="#exporter_pdf_reservation" prefHeight="29.0" prefWidth="134.0" text="Get PDF" />
+      <Label layoutX="468.0" layoutY="51.0" prefHeight="36.0" prefWidth="406.0" text="Mes Reservations" textFill="#8d1616">
+         <font>
+            <Font name="Berlin Sans FB" size="20.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

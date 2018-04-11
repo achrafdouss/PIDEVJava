@@ -35,6 +35,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.converter.DateStringConverter;
 import twitter4j.*;
@@ -48,7 +49,7 @@ import twitter4j.conf.ConfigurationBuilder;
  *
  * @author Radhouen
  */
-public class ListeVoyageFXMLController implements Initializable {
+public class ListeVoyageFXMLController extends AcceuilFXMLController{
 
     @FXML
     private TableView<Voyage> table;
@@ -132,24 +133,26 @@ public class ListeVoyageFXMLController implements Initializable {
          VoyageService rs=new VoyageService();
          System.out.println(v.getId_voyage());
          rs.SupprimerVoyage(v.getId_voyage());
-        ((Node) (event.getSource())).getScene().getWindow().hide();
-        Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("ListeVoyageFXML.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+           FXMLLoader loader=new FXMLLoader(getClass().getResource(("ListeVoyageFXML.fxml")));
+            loader.load();
+            AnchorPane parentContent = loader.getRoot();
+            window = (AnchorPane) table.getParent().getParent();
+            ListeVoyageFXMLController cont=loader.getController();
+  
+            window.getChildren().setAll(parentContent);
 
     }
       @FXML
      public void Modifier(ActionEvent event) throws IOException {
          Voyage v=table.getSelectionModel().getSelectedItem();
          Voyage.setId_vModifier(v.getId_voyage());
-        ((Node) (event.getSource())).getScene().getWindow().hide();
-        Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("ModifierVoyageFXML.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+         FXMLLoader loader=new FXMLLoader(getClass().getResource(("ModifierVoyageFXML.fxml")));
+            loader.load();
+            AnchorPane parentContent = loader.getRoot();
+            window = (AnchorPane) table.getParent().getParent();
+            ModifierVoyageFXMLController cont=loader.getController();
+  
+            window.getChildren().setAll(parentContent);
 
     }
      @FXML
@@ -238,6 +241,7 @@ public class ListeVoyageFXMLController implements Initializable {
         //Pdf.getPdf(a, u);
     }
     
+    @FXML
      public void Rechercher(ActionEvent event) throws IOException {
        
          VoyageService rs=new VoyageService();

@@ -9,36 +9,36 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bonplan.gui.ModifierVoyageFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bonplan.gui.ModifierVoyageFXMLController">
    <children>
-      <Label layoutX="173.0" layoutY="40.0" prefHeight="17.0" prefWidth="429.0" text="                           Modifier Voyage" textAlignment="CENTER" textFill="#652d2d" wrapText="true">
+      <Label layoutX="294.0" layoutY="38.0" prefHeight="17.0" prefWidth="429.0" text="                           Modifier Voyage" textAlignment="CENTER" textFill="#652d2d" wrapText="true">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="43.0" layoutY="125.0" prefHeight="17.0" prefWidth="74.0" text="Categorie" />
-      <TextField fx:id="categorie" layoutX="173.0" layoutY="121.0" prefHeight="25.0" prefWidth="174.0">
+      <Label layoutX="257.0" layoutY="125.0" prefHeight="17.0" prefWidth="74.0" text="Categorie" />
+      <TextField fx:id="categorie" layoutX="393.0" layoutY="121.0" prefHeight="25.0" prefWidth="174.0">
          <effect>
             <Blend />
          </effect>
       </TextField>
-      <Label layoutX="43.0" layoutY="163.0" prefHeight="17.0" prefWidth="112.0" text="Agence de Voyage" />
-      <TextField fx:id="agence" layoutX="173.0" layoutY="159.0" prefHeight="25.0" prefWidth="174.0" />
-      <Label layoutX="43.0" layoutY="197.0" prefHeight="17.0" prefWidth="103.0" text="nombre de place" />
-      <TextField fx:id="nbr_place" layoutX="173.0" layoutY="193.0" prefHeight="25.0" prefWidth="174.0" />
-      <Label layoutX="43.0" layoutY="239.0" prefHeight="17.0" prefWidth="95.0" text="date de Depart" />
-      <DatePicker fx:id="date_dep" layoutX="173.0" layoutY="235.0" />
-      <Label layoutX="43.0" layoutY="276.0" prefHeight="17.0" prefWidth="74.0" text="date d'Arrivée" />
-      <DatePicker fx:id="date_arriv" layoutX="173.0" layoutY="272.0" />
-      <Label layoutX="43.0" layoutY="317.0" prefHeight="17.0" prefWidth="74.0" text="prix" />
-      <TextField fx:id="prix" layoutX="173.0" layoutY="313.0" prefHeight="25.0" prefWidth="174.0" />
-      <Label layoutX="43.0" layoutY="359.0" prefHeight="17.0" prefWidth="74.0" text="description" />
-      <TextArea fx:id="descrip" layoutX="173.0" layoutY="359.0" prefHeight="48.0" prefWidth="174.0" />
-      <Label layoutX="43.0" layoutY="445.0" prefHeight="17.0" prefWidth="74.0" text="destination" />
-      <TextField fx:id="dest" layoutX="173.0" layoutY="441.0" prefHeight="25.0" prefWidth="174.0" />
-      <Label layoutX="43.0" layoutY="498.0" prefHeight="17.0" prefWidth="74.0" text="Photo" />
-      <TextField fx:id="photo" layoutX="173.0" layoutY="494.0" prefHeight="25.0" prefWidth="174.0" />
-      <Button layoutX="155.0" layoutY="557.0" mnemonicParsing="false" onAction="#ModifierVoyage" prefHeight="32.0" prefWidth="438.0" text="Modifier" />
-      <Button layoutX="33.0" layoutY="28.0" mnemonicParsing="false" onAction="#Back" prefHeight="17.0" prefWidth="95.0" text="Back" />
+      <Label layoutX="238.0" layoutY="163.0" prefHeight="17.0" prefWidth="112.0" text="Agence de Voyage" />
+      <TextField fx:id="agence" layoutX="393.0" layoutY="159.0" prefHeight="25.0" prefWidth="174.0" />
+      <Label layoutX="243.0" layoutY="197.0" prefHeight="17.0" prefWidth="103.0" text="nombre de place" />
+      <TextField fx:id="nbr_place" layoutX="393.0" layoutY="193.0" prefHeight="25.0" prefWidth="174.0" />
+      <Label layoutX="247.0" layoutY="239.0" prefHeight="17.0" prefWidth="95.0" text="date de Depart" />
+      <DatePicker fx:id="date_dep" layoutX="393.0" layoutY="235.0" />
+      <Label layoutX="247.0" layoutY="276.0" prefHeight="17.0" prefWidth="74.0" text="date d'Arrivée" />
+      <DatePicker fx:id="date_arriv" layoutX="393.0" layoutY="272.0" />
+      <Label layoutX="258.0" layoutY="317.0" prefHeight="17.0" prefWidth="74.0" text="prix" />
+      <TextField fx:id="prix" layoutX="393.0" layoutY="313.0" prefHeight="25.0" prefWidth="174.0" />
+      <Label layoutX="247.0" layoutY="368.0" prefHeight="17.0" prefWidth="74.0" text="description" />
+      <TextArea fx:id="descrip" layoutX="393.0" layoutY="352.0" prefHeight="48.0" prefWidth="174.0" />
+      <Label layoutX="247.0" layoutY="445.0" prefHeight="17.0" prefWidth="74.0" text="destination" />
+      <TextField fx:id="dest" layoutX="393.0" layoutY="441.0" prefHeight="25.0" prefWidth="174.0" />
+      <Label layoutX="247.0" layoutY="507.0" prefHeight="17.0" prefWidth="74.0" text="Photo" />
+      <Button layoutX="342.0" layoutY="553.0" mnemonicParsing="false" onAction="#ModifierVoyage" prefHeight="32.0" prefWidth="438.0" text="Modifier" />
+      <Button layoutX="122.0" layoutY="26.0" mnemonicParsing="false" onAction="#Back" prefHeight="17.0" prefWidth="95.0" text="Back" />
+      <Button layoutX="393.0" layoutY="491.0" mnemonicParsing="false" onAction="#ajoutPhoto" prefHeight="32.0" prefWidth="174.0" text="Telecharger " />
    </children>
 </AnchorPane>

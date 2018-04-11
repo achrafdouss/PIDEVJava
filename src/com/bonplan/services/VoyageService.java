@@ -57,7 +57,7 @@ public class VoyageService implements VoyageInterface{
             st.setString(8, v.getDestination());
             st.setString(9, v.getPhoto());
             st.setInt(10, User.getUserconnected());
-            
+            System.out.println(v.getPhoto());
             
 
             st.executeUpdate();
@@ -86,7 +86,8 @@ try {
             st.setString(9, v.getPhoto());
             st.executeUpdate();
             System.out.println("Voyage modifié !!");
-
+            System.out.println("L'id mta3 lvoyage modifiee"+v.getPhoto());
+    System.out.println("Categorie jdida"+v.getCategorie());
         } catch (SQLException ex) {
             Logger.getLogger(VoyageService.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -125,18 +126,16 @@ try {
             while (rs.next()) {
                 
                 list.add(new Voyage(rs.getInt(1),
-                        rs.getString(2),
                         rs.getString(3),
-                        rs.getInt(4),
-                        rs.getDate(5),
+                        rs.getString(4),
+                        rs.getInt(5),
                         rs.getDate(6),
-                        rs.getFloat(7),
-                        rs.getString(8),
+                        rs.getDate(7),
+                        rs.getFloat(8),
                         rs.getString(9),
-                        rs.getInt(11)
-                        
-                        
-                        
+                        rs.getString(10),
+                        rs.getInt(2),
+                        rs.getString(11)
                         ));
             }
             stmt.close();
@@ -151,29 +150,35 @@ try {
 
     @Override
     public Voyage AfficherDetailVoyage(int id_voy) {
-        ArrayList<Voyage> listN = new ArrayList<Voyage>();
+        ArrayList<Voyage> listW = new ArrayList<Voyage>();
+        Voyage v=new Voyage();
         try {
             stmt = cnx.createStatement();
             ResultSet rs = stmt.executeQuery("Select * from voyage WHERE voyage.`id_voyage` = '" + id_voy + "'");
             while (rs.next()) {
-                listN.add(new Voyage(
-                        rs.getInt(1),
-                        rs.getString(2),
-                        rs.getString(3),
-                        rs.getInt(4),
-                        rs.getDate(5),
-                        rs.getDate(6),
-                        rs.getFloat(7),
-                        rs.getString(8),
-                        rs.getString(9)
-                ));
-            }
+                v.setId_voyage(rs.getInt(1));
+                v.setCategorie(rs.getString(3));  
+                v.setType(rs.getString(4));
+                v.setNbr_place(rs.getInt(5));
+                 v.setDate_dep(rs.getDate(6));
+                  v.setDate_arr(rs.getDate(7));
+                   v.setPrix( rs.getFloat(8));
+                    v.setDescription(rs.getString(9));
+                     v.setDestination(rs.getString(10));
+                      v.setId_owner(rs.getInt(2));
+                     v.setPhoto( rs.getString(11));  
+                        
+                        
+                        
+                        
+                       
+                          }
             stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(Recommendation.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return listN.get(0);
+        return v;
     }
 
     @Override

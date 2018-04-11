@@ -31,6 +31,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.controlsfx.control.Notifications;
 import java.util.Date;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import jdk.nashorn.internal.parser.DateParser;
 
@@ -43,7 +44,7 @@ import jdk.nashorn.internal.parser.DateParser;
  *
  * @author Radhouen
  */
-public class ModifierVoyageFXMLController implements Initializable {
+public class ModifierVoyageFXMLController extends AcceuilFXMLController {
 
     @FXML
     private TextField categorie;
@@ -65,7 +66,7 @@ public class ModifierVoyageFXMLController implements Initializable {
     private TextField photo;
      public Stage stage;
      Voyage v;
-     Voyage r = new Voyage();
+    
 
 
     /**
@@ -85,14 +86,80 @@ public class ModifierVoyageFXMLController implements Initializable {
         prix.setText(Float.toString(vs.getPrix()));
         descrip.setText(vs.getDescription());
         dest.setText(vs.getDestination());
-        photo.setText(vs.getPhoto());
+      
    
 
         // TODO
     }    
 
+     @FXML
+    private void ajoutPhoto(ActionEvent event) throws IOException {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif")
+        );
+        File file = fileChooser.showOpenDialog(stage);
+        if (file != null) {
+            System.out.println(file.getAbsolutePath());
+            String img = file.getName();System.out.println(img);
+            
+String path = "C:/xampp/htdocs/Our/web/uploads/";
+            
+                Files.copy(file.toPath(),
+                        (new File(path + file.getName())).toPath(),
+                        StandardCopyOption.REPLACE_EXISTING);
+                System.out.println(img);
+                System.out.println("jawek béhi");
+                v.setPhoto(img);
+
+            }
+        }
+    
+    
     @FXML
-    private void ModifierVoyage(ActionEvent event) {
+    private void ModifierVoyage(ActionEvent event) throws IOException {
+        
+         boolean valid = true;
+        if (categorie.getText().equals("")) {
+            categorie.setText("Field is empty !");
+            categorie.setVisible(true);
+            valid = false;
+        }
+        
+        if (descrip.getText().equals("")) {
+            descrip.setText("Field is empty !");
+            descrip.setVisible(true);
+            valid = false;
+        }
+        
+        
+        
+        if (agence.getText().equals("")) {
+            agence.setText("Field is empty !");
+            agence.setVisible(true);
+            valid = false;
+        }
+        if (nbr_place.getText().equals("")) {
+            nbr_place.setText("Field is empty !");
+            nbr_place.setVisible(true);
+            valid = false;
+            
+        }
+        if (dest.getText().equals("")) {
+            dest.setText("Field is empty !");
+            dest.setVisible(true);
+            valid = false;
+            
+        }
+        if (prix.getText().equals("")) {
+            prix.setText("Field is empty !");
+            prix.setVisible(true);
+            valid = false;
+            
+        }
+        
+        
+        
         NumberValidator nv = new NumberValidator();
         nv.setMessage("Veuillez saisir une nombre valide");
          boolean test = true ;
@@ -103,7 +170,7 @@ public class ModifierVoyageFXMLController implements Initializable {
          test2= valideDate(date_dep.getValue(),LocalDate.now());
 
 
-         
+         if(valid==true){
          if(test==true && test2==true)
         
          {
@@ -111,7 +178,9 @@ public class ModifierVoyageFXMLController implements Initializable {
                  
                  if( Float.parseFloat(prix.getText())>0 ){
         VoyageService vs=new VoyageService();
-        vs.AjouterVoyage(new Voyage(categorie.getText(),
+        
+        vs.ModifierVoyage(new Voyage(v.getId_vModifier(),
+                categorie.getText(),
                 agence.getText(),
                 Integer.parseInt(nbr_place.getText()),
                 java.sql.Date.valueOf(date_dep.getValue()), 
@@ -119,8 +188,8 @@ public class ModifierVoyageFXMLController implements Initializable {
                 Float.parseFloat(prix.getText())
                 , descrip.getText()
                 , dest.getText()
-                , photo.getText()));
-        Notifications.create().title("Ajout avec succés").text("Ajout avec succés").showInformation();
+                ,v.getPhoto()));
+        Notifications.create().title("Modifié avec succés").text("Modifié avec succés").showInformation();
         
         
         categorie.setText("");
@@ -131,7 +200,7 @@ public class ModifierVoyageFXMLController implements Initializable {
         prix.setText("");
         descrip.setText("");
         dest.setText("");
-        photo.setText("");
+        
          }
              
              else
@@ -144,11 +213,18 @@ public class ModifierVoyageFXMLController implements Initializable {
          else
          {   Notifications.create().title("Ajout").text("Date Invalide").showError();
 }
-
+         }
+          FXMLLoader loader=new FXMLLoader(getClass().getResource(("AllVoyagesFXML.fxml")));
+            loader.load();
+            AnchorPane parentContent = loader.getRoot();
+            window = (AnchorPane) dest.getParent().getParent();
+            AllVoyagesFXMLController cont=loader.getController();
+  
+            window.getChildren().setAll(parentContent);
     }
         public boolean valideDate(LocalDate x , LocalDate y)
     {
-        return x.compareTo(y) >= 0;
+        return x.compareTo(y) > 0;
                 
     }
         
@@ -172,27 +248,6 @@ public class ModifierVoyageFXMLController implements Initializable {
         stage.show();
 
     } 
-      @FXML
-    private void ajoutPhoto(ActionEvent event) throws IOException {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(
-                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif")
-        );
-        File file = fileChooser.showOpenDialog(stage);
-        if (file != null) {
-            System.out.println(file.getAbsolutePath());
-            String img = file.getName();
-            
-String path = "C:/wamp64/www/PIDEV/web/uploads/";
-            
-                Files.copy(file.toPath(),
-                        (new File(path + file.getName())).toPath(),
-                        StandardCopyOption.REPLACE_EXISTING);
-                System.out.println(img);
-                System.out.println("jawek béhi");
-                r.setPhoto(img);
-
-            }
-        }
+      
      
 }

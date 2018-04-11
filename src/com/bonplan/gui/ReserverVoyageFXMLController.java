@@ -22,6 +22,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.controlsfx.control.Notifications;
 
@@ -30,7 +31,7 @@ import org.controlsfx.control.Notifications;
  *
  * @author Radhouen
  */
-public class ReserverVoyageFXMLController implements Initializable {
+public class ReserverVoyageFXMLController extends AllVoyagesFXMLController{
 
     @FXML
     private TextField nbr_place;
@@ -56,7 +57,7 @@ public class ReserverVoyageFXMLController implements Initializable {
         System.out.println(nbr);
         int test9=v.getNbr_place()-nbr;
         System.out.println(test9);
-     Reservation  r=new Reservation(Voyage.id_vModifier,User.getUserconnected(),nbr);
+     Reservation  r=new Reservation(Voyage.getId_vModifier(),User.getUserconnected(),nbr);
         System.out.println(r);
         
 if (test9>=0)         
@@ -69,12 +70,13 @@ else
 {
      Notifications.create().title("Reservation").text("Pas de place").showError();
 }
- ((Node) (event.getSource())).getScene().getWindow().hide();
-        Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("AllVoyagesFXML.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+ FXMLLoader loader=new FXMLLoader(getClass().getResource(("AllVoyagesFXML.fxml")));
+            loader.load();
+            AnchorPane parentContent = loader.getRoot();
+            window = (AnchorPane) nbr_place.getParent().getParent();
+            AllVoyagesFXMLController cont=loader.getController();
+  
+            window.getChildren().setAll(parentContent);
        
     }
     

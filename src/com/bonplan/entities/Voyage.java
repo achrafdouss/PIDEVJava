@@ -62,7 +62,22 @@ public class Voyage extends RecursiveTreeObject<Voyage> {
         
         
     }
-    public Voyage(int id_voyage,String categorie, String Type, int nbr_place, Date date_dep, Date date_arr, float prix, String description, String destination,int id_owner) {
+    public Voyage(Integer id_voyage,String categorie, String Type, int nbr_place, Date date_dep, Date date_arr, float prix, String description, String destination, String photo) {
+        
+        this.id_voyage=id_voyage;
+        this.categorie = categorie;
+        this.Type = Type;
+        this.nbr_place = nbr_place;
+        this.date_dep = date_dep;
+        this.date_arr = date_arr;
+        this.prix = prix;
+        this.description = description;
+        this.destination = destination;
+        this.photo = photo;
+        
+        
+    }
+    public Voyage(int id_voyage,String categorie, String Type, int nbr_place, Date date_dep, Date date_arr, float prix, String description, String destination,int id_owner,String photo) {
         
         this.id_voyage=id_voyage;
         this.categorie = categorie;
@@ -74,6 +89,7 @@ public class Voyage extends RecursiveTreeObject<Voyage> {
         this.description = description;
         this.destination = destination;
         this.id_owner=id_owner;
+        this.photo=photo;
        
         
         

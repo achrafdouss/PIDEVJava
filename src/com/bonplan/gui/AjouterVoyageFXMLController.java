@@ -30,6 +30,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -38,7 +39,7 @@ import javafx.stage.Stage;
  *
  * @author Radhouen
  */
-public class AjouterVoyageFXMLController implements Initializable {
+public class AjouterVoyageFXMLController extends AcceuilFXMLController {
 
     @FXML
     private DatePicker date_dep;
@@ -78,9 +79,9 @@ public class AjouterVoyageFXMLController implements Initializable {
         file = fileChooser.showOpenDialog(stage);
         if (file != null) {
             System.out.println(file.getAbsolutePath());
-            String img = file.getName();
+            String img = file.getName();System.out.println(img);
             
-String path = "C:/xamp/htdocs/Our/web/uploads/";
+String path = "C:/xampp/htdocs/Our/web/uploads/";
             
                 Files.copy(file.toPath(),
                         (new File(path + file.getName())).toPath(),
@@ -92,7 +93,50 @@ String path = "C:/xamp/htdocs/Our/web/uploads/";
             }
         }
     @FXML
-    private void AjouterVoyage(ActionEvent event) {
+    private void AjouterVoyage(ActionEvent event) throws IOException {
+       
+          boolean valid = true;
+        if (categorie.getText().equals("")) {
+            categorie.setText("Field is empty !");
+            categorie.setVisible(true);
+            valid = false;
+        }
+        
+        if (descrip.getText().equals("")) {
+            descrip.setText("Field is empty !");
+            descrip.setVisible(true);
+            valid = false;
+        }
+        
+        
+        
+        if (agence.getText().equals("")) {
+            agence.setText("Field is empty !");
+            agence.setVisible(true);
+            valid = false;
+        }
+        if (nbr_place.getText().equals("")) {
+            nbr_place.setText("Field is empty !");
+            nbr_place.setVisible(true);
+            valid = false;
+            
+        }
+        if (dest.getText().equals("")) {
+            dest.setText("Field is empty !");
+            dest.setVisible(true);
+            valid = false;
+            
+        }
+        if (prix.getText().equals("")) {
+            prix.setText("Field is empty !");
+            prix.setVisible(true);
+            valid = false;
+            
+        }
+        
+        
+        
+        
         NumberValidator nv = new NumberValidator();
         nv.setMessage("Veuillez saisir une nombre valide");
          boolean test = true ;
@@ -103,7 +147,7 @@ String path = "C:/xamp/htdocs/Our/web/uploads/";
          test2= valideDate(date_dep.getValue(),LocalDate.now());
 
 
-         
+         if(valid==true){
          if(test==true && test2==true)
         
          {
@@ -144,11 +188,19 @@ String path = "C:/xamp/htdocs/Our/web/uploads/";
          else
          {   Notifications.create().title("Ajout").text("Date Invalide").showError();
 }
-
+         }
+         
+          FXMLLoader loader=new FXMLLoader(getClass().getResource(("AllVoyagesFXML.fxml")));
+            loader.load();
+            AnchorPane parentContent = loader.getRoot();
+            window = (AnchorPane) dest.getParent().getParent();
+            AllVoyagesFXMLController cont=loader.getController();
+  
+            window.getChildren().setAll(parentContent);
     }
         public boolean valideDate(LocalDate x , LocalDate y)
     {
-        return x.compareTo(y) >= 0;
+        return x.compareTo(y) >0;
                 
     }
         

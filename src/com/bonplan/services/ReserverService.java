@@ -9,6 +9,7 @@ import com.bonplan.entities.Recommendation;
 import com.bonplan.entities.Reservation;
 import com.bonplan.entities.User;
 import com.bonplan.entities.Voyage;
+import com.bonplan.gui.MesReservationsFXMLController.v;
 import com.bonplan.interfaces.VoyageInterface;
 import com.bonplan.interfaces.ReserverInterface;
 
@@ -67,29 +68,29 @@ public class ReserverService implements ReserverInterface{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void AnnulerReservation(int id_voy) {
+   
+    public void AnnulerReservation(v res) {
        try {
             VoyageService vs=new VoyageService();
             ReserverService rs=new ReserverService();
             Voyage v;
-            Reservation r;
-            v=vs.getVoyage(id_voy);
-            r=rs.ReturnRes(User.getUserconnected(), id_voy);
-            System.out.println("les places l9dom fel article"+v.getNbr_place());
-            v.setNbr_place(v.getNbr_place()+r.getNbr_place_resv());
+           
+            v=vs.AfficherDetailVoyage(res.id_voy);
             
-            System.out.println("elli reserver l 3dad"+r.getNbr_place_resv());
+            System.out.println("les places l9dom fel article"+v.getNbr_place());
+            v.setNbr_place(v.getNbr_place()+res.nbr_place_resv);
+            
+            System.out.println("elli reserver l 3dad"+res.nbr_place_resv);
             System.out.println("3odnaaa"+v.getNbr_place());
            int x=v.getNbr_place();
             vs.ModifierVRes(v,x);
+            System.out.println("+++++"+res.id_res);
             
-            
-            String req2="DELETE FROM reserver_voyage WHERE reserver_voyage.`id_voyage` = ? ";
+            String req2="DELETE FROM reserver_voyage WHERE reserver_voyage.`id_reservation` = ? ";
             
             PreparedStatement st1 = cnx.prepareStatement(req2);
             
-            st1.setInt(1, id_voy);
+            st1.setInt(1, res.id_res);
             
             st1.executeUpdate();
             System.out.println("Reservation supprimé !!");

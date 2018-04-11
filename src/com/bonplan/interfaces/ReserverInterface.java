@@ -7,6 +7,7 @@ package com.bonplan.interfaces;
 
 import com.bonplan.entities.Reservation;
 import com.bonplan.entities.Voyage;
+import com.bonplan.gui.MesReservationsFXMLController.v;
 import java.util.List;
 
 /**
@@ -17,8 +18,8 @@ public interface ReserverInterface {
     
         public void ReserverVoyage(Reservation r);
     public void ModifierReservation(Reservation r);
-    public void AnnulerReservation(int id_res);
-    public List<Reservation> AfficherReservation(int id_user);
+  public void AnnulerReservation(v res);
+  public List<Reservation> AfficherReservation(int id_user);
      public Reservation ReturnRes(int idInscrit, int id_voy);
   
     

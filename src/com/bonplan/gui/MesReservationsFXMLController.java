@@ -74,8 +74,9 @@ public class MesReservationsFXMLController implements Initializable {
             VoyageService vs=new VoyageService();
          
             reservation=rs.AfficherReservation(User.getUserconnected());
+            reservation.forEach(a->System.out.println(a));
             
-            reservation.forEach(a->data.add(new v(a.getNbr_place_resv(),vs.AfficherDetailVoyage(a.getId_voy()).getDate_dep(),vs.AfficherDetailVoyage(a.getId_voy()).getDate_arr(),vs.AfficherDetailVoyage(a.getId_voy()).getPrix()*a.getNbr_place_resv(),vs.AfficherDetailVoyage(a.getId_voy()).getDestination(),vs.AfficherDetailVoyage(a.getId_voy()).getId_voyage() )));
+            reservation.forEach(a->data.add(new v(a.getNbr_place_resv(),vs.AfficherDetailVoyage(a.getId_voy()).getDate_dep(),vs.AfficherDetailVoyage(a.getId_voy()).getDate_arr(),vs.AfficherDetailVoyage(a.getId_voy()).getPrix()*a.getNbr_place_resv(),vs.AfficherDetailVoyage(a.getId_voy()).getDestination(),vs.AfficherDetailVoyage(a.getId_voy()).getId_voyage(),a.getId_resv() )));
        
        
       
@@ -103,7 +104,7 @@ public class MesReservationsFXMLController implements Initializable {
     
     
         v e =table.getSelectionModel().getSelectedItem();
-        rs.AnnulerReservation(e.id_voy);
+        rs.AnnulerReservation(e);
         data.remove(e);
      
     
@@ -174,20 +175,24 @@ public class MesReservationsFXMLController implements Initializable {
         public float prix;
         public String destination;
         public int id_voy;
+        public int id_res;
 
-        public v(int nbr_place_resv, Date date_dep, Date date_arr, float prix, String destination,int id_voy) {
+        public v(int nbr_place_resv, Date date_dep, Date date_arr, float prix, String destination,int id_voy,int id_res) {
             this.nbr_place_resv = nbr_place_resv;
             this.date_dep = date_dep;
             this.date_arr = date_arr;
             this.prix = prix;
             this.destination = destination;
             this.id_voy=id_voy;
+            this.id_res=id_res;
         }
 
         @Override
         public String toString() {
-            return "v{" + "nbr_place_resv=" + nbr_place_resv + ", date_dep=" + date_dep + ", date_arr=" + date_arr + ", prix=" + prix + ", destination=" + destination + '}';
+            return "v{" + "nbr_place_resv=" + this.nbr_place_resv + ", date_dep=" + date_dep + ", date_arr=" + date_arr + ", prix=" + prix + ", destination=" + destination + ", id_voy=" + id_voy + ", id_res=" + id_res + '}';
         }
+
+        
         
     }
     
