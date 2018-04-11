@@ -44,7 +44,6 @@ import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 
-
 /**
  * FXML Controller class
  *
@@ -98,7 +97,7 @@ public class AcceuilFXMLController implements Initializable {
     private ImageView close;
 
     @FXML
-    private  AnchorPane admin_window;
+    private AnchorPane admin_window;
 
     @FXML
     private Label nom1;
@@ -163,131 +162,154 @@ public class AcceuilFXMLController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        UserServices us=UserServices.getInstance();
-        User u=us.AfficherUserId(User.getUserconnected());
-         username.setText(u.getUsername());
-        if (us.verifAdmin(u.getUsername()))
-        {
+        AnchorPane test = (AnchorPane) drawer.getParent();
+        UserServices us = UserServices.getInstance();
+        User u = us.AfficherUserId(User.getUserconnected());
+        username.setText(u.getUsername());
+        if (us.verifAdmin(u.getUsername())) {
             email.setText(u.getEmail());
             profile.setMouseTransparent(true);
-        }
-        else
-        {
+        } else {
             profile.setMouseTransparent(false);
-            
-            
-                email.setText(u.getEmail());
-            
-            
+
+            email.setText(u.getEmail());
+
         }
-        if(us.verifAdmin(u.getUsername())){
-        try {
-            AnchorPane box = FXMLLoader.load(getClass().getResource("MenuAdminFXML.fxml"));
-            drawer.setSidePane(box);
-            drawer.setOverLayVisible(false);
-            for(Node node:box.getChildren()){
-                node.addEventHandler(MouseEvent.MOUSE_CLICKED, (e)->{
-                if(node.getAccessibleText()!= null){
-                    switch(node.getAccessibleText()){
-                        case "guser": {
-                           try {
+        if (us.verifAdmin(u.getUsername())) {
+            try {
+                AnchorPane box = FXMLLoader.load(getClass().getResource("MenuAdminFXML.fxml"));
+                drawer.setSidePane(box);
+                drawer.setOverLayVisible(false);
+                for (Node node : box.getChildren()) {
+                    node.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
+                        if (node.getAccessibleText() != null) {
+                            switch (node.getAccessibleText()) {
+                                case "guser": {
+                                    try {
                                         loadSplashScreen("MembreAdminFXML.fxml");
                                         break;
                                     } catch (Exception ex) {
                                         Logger.getLogger(AcceuilFXMLController.class.getName()).log(Level.SEVERE, null, ex);
                                     }
-                        }
-                        case "grec": {
-                           try {
-                                        loadSplashScreen("AfficheRecommendationAdminFXML.fxml");
+                                }
+                                case "gprest": {
+                                    try {
+                                        loadSplashScreen("gererPrestation.fxml");
+                                        test.getChildren().remove(drawer);
                                         break;
                                     } catch (Exception ex) {
                                         Logger.getLogger(AcceuilFXMLController.class.getName()).log(Level.SEVERE, null, ex);
                                     }
+                                }
+                            }
                         }
-                    }
-                }});
+                    });
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-        
-        HamburgerBackArrowBasicTransition transition = new HamburgerBackArrowBasicTransition(hamburger);
-        transition.setRate(-1);
-        window.setOnMouseClicked(e -> {
-                    if (drawer.isHidden() || drawer.isHiding()) {
-                    } else {
-                        transition.setRate(transition.getRate() * -1);
-                        transition.play();
-                        drawer.toggle();
-                    }
-                });
-        hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED,(e)->{
-            transition.setRate(transition.getRate()*-1);
-            transition.play();
-            
-            if(drawer.isShown())
-            {
-                drawer.close();
-            }else
-                drawer.open();
-        });
-        }
-        else{
+
+            HamburgerBackArrowBasicTransition transition = new HamburgerBackArrowBasicTransition(hamburger);
+            transition.setRate(-1);
+            window.setOnMouseClicked(e -> {
+                if (drawer.isHidden() || drawer.isHiding()) {
+                } else {
+
+                    transition.setRate(transition.getRate() * -1);
+                    transition.play();
+                    drawer.toggle();
+                }
+            });
+            hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
+                transition.setRate(transition.getRate() * -1);
+                transition.play();
+
+                //System.out.println("555555");
+                if (drawer.isShown()) {
+                    drawer.close();
+                } else {
+                    //  System.out.println("88888");
+                    drawer.open();
+                }
+            });
+        } else {
             try {
-            AnchorPane box = FXMLLoader.load(getClass().getResource("FXMLMenu.fxml"));
-            drawer.setSidePane(box);
-            drawer.setOverLayVisible(false);
-            for(Node node:box.getChildren()){
-                node.addEventHandler(MouseEvent.MOUSE_CLICKED, (e)->{
-                if(node.getAccessibleText()!= null){
-                    switch(node.getAccessibleText()){
-                        case "top_rec": {
-                           try {
+                AnchorPane box = FXMLLoader.load(getClass().getResource("FXMLMenu.fxml"));
+                drawer.setSidePane(box);
+                drawer.setOverLayVisible(false);
+
+                for (Node node : box.getChildren()) {
+                    node.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
+                        if (node.getAccessibleText() != null) {
+                            switch (node.getAccessibleText()) {
+                                case "top_rec": {
+                                    try {
                                         loadSplashScreen("AfficherTopRecommendationFXML.fxml");
                                         break;
                                     } catch (Exception ex) {
                                         Logger.getLogger(AcceuilFXMLController.class.getName()).log(Level.SEVERE, null, ex);
                                     }
+                                }
+                                case "evenement": {
+                                    try {
+                                        loadSplashScreen("GestionEvent.fxml");
+                                        drawer.toggle();
+
+                                        test.getChildren().remove(drawer);
+                                        break;
+                                    } catch (Exception ex) {
+                                        Logger.getLogger(AcceuilFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                }
+                                case "prestation": {
+                                    try {
+                                        loadSplashScreen("listerPrestation.fxml");
+                                        break;
+                                    } catch (Exception ex) {
+                                        Logger.getLogger(AcceuilFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                }
+                            }
                         }
-                    }
-                }});
+                    });
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-        
-        HamburgerBackArrowBasicTransition transition = new HamburgerBackArrowBasicTransition(hamburger);
-        transition.setRate(-1);
-        window.setOnMouseClicked(e -> {
-                    if (drawer.isHidden() || drawer.isHiding()) {
-                    } else {
-                        transition.setRate(transition.getRate() * -1);
-                        transition.play();
-                        drawer.toggle();
-                    }
-                });
-        hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED,(e)->{
-            transition.setRate(transition.getRate()*-1);
-            transition.play();
-            
-            if(drawer.isShown())
-            {
-                drawer.close();
-            }else
-                drawer.open();
-        });
-            
+
+            HamburgerBackArrowBasicTransition transition = new HamburgerBackArrowBasicTransition(hamburger);
+            transition.setRate(-1);
+            window.setOnMouseClicked(e -> {
+                if (drawer.isHidden() || drawer.isHiding()) {
+                } else {
+
+                    transition.setRate(transition.getRate() * -1);
+                    transition.play();
+                    drawer.toggle();
+                    test.getChildren().remove(drawer);
+                }
+            });
+            hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
+                transition.setRate(transition.getRate() * -1);
+                transition.play();
+                //test.getChildren().add(drawer);
+
+                if (drawer.isShown()) {
+                    test.getChildren().remove(drawer);
+                    drawer.close();
+                } else {
+                    test.getChildren().remove(drawer);
+                    test.getChildren().add(drawer);
+                    drawer.open();
+                }
+            });
+
         }
     }
 
     public void loadSplashScreen(String location) {
         try {
-            
+
             StackPane pane = FXMLLoader.load(getClass().getResource("FXMLSplash.fxml"));
             window.getChildren().setAll(pane);
 
@@ -322,17 +344,18 @@ public class AcceuilFXMLController implements Initializable {
         }
 
     }
+
     @FXML
     private void logoutAction(MouseEvent event) {
-        JFXDialogLayout content =new JFXDialogLayout();
+        JFXDialogLayout content = new JFXDialogLayout();
         content.setHeading(new Text("Déconnexion"));
         content.setBody(new Text("Êtes-vous sûr de vouloir vous déconnecter ?"));
-        
+
         JFXDialog dialog = new JFXDialog(stackpane, content, JFXDialog.DialogTransition.TOP);
-        
+
         JFXButton oui = new JFXButton("Se déconnecter");
         oui.setOnAction((e) -> {
-            
+
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("LoginUserFXML.fxml"));
             try {
@@ -342,43 +365,45 @@ public class AcceuilFXMLController implements Initializable {
             }
             LoginUserFXMLController cnt = loader.getController();
 
-
             Parent root = loader.getRoot();
-            Stage stage=new Stage();
+            Stage stage = new Stage();
             stage.initStyle(StageStyle.UNDECORATED);
             Scene scene = new Scene(root);
 
             stage.setScene(scene);
             stage.show();
             closeStage();
-            
+
             User.setUserconnected(0);
-            
+
         });
-        
+
         JFXButton non = new JFXButton("Annuler");
         non.setOnAction((e) -> {
             dialog.close();
             stackpane.setMouseTransparent(true);
         });
-        
+
         stackpane.setMouseTransparent(false);
-        content.setActions(oui,non);
+        content.setActions(oui, non);
         dialog.show();
     }
+
     @FXML
     private void closeWindow(MouseEvent event) {
         Stage stage = (Stage) close.getScene().getWindow();
         stage.close();
     }
+
     private void closeStage() {
         Stage stage = (Stage) close.getScene().getWindow();
         stage.close();
     }
+
     @FXML
-     public void profile(MouseEvent event) throws IOException {
+    public void profile(MouseEvent event) throws IOException {
         loadSplashScreen("AfficheProfileFXMLL.fxml");
 
     }
-   
+
 }
