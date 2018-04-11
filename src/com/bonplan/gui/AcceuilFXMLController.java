@@ -219,6 +219,15 @@ public class AcceuilFXMLController implements Initializable {
                                         Logger.getLogger(AcceuilFXMLController.class.getName()).log(Level.SEVERE, null, ex);
                                     }
                                 }
+                                case "gproduit": {
+                                    try {
+                                        loadSplashScreen("BackProduitFXML.fxml");
+                                        test.getChildren().remove(drawer);
+                                        break;
+                                    } catch (Exception ex) {
+                                        Logger.getLogger(AcceuilFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                }
                             }
                         }
                     });
@@ -290,6 +299,14 @@ public class AcceuilFXMLController implements Initializable {
                                 case "voyage": {
                                     try {
                                         loadSplashScreen("AllVoyagesFXML.fxml");
+                                        break;
+                                    } catch (Exception ex) {
+                                        Logger.getLogger(AcceuilFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                }
+                                case "produit": {
+                                    try {
+                                        loadSplashScreen("AcceulProduitFXML.fxml");
                                         break;
                                     } catch (Exception ex) {
                                         Logger.getLogger(AcceuilFXMLController.class.getName()).log(Level.SEVERE, null, ex);

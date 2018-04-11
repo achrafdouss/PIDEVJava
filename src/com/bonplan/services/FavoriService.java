@@ -8,6 +8,7 @@ package com.bonplan.services;
 import com.bonplan.util.DataSource;
 import com.bonplan.entities.Favoris;
 import com.bonplan.entities.Produit;
+import com.bonplan.entities.User;
 import com.bonplan.gui.NewFXMain;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,6 +17,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import com.bonplan.interfaces.iFavorisService;
+import java.sql.Statement;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,6 +31,7 @@ public class FavoriService implements iFavorisService{
     PreparedStatement pst;
 Favoris favori = new Favoris();
     ResultSet rs;
+    Statement stmt;
 
     public FavoriService() {
         this.cnx = DataSource.getInstance().getConnection();
@@ -44,7 +47,8 @@ Favoris favori = new Favoris();
          try {
              PreparedStatement pst = cnx.prepareStatement(req1);
              pst.setInt(1, f.getProduit().getIdProduit());
-             pst.setInt(2,  NewFXMain.owner);
+             pst.setInt(2, User.getUserconnected()
+);
         
                 pst.executeUpdate();
        
@@ -53,33 +57,44 @@ Favoris favori = new Favoris();
          }
     
      
+         
      
      }
-   
+   public List<Favoris> consulterProduitByIdOwner(int id_owner) {
+        ArrayList<Favoris> listN = new ArrayList<Favoris>();
+      try {
+            stmt = cnx.createStatement();
+            ResultSet rs = stmt.executeQuery("Select * from produitfavories where id_owner='"+id_owner+"'");
+            while (rs.next()) {
+                //System.out.println("nom Produit " + rs.getString(3) + "description de Produit " + rs.getString(4) + "photo de produit " + rs.getString(5) + "prix de produit " + rs.getFloat(6) + "sttock de produit " + rs.getInt(7) + "catégorie de produit " + rs.getString(8) + "video de produit " + rs.getString(9));
+                ProduitService ps=new ProduitService();
+                Produit p =ps.rechercherroduitById(rs.getInt(2));
+                listN.add(new Favoris(p));
+            }
+            stmt.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProduitService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return listN;
+    }
 
     @Override
     public void supprimerFavoris(int id_favori) {
-     try {
-            String req= "DELETE FROM `produitfavories` WHERE `id_favori` = ? ";
-            PreparedStatement st = cnx.prepareStatement(req);
-            st.setInt(1, id_favori);
-            st.executeUpdate();
-        } catch (SQLException ex) {
-            Logger.getLogger(FavoriService.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    
     } 
 
     @Override
-    public List<Favoris> consulterProduit() {
+    public List<Favoris> consulterProduit(int idowner) {
  ArrayList<Favoris> listN = new ArrayList<Favoris>();
-       /*try {
+ ProduitService ps = new ProduitService();
+       try {
             Statement st2 = cnx.createStatement();
-            ResultSet rs = st2.executeQuery("Select * from produitfavories");
+            ResultSet rs = st2.executeQuery("Select * from produitfavories where id_owner = "+idowner);
             while (rs.next()) {
-                System.out.println(rs.getString(2) + " (" + rs.getString(3) + ")");
-                listN.add(new Favoris(rs.getInt(1),
-                        //rs.getInt(2),
-                        rs.getInt(3)));
+               listN.add(new Favoris(rs.getInt("id_favori"),
+                       ps.findbyid(rs.getInt("id_produit")),
+                       rs.getInt("id_owner")));
             }
             st2.close();
         } catch (SQLException ex) {
@@ -88,10 +103,6 @@ Favoris favori = new Favoris();
 
         return listN;
     }
-*/
- 
-  return listN;  
-}
 
     public void ajouterFavoris(Produit p, int owner) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

@@ -47,7 +47,16 @@ public class Produit {
         this.prixProduit = prixProduit;
         this.stockProduit = stockProduit;
     }
-    
+     public Produit(String categorieProduit, int idOwer, String descriptionProduit, String photoProduit,  float prixProduit, int stockProduit,  String nomProduit
+) {        
+        this.idOwer =idOwer;
+        this.nomProduit = nomProduit;
+         this.categorieProduit = categorieProduit;
+        this.descriptionProduit = descriptionProduit;
+        this.photoProduit = photoProduit;
+        this.prixProduit = prixProduit;
+        this.stockProduit = stockProduit;
+    }
     public Produit( String categorieProduit, String descriptionProduit, String photoProduit, String videoProduit, float prixProduit, int stockProduit,  String nomProduit
 ) {        this.nomProduit = nomProduit;
 

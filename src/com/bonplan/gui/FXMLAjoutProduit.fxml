@@ -61,19 +61,6 @@
                         </ImageView>
                      </graphic>
                   </JFXButton>
-                  <JFXButton id="button" fx:id="btvideo" buttonType="RAISED" layoutX="212.0" layoutY="125.0" onAction="#uploadvideo" prefHeight="38.0" prefWidth="117.0" ripplerFill="#f5e5ff" style="-fx-background-color: #00C0EF;" text="Video" textAlignment="CENTER" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../Ressource/images/icon-image-128.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </JFXButton>
-                  <Label fx:id="lbvideo" layoutX="229.0" layoutY="92.0" text="Label" />
                </children>
             </Pane>
             <Label layoutX="24.0" layoutY="56.0" prefHeight="30.0" prefWidth="237.0" text="     Choisir la catégorie" textFill="#0f0fa4">

@@ -28,8 +28,8 @@ public class Favoris {
         this.Produit = idProduit;
         this.idOwner = idOwner;
     }
- public Favoris( int idOwner) {
-        this.idOwner = idOwner;
+ public Favoris( Produit idProduit) {
+        this.Produit = idProduit;
     }
    
     

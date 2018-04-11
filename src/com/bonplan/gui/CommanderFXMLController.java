@@ -27,6 +27,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
@@ -34,7 +35,7 @@ import javafx.stage.Stage;
  *
  * @author bouyo
  */
-public class CommanderFXMLController implements Initializable {
+public class CommanderFXMLController extends AfficherAllProduitFXMLController {
 
     @FXML
     private Label nom11;
@@ -72,12 +73,14 @@ vs.quantiteApresCommande(v, test9);
         } else {
    Alert alert = new Alert(Alert.AlertType.WARNING, " Stock insuffisant ", ButtonType.CLOSE);
                 alert.show();        }
-        ((Node) (event.getSource())).getScene().getWindow().hide();
-        Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("AfficherAllProduitFXML.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherAllProduitFXML.fxml"));
+
+        loader.load();
+        AnchorPane parentContent = loader.getRoot();
+        window = (AnchorPane) nom11.getParent().getParent();
+        AfficherAllProduitFXMLController cont = loader.getController();
+
+        window.getChildren().setAll(parentContent); 
 
     }
 

@@ -5,13 +5,15 @@
  */
 package com.bonplan.gui;
 
+import com.bonplan.entities.FTTS;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
-import com.bonplan.entities.FTTS;
+
 import com.bonplan.entities.MyNotifications;
 import com.bonplan.entities.Produit;
 import com.bonplan.entities.Upload;
+import com.bonplan.entities.User;
 import com.bonplan.services.ProduitService;
 import java.io.File;
 import java.io.FileInputStream;
@@ -35,6 +37,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -47,7 +50,7 @@ import tray.notification.TrayNotification;
  *
  * @author bouyo
  */
-public class FXMLAjoutProduitController implements Initializable {
+public class FXMLAjoutProduitController extends AcceulProduitFXMLController {
 
     @FXML
     private Label nom11;
@@ -64,14 +67,14 @@ public class FXMLAjoutProduitController implements Initializable {
     @FXML
     private JFXTextArea descriptionInsertion;
 
-   private File file;
-      private File file1 = new File("");
-       String vid;
-            private Upload up;
-            String pic;
-            private FileChooser.ExtensionFilter extFilterJPG;
+    private File file;
+    private File file1 = new File("");
+    String vid;
+    private Upload up;
+    String pic;
+    private FileChooser.ExtensionFilter extFilterJPG;
     private FileChooser.ExtensionFilter extFilterjpg;
-     private Image image;
+    private Image image;
     @FXML
     private Label lbvideo;
     @FXML
@@ -84,19 +87,16 @@ public class FXMLAjoutProduitController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
- choixInsertion.getItems().setAll("Informatique et multimédia", "Vehicule", "Immobilier","Habillement et bien etre","Informatique et multimédia");
+        choixInsertion.getItems().setAll("Informatique et multimédia", "Vehicule", "Immobilier", "Habillement et bien etre", "Informatique et multimédia");
         choixInsertion.setValue("Informatique et multimédia");
 
-        
-
-
-    }    
+    }
 
     @FXML
     private void actionInsertion2(ActionEvent event) throws IOException {
-           if ((PrixInsertion.getText().trim().equals("")) || (stockInsertion.getText().trim().equals(""))
-                || (NomInsertion.getText().trim().equals("")) ||  (choixInsertion.getValue().isEmpty())
-                || (descriptionInsertion.getText().trim().equals("")) || (PrixInsertion.getText().trim().equals("")) ) {
+        if ((PrixInsertion.getText().trim().equals("")) || (stockInsertion.getText().trim().equals(""))
+                || (NomInsertion.getText().trim().equals("")) || (choixInsertion.getValue().isEmpty())
+                || (descriptionInsertion.getText().trim().equals("")) || (PrixInsertion.getText().trim().equals(""))) {
             Alert fail = new Alert(Alert.AlertType.INFORMATION);
             fail.setHeaderText("Erreur");
             fail.setContentText("Vous avez oublier de remplir un champs");
@@ -109,37 +109,36 @@ public class FXMLAjoutProduitController implements Initializable {
             } else {
 
                 ProduitService as = new ProduitService();
-              
 
-
-                if ((Integer.parseInt(stockInsertion.getText())<0) || Float.parseFloat(PrixInsertion.getText())<0 ) {
+                if ((Integer.parseInt(stockInsertion.getText()) < 0) || Float.parseFloat(PrixInsertion.getText()) < 0) {
                     Alert alert = new Alert(Alert.AlertType.WARNING, "Le champs Stock doit être un entier positif et le champs Prix doit être un float positif", ButtonType.CLOSE);
                     alert.show();
                 } else {
-                        boolean ajoute = true;
-        Produit p = new Produit();
-        if (file1.isFile()) {
-                    try {
-                          
-             vid=up.upload(file1, "video");                                
+                    boolean ajoute = true;
+                    Produit p = new Produit();
+                    if (file1.isFile()) {
+                        try {
 
-                    } catch (IOException ex) {
-                        Logger.getLogger(AjoutProduit2FXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                            vid = up.upload(file1, "video");
+
+                        } catch (IOException ex) {
+                            Logger.getLogger(AjoutProduit2FXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
                     }
-                    
-                }
                     as.ajouterProduit(new Produit(
-                            choixInsertion.getValue(),
+                            NomInsertion.getText(),
+                            User.getUserconnected(),
                             descriptionInsertion.getText(),
                             pic,
                             Float.parseFloat(PrixInsertion.getText()),
                             Integer.parseInt(stockInsertion.getText()),
-                            NomInsertion.getText(),
-                            vid
-                           ));
-                      String desc = descriptionInsertion.getText().toString();
-        FTTS FTTSProduit = new FTTS(desc);
-                FTTSProduit.speak();
+                            choixInsertion.getValue()
+                    ));
+
+                    String desc = descriptionInsertion.getText().toString();
+                    FTTS FTTSProduit = new FTTS(desc);
+                    FTTSProduit.speak();
 
                     choixInsertion.setValue("Informatique et multimédia");
                     descriptionInsertion.setText("");
@@ -147,18 +146,19 @@ public class FXMLAjoutProduitController implements Initializable {
                     NomInsertion.setText("");
                     PrixInsertion.setText("");
                     stockInsertion.setText("");
-                    
-             
-                   
-          TrayNotification tray = new TrayNotification("Notification !", "Produit ajoutée avec succée", NotificationType.SUCCESS);
-        tray.showAndDismiss(Duration.seconds(6));
+
+                    TrayNotification tray = new TrayNotification("Notification !", "Produit ajoutée avec succée", NotificationType.SUCCESS);
+                    tray.showAndDismiss(Duration.seconds(6));
                 }
-                        ((Node) (event.getSource())).getScene().getWindow().hide();
-        Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("AfficherAllProduitFXML.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+                
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherAllProduitFXML.fxml"));
+
+                loader.load();
+                AnchorPane parentContent = loader.getRoot();
+                window = (AnchorPane) nom11.getParent().getParent();
+                AfficherAllProduitFXMLController cont = loader.getController();
+
+                window.getChildren().setAll(parentContent);
 
             }
 
@@ -167,53 +167,55 @@ public class FXMLAjoutProduitController implements Initializable {
 
     @FXML
     private void fileChoosing(ActionEvent event) throws IOException {
-   
-  FileChooser fileChooser = new FileChooser();
-            file= fileChooser.showOpenDialog(null);
-             FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
-            FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
-            fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
 
-            //pic=(file.toURI().toString());
-            pic=new Upload().upload(file,"img");
-            System.out.println(pic);
-            image= new Image("http://localhost/uploads/"+pic);
+        FileChooser fileChooser = new FileChooser();
+        file = fileChooser.showOpenDialog(null);
+        FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
+        FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
+        fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
+
+        //pic=(file.toURI().toString());
+        pic = new Upload().upload(file, "img");
+        System.out.println(pic);
+        image = new Image("http://localhost/uploads/" + pic);
     }
-   
+
     @FXML
     void uploadvideo(ActionEvent event) {
-FileInputStream input = null;
-            FileChooser fileChooser = new FileChooser();
-            //Set extension filter
-            extFilterJPG
-                    = new FileChooser.ExtensionFilter("mp4 files (*.MP4)", "*.mp4");
-            extFilterjpg
-                    = new FileChooser.ExtensionFilter("mkv files (*.MKV)", "*.mkv");
-            fileChooser.getExtensionFilters()
-                    .addAll(extFilterJPG, extFilterjpg);
-            up = new Upload();
-            file1 = fileChooser.showOpenDialog(null);
-            lbvideo.setText(file1.getPath());
-            try {
-                input = new FileInputStream(file1.getPath());
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(FXMLAjoutProduitController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-    
+        FileInputStream input = null;
+        FileChooser fileChooser = new FileChooser();
+        //Set extension filter
+        extFilterJPG
+                = new FileChooser.ExtensionFilter("mp4 files (*.MP4)", "*.mp4");
+        extFilterjpg
+                = new FileChooser.ExtensionFilter("mkv files (*.MKV)", "*.mkv");
+        fileChooser.getExtensionFilters()
+                .addAll(extFilterJPG, extFilterjpg);
+        up = new Upload();
+        file1 = fileChooser.showOpenDialog(null);
+        lbvideo.setText(file1.getPath());
+        try {
+            input = new FileInputStream(file1.getPath());
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(FXMLAjoutProduitController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
+
     public boolean isInteger(JFXTextField input) {
         try {
             int a;
-          a = Integer.parseInt(input.getText());
-           return true;
+            a = Integer.parseInt(input.getText());
+            return true;
         } catch (Exception e) {
             return false;
         }
     }
-        public boolean isFloat(JFXTextField input) {
+
+    public boolean isFloat(JFXTextField input) {
         try {
             float a = Float.parseFloat(input.getText());
-             if (a<0){
+            if (a < 0) {
                 System.out.println("le stock ajouter est négative");
             }
             return true;

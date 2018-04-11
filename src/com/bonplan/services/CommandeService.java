@@ -8,6 +8,7 @@ package com.bonplan.services;
 import com.bonplan.util.DataSource;
 import com.bonplan.entities.Commande;
 import com.bonplan.entities.Favoris;
+import com.bonplan.entities.User;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -35,12 +36,13 @@ public class CommandeService implements iCommandeService{
      
  try {
             String req = "insert into commandeprod (id_acheteur,quantite,id_produit) values(1,?,?)";
-     System.out.println("+++++"+c.getIdAcheteur());
+
      System.out.println("-----"+c.getQuantiteCommandeProduit());
     System.out.println("iiiiii"+c.getIdproduit());
      
             PreparedStatement st = cnx.prepareStatement(req);
-           st.setInt(1, c.getIdAcheteur());
+           st.setInt(1, User.getUserconnected()
+);
             st.setInt(2, c.getQuantiteCommandeProduit());
             st.setInt(3,c.getIdproduit());
             

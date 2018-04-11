@@ -15,6 +15,6 @@ import java.util.List;
 public interface iFavorisService {
     public void ajouterFavoris(Favoris f);
     public void supprimerFavoris(int id_favori);
-    public List<Favoris> consulterProduit();
+    public List<Favoris> consulterProduit(int idowner);
     
 }

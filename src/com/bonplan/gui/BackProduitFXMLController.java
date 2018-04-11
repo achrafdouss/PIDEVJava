@@ -5,12 +5,9 @@
  */
 package com.bonplan.gui;
 
-import com.bonplan.entities.Favoris;
 import com.bonplan.entities.Produit;
-import com.bonplan.entities.User;
 import com.bonplan.services.FavoriService;
 import com.bonplan.services.ProduitService;
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
@@ -29,7 +26,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Pagination;
 import javafx.scene.control.ToggleGroup;
@@ -46,13 +42,66 @@ import javafx.stage.Stage;
  *
  * @author bouyo
  */
-public class AfficherAllProduitFXMLController extends AcceuilFXMLController {
+public class BackProduitFXMLController extends AcceulProduitFXMLController {
 
     @FXML
     private AnchorPane winodow;
-    
     @FXML
     private Pagination paginator;
+    @FXML
+    private Pane filter_type;
+    @FXML
+    private Label filt;
+    @FXML
+    private JFXRadioButton Habillement;
+    @FXML
+    private ToggleGroup type;
+    @FXML
+    private JFXRadioButton Immobilier;
+    @FXML
+    private JFXRadioButton Vehicule;
+    @FXML
+    private JFXRadioButton Informatique;
+    @FXML
+    private Label filt1;
+    @FXML
+    private JFXRadioButton prixup;
+    @FXML
+    private ToggleGroup type3;
+    @FXML
+    private JFXRadioButton prixdown;
+    @FXML
+    private AnchorPane box1;
+    @FXML
+    private ImageView image1;
+    @FXML
+    private Label categorie1;
+    @FXML
+    private Label nom1;
+    @FXML
+    private Text prix1;
+    @FXML
+    private Text stock1;
+    @FXML
+    private Label description1;
+    @FXML
+    private JFXTextField recherche;
+    @FXML
+    private AnchorPane details;
+    @FXML
+    private ImageView photo;
+    @FXML
+    private Text descriptionD;
+    @FXML
+    private Label categorieD;
+    @FXML
+    private Label nomD;
+    @FXML
+    private Label stockD;
+    @FXML
+    private Label prixD;
+    @FXML
+    private Label idp1;
     @FXML
     private AnchorPane box;
     @FXML
@@ -81,71 +130,11 @@ public class AfficherAllProduitFXMLController extends AcceuilFXMLController {
     private Label stock2;
     @FXML
     private Label description2;
-    List<Produit> liste = new ArrayList<>();
+List<Produit> liste = new ArrayList<>();
     Produit p = new Produit();
     private ObservableList<Produit> data = FXCollections.observableArrayList();
-    @FXML
-    private AnchorPane details;
-    @FXML
-    private ImageView photo;
-    @FXML
-    private Text descriptionD;
-    @FXML
-    private Label categorieD;
-    @FXML
-    private Label nomD;
-    @FXML
-    private Label stockD;
-    @FXML
-    private Label prixD;
-    @FXML
-    private Button commander;
-    private List<Produit> all_articles;
-    ProduitService produitservice = new ProduitService();
-    @FXML
-    private AnchorPane box1;
-    @FXML
-    private ImageView image1;
-    @FXML
-    private Label categorie1;
-    @FXML
-    private Label nom1;
-    @FXML
-    private Text prix1;
-    @FXML
-    private Text stock1;
-    @FXML
-    private Label description1;
-    @FXML
-    private Label idp1;
-    Favoris f = new Favoris();
-    int id;
-    @FXML
-    private Pane filter_type;
-    @FXML
-    private Label filt;
-    @FXML
-    private JFXRadioButton Habillement;
-    @FXML
-    private ToggleGroup type;
-    @FXML
-    private JFXRadioButton Immobilier;
-    @FXML
-    private JFXRadioButton Vehicule;
-    @FXML
-    private JFXRadioButton Informatique;
-    @FXML
-    private Label filt1;
-    @FXML
-    private JFXRadioButton prixup;
-    @FXML
-    private ToggleGroup type3;
-    @FXML
-    private JFXRadioButton prixdown;
-    @FXML
-    private JFXTextField recherche;
-    @FXML
-    private Button fav;
+        ProduitService produitservice = new ProduitService();
+
     /**
      * Initializes the controller class.
      */
@@ -288,20 +277,18 @@ public class AfficherAllProduitFXMLController extends AcceuilFXMLController {
         ProduitService ps = new ProduitService();
         System.out.println("*********************\n" + p.getIdProduit() + "\n**************");
         ps.supprimerProduit(p.getIdProduit());
-        
-             FXMLLoader loader = new FXMLLoader(getClass().getResource(("AfficherAllProduitFXML.fxml")));
+       FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherAllProduitFXML.fxml"));
 
         loader.load();
         AnchorPane parentContent = loader.getRoot();
         window = (AnchorPane) paginator.getParent().getParent();
         AfficherAllProduitFXMLController cont = loader.getController();
 
-        window.getChildren().setAll(parentContent);
+        window.getChildren().setAll(parentContent); 
 
     }
  private void sendidproduit() throws IOException {
-       
- try {
+        try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("UpdateProduitFXML.fxml")) ;
     Parent root = (Parent) fxmlLoader.load();
             UpdateProduitFXMLController controller = fxmlLoader.<UpdateProduitFXMLController>getController();
@@ -311,35 +298,15 @@ public class AfficherAllProduitFXMLController extends AcceuilFXMLController {
         } catch (Exception e) {
             Logger.getLogger(UpdateProduitFXMLController.class.getName()).log(Level.SEVERE, null,e);
         }
+
     
     }
-    @FXML
-    public void Modifier(ActionEvent event) throws IOException {
-        Produit.setId_pModifier(p.getIdProduit());
-        System.out.println("wsel lahné");
-        sendidproduit();
-             FXMLLoader loader = new FXMLLoader(getClass().getResource(("UpdateProduitFXML.fxml")));
-
-        loader.load();
-        AnchorPane parentContent = loader.getRoot();
-        window = (AnchorPane) paginator.getParent().getParent();
-        UpdateProduitFXMLController cont = loader.getController();
-
-        window.getChildren().setAll(parentContent);
-
-    }
-     
+    
 
     private void initialiserDetails(Produit p) {
         /*if(User.getUserconnected()==p.getIdOwer())
                 commander.setVisible(false);*/
-        if (p.getStockProduit() == 0) {
-            commander.setDisable(true);
-
-        } else {
-            commander.setDisable(false);
-
-        }
+        
         Image img = new Image("http://localhost/uploadsimg/" + p.getPhotoProduit());
         photo.setImage(img);
         nomD.setText(p.getNomProduit());
@@ -349,30 +316,10 @@ public class AfficherAllProduitFXMLController extends AcceuilFXMLController {
         stockD.setText(Integer.toString(p.getStockProduit()));
         Produit.id_pModifier = p.getIdProduit();
         System.out.println(idp1.getText().toString());
-        ProduitService ps=new ProduitService();
-        if(ps.verifFav(User.getUserconnected(),p.getIdProduit()))
-            fav.setVisible(false);
-        else
-            fav.setVisible(true);
 
     }
 
-    @FXML
-    public void CommanderProduit(ActionEvent event) throws IOException {
-         
-       
-             FXMLLoader loader = new FXMLLoader(getClass().getResource(("CommanderFXML.fxml")));
-
-        loader.load();
-        AnchorPane parentContent = loader.getRoot();
-        window = (AnchorPane) paginator.getParent().getParent();
-        CommanderFXMLController cont = loader.getController();
-
-        window.getChildren().setAll(parentContent);
-        
-
-    }
-
+   
     @FXML
     private void Habillement(ActionEvent event) {
 
@@ -412,23 +359,7 @@ public class AfficherAllProduitFXMLController extends AcceuilFXMLController {
     }
 
 
-    @FXML
-    private void Favoris(ActionEvent event) throws IOException {
-        FavoriService ps = new FavoriService();
-        System.out.println("*********************\n" + p.getIdProduit() + "\n**************");
-        f.setProduit(p);
-        System.out.println("Fooovooriii" + f.getProduit().getIdProduit());
-        //System.out.println("hethi"+f);
-        ps.ajouterFavoris(f);
-             FXMLLoader loader = new FXMLLoader(getClass().getResource(("AfficherAllProduitFXML.fxml")));
-
-        loader.load();
-        AnchorPane parentContent = loader.getRoot();
-        window = (AnchorPane) paginator.getParent().getParent();
-        AfficherAllProduitFXMLController cont = loader.getController();
-
-        window.getChildren().setAll(parentContent); 
-    }
+    
 
     @FXML
     private void prixup(ActionEvent event) {
@@ -452,9 +383,4 @@ public class AfficherAllProduitFXMLController extends AcceuilFXMLController {
 
         setNbPages();
         initAnnoncePage(0);
-    }
-     
-
-   
-
-}
+    }}

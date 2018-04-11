@@ -14,6 +14,7 @@ import com.bonplan.services.ProduitService;
 import java.io.IOException;
 import java.sql.SQLException;
 import javafx.application.Application;
+import static javafx.application.Application.launch;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -33,12 +34,16 @@ import javafx.stage.Stage;
  * @author bouyo
  */
 public class NewFXMain extends Application {
-    public static  int owner=1;
+    //public static  int owner=1;
     @Override
     public void start(Stage stage) throws IOException, SQLException {
 
-        //Parent root = FXMLLoader.load(getClass().getResource("FXMLAjoutProduit.fxml"));
-        Parent root = FXMLLoader.load(getClass().getResource("AfficherAllProduitFXML.fxml"));
+       //Parent root = FXMLLoader.load(getClass().getResource("FXMLAjoutProduit.fxml"));
+    // Parent root = FXMLLoader.load(getClass().getResource("AfficherAllProduitFXML.fxml"));
+     //Parent root = FXMLLoader.load(getClass().getResource("AfficheFavorisFXML.fxml"));
+    Parent root = FXMLLoader.load(getClass().getResource("AcceulProduitFXML.fxml"));
+
+            // Parent root = FXMLLoader.load(getClass().getResource("BackProduitFXML.fxml"));
 
 // Parent root = FXMLLoader.load(getClass().getResource("FXMLListeProduit.fxml"));
 //Parent root = FXMLLoader.load(getClass().getResource("AjoutProduit2FXML.fxml"));
