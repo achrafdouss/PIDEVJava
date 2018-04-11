@@ -13,17 +13,17 @@
          <font>
             <Font size="24.0" />
          </font></Label>
-      <TableView fx:id="table" layoutX="353.0" layoutY="97.0" prefHeight="309.0" prefWidth="827.0">
+      <TableView fx:id="table" layoutX="353.0" layoutY="97.0" prefHeight="309.0" prefWidth="723.0">
         <columns>
           <TableColumn fx:id="titre" prefWidth="75.0" text="Titre" />
           <TableColumn fx:id="categorie" prefWidth="87.0" text="Categorie" />
             <TableColumn fx:id="description" prefWidth="89.0" text="Description" />
             <TableColumn fx:id="nom" prefWidth="69.0" text="Nom" />
-            <TableColumn fx:id="adresse" prefWidth="112.0" text="Adresse" />
-            <TableColumn fx:id="telephone" prefWidth="157.0" text="Numero de Telephone" />
-            <TableColumn fx:id="emailar" prefWidth="119.0" text="Email" />
-            <TableColumn fx:id="note" prefWidth="65.0" text="Note" />
-            <TableColumn fx:id="iddd" prefWidth="53.0" text="id" />
+            <TableColumn fx:id="adresse" prefWidth="66.0" text="Adresse" />
+            <TableColumn fx:id="telephone" prefWidth="128.0" text="Numero de Telephone" />
+            <TableColumn fx:id="emailar" prefWidth="84.0" text="Email" />
+            <TableColumn fx:id="note" prefWidth="58.0" text="Note" />
+            <TableColumn fx:id="iddd" prefWidth="65.0" text="id" />
         </columns>
       </TableView>
       <Button layoutX="446.0" layoutY="432.0" mnemonicParsing="false" onAction="#supprimer" text="Supprimer" />

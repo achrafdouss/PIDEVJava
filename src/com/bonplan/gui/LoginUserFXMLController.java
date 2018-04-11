@@ -66,14 +66,14 @@ if (login.getText().isEmpty()) {
 
             alert.showAndWait();
 
-        } /*else if (password.getText().isEmpty()) {
+        } else if (password.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Insert your Password");
             alert.setHeaderText("Insert your Password");
             alert.setContentText("Insert your Password");
 
             alert.showAndWait();
-        } */
+        } 
         else{
     //char[] pass=password.g
     String passText = password.getText();
@@ -99,7 +99,7 @@ if (login.getText().isEmpty()) {
                              alert.showAndWait();
             }
                 
-            else if(us.verifAdmin(login.getText())){
+            else if(us.verifAdmin(login.getText())||us.Login(login.getText(), password.getText())){
                 
             FXMLLoader loader = new FXMLLoader();
             User.setUserconnected(u.getId());
@@ -116,7 +116,7 @@ if (login.getText().isEmpty()) {
         closeStage();
             
         }
-            else {
+            else if(us.Login(login.getText(), password.getText())) {
                 User.setUserconnected(u.getId());
                  FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("AcceuilFXML.fxml"));

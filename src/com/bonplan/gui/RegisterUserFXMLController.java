@@ -134,7 +134,7 @@ public class RegisterUserFXMLController implements Initializable {
             //reppassword.setTextFill(Color.web("GREEN"));;
             reppassword.setVisible(true);
         }
-
+if(valid){
         UserServices us=new UserServices();
         User u=new User(username.getText(), email.getText(), 0, password.getText()+"{"+username.getText()+"}", "0", nom.getText(), prenom.getText(), addresse.getText(), Integer.parseInt(telep.getText()));
         us.AjouterUser(u);
@@ -146,6 +146,9 @@ public class RegisterUserFXMLController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+else{
+    
+}}
     @FXML
      public void back(ActionEvent event) throws IOException {
         ((Node) (event.getSource())).getScene().getWindow().hide();
