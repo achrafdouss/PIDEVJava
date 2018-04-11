@@ -80,8 +80,8 @@
             <Label fx:id="categorie2" layoutX="217.0" layoutY="20.0" text="Categorie" />
             <Label fx:id="nom2" layoutX="217.0" layoutY="45.0" text="Nom" />
             <Text fx:id="prix2" layoutX="218.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prix" />
-            <Text fx:id="stock2" layoutX="218.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stock" />
-            <Text fx:id="description2" layoutX="221.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" />
+            <Label fx:id="stock2" layoutX="218.0" layoutY="113.0"  text="Stock" />
+            <Label fx:id="description2" layoutX="221.0" layoutY="130.0"  text="Description" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="details" layoutX="254.0" layoutY="37.0" prefHeight="511.0" prefWidth="565.0" style="-fx-background-color: white;">

@@ -113,7 +113,7 @@ public class AfficherAllProduitFXMLController extends AcceuilFXMLController {
     @FXML
     private Text prix1;
     @FXML
-    private Text stock1;
+    private Label stock1;
     @FXML
     private Label description1;
     @FXML

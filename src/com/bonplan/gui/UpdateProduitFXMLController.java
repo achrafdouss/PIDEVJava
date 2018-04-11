@@ -149,14 +149,7 @@ public class UpdateProduitFXMLController extends AfficherAllProduitFXMLControlle
                 TrayNotification tray = new TrayNotification("Notification !", "Produit modifiée avec succée", NotificationType.SUCCESS);
                 tray.showAndDismiss(Duration.seconds(6));
             }
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherAllProduitFXML.fxml"));
-
-                loader.load();
-                AnchorPane parentContent = loader.getRoot();
-                window = (AnchorPane) nom11.getParent().getParent();
-                AfficherAllProduitFXMLController cont = loader.getController();
-
-                window.getChildren().setAll(parentContent);
+           
 
         }
 
