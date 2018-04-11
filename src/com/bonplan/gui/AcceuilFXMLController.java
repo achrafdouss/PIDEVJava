@@ -210,6 +210,15 @@ public class AcceuilFXMLController implements Initializable {
                                         Logger.getLogger(AcceuilFXMLController.class.getName()).log(Level.SEVERE, null, ex);
                                     }
                                 }
+                                case "grec": {
+                                    try {
+                                        loadSplashScreen("AfficheRecommendationAdmin.fxml");
+                                        test.getChildren().remove(drawer);
+                                        break;
+                                    } catch (Exception ex) {
+                                        Logger.getLogger(AcceuilFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                }
                             }
                         }
                     });
